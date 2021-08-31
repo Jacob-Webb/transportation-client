@@ -1,1 +1,33 @@
-<p>nav works!</p>
+<header>
+    <mat-toolbar color="primary" class="navbar">
+      <!-- <a href="https://jacob-webb.com" class="logo">Jacob Webb</a> -->
+      <div class="nav-menu-show">
+        <!-- <a mat-button *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/welcome/jacob-webb">Home</a> -->
+        <a mat-button *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/home"><mat-icon aria-hidden="false" aria-label="Home Icon">home</mat-icon></a>
+        <a mat-button *ngIf="this.basicAuthenticationService.isUserLoggedIn() && ((role == 'ROLE_SUPERADMIN') || (role == 'ROLE_ADMIN'))" routerLink="/users">Users</a>
+        <a mat-icon-button [matMenuTriggerFor]="profile" *ngIf="this.basicAuthenticationService.isUserLoggedIn()"><mat-icon>person</mat-icon></a>
+        <a mat-button *ngIf="!this.basicAuthenticationService.isUserLoggedIn()" routerLink="/login">Sign In / Register</a>
+        <mat-menu #profile="matMenu" color="primary">
+          <div *ngIf="this.userName" style="color:white; text-align:center;">{{name}}</div>
+          <div>
+            <a mat-menu-item *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/account">Update Contact Info</a>
+            <a mat-menu-item *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/userPassword">Change Password</a>
+            <a mat-menu-item *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/logout">Logout</a>
+          </div>
+        </mat-menu>
+      </div>
+      <div class="nav-menu-hide">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon-button with a menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menu="matMenu" color="primary">
+          <div>
+          <!-- <a mat-menu-item *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/welcome/jacob-webb">Home</a> -->
+          <a mat-menu-item *ngIf="this.basicAuthenticationService.isUserLoggedIn()" routerLink="/home"><mat-icon aria-hidden="false" aria-label="Home Icon">home</mat-icon></a>
+          <a mat-menu-item *ngIf="this.basicAuthenticationService.isUserLoggedIn() && ((role == 'ROLE_SUPERADMIN') || (role == 'ROLE_ADMIN'))" routerLink="/users">Users</a>
+          <a mat-menu-item [matMenuTriggerFor]="profile" *ngIf="this.basicAuthenticationService.isUserLoggedIn()"><mat-icon>person</mat-icon></a>
+          <a mat-menu-item *ngIf="!this.basicAuthenticationService.isUserLoggedIn()" routerLink="/login">Sign in / Register</a>
+          </div>
+        </mat-menu>
+      </div>
+    </mat-toolbar> 
+  
+  </header>
