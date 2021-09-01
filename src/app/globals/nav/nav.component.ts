@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BasicAuthenticationService } from '../service/basic-authentication.service';
-import { AUTHENTICATED_USER, FIRST_NAME, StorageService, USER_ROLE } from '../service/data/storage.service';
+// import { BasicAuthenticationService } from '../service/basic-authentication.service';
+// import { AUTHENTICATED_USER, FIRST_NAME, StorageService, USER_ROLE } from '../service/data/storage.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +8,7 @@ import { AUTHENTICATED_USER, FIRST_NAME, StorageService, USER_ROLE } from '../se
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
+/*
   userName: string;
   role: string;
   name: string;
@@ -19,6 +20,8 @@ export class NavComponent {
     this.storageService.watchStorageItem(FIRST_NAME).subscribe(data => this.name = data);
     this.storageService.watchStorageItem(USER_ROLE).subscribe(data => this.role = data);
   }
+  */
+ constructor(){}
 
   ngOnInit(): void {}
 }
