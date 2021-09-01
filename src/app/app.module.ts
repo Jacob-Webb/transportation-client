@@ -13,6 +13,9 @@ import { FooterComponent } from './globals/footer/footer.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { AccessComponent } from './access/access.component';
+import { RegisterComponent } from './access/register/register.component';
+import { SigninComponent } from './access/signin/signin.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
     FooterComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    TestErrorsComponent
+    TestErrorsComponent,
+    AccessComponent,
+    RegisterComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
