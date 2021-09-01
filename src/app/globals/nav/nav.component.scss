@@ -1,4 +1,4 @@
-@import '../../styles.scss';
+@import '../../../styles.scss';
 
 .navbar
 {
@@ -29,8 +29,4 @@
   font-family: 'Baskerville';
   color: white;
   text-decoration:none;
-}
-::ng-deep .menu-background
-{
-  background-color: mat-color($todo-accent, 800) !important;
 }
