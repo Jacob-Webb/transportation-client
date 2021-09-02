@@ -6,16 +6,17 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NavComponent } from './globals/nav/nav.component';
+import { NavComponent } from './core/header/nav.component';
 
-import { SharedModule } from './_shared/modules/shared/shared.module';
-import { FooterComponent } from './globals/footer/footer.component';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
-import { AccessComponent } from './access/access.component';
-import { RegisterComponent } from './access/register/register.component';
-import { SigninComponent } from './access/signin/signin.component';
+import { SharedModule } from './shared/shared.module';
+import { FooterComponent } from './core/footer/footer.component';
+import { NotFoundComponent } from './core/errors/not-found/not-found.component';
+import { ServerErrorComponent } from './core/errors/server-error/server-error.component';
+import { TestErrorsComponent } from './core/errors/test-errors/test-errors.component';
+import { AccessComponent } from './modules/home/pages/access/access.component';
+import { RegisterComponent } from './modules/home/pages/access/register/register.component';
+import { SigninComponent } from './modules/home/pages/access/signin/signin.component';
+import { HomeComponent } from './modules/home/pages/home/home.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SigninComponent } from './access/signin/signin.component';
     TestErrorsComponent,
     AccessComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

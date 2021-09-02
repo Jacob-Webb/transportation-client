@@ -3,8 +3,11 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
-import { AccountService } from '../../_services/account.service';
-import { User } from 'src/app/_models/user';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { User } from 'src/app/shared/models/user';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,22 +16,17 @@ import { User } from 'src/app/_models/user';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
+    public registerForm: FormGroup;
+
     passwordMinLength = 3;
-    phone: string;
     hide=true;
     hideConfirm=true;
     submitted=false;
     isUniqueEmail=true;
-    user: User;
     error: boolean = false;
 
 
-  constructor(private accountService: AccountService,
+  constructor(private _authService: AuthenticationService,
     private toastr: ToastrService, 
     private router: Router,
     fb: FormBuilder 
@@ -49,11 +47,31 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register() {
-      this.user = new this.user(
-          this.registerForm.controls['firstName'].value,
-      )
+  public register = (registerFormValue: any) => {
 
+    const formValues = { ...registerFormValue };
+    const user: User = {
+      userName: formValues.email,
+      password: formValues.password,
+      confirmPassword: formValues.confirmPassword,
+      firstName: formValues.firstName,
+      lastName: formValues.lastName,
+      email: formValues.email,
+      phone: formValues.phone,
+      address1: formValues.address1,
+      address2: formValues.address2,
+      city: formValues.city,
+      zipCode: formValues.zipCode,
+      role: "User"
+    }
+      
+    this._authService.registerUser("api/Accounts/register", user)
+      .subscribe(_=> {
+        console.log("Successful registration");
+      },
+      error => {
+        console.log(error.error.errors);
+      })
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
