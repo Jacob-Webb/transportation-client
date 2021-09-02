@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 import { NavComponent } from './globals/nav/nav.component';
 
-import { SharedModule } from './_modules/shared/shared.module';
+import { SharedModule } from './_shared/modules/shared/shared.module';
 import { FooterComponent } from './globals/footer/footer.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
