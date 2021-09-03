@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Injectable, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { User } from 'src/app/shared/models/user';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -21,6 +22,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 })
 export class RegisterComponent implements OnInit {
     public registerForm: FormGroup;
+    validationErrors: string[] = [];
 
     passwordMinLength = 3;
     hide=true;
@@ -31,8 +33,9 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private _authService: AuthenticationService,
-    private toastr: ToastrService, 
-    private router: Router,
+    private notificationService: NotificationService, 
+    private http: HttpClient,
+    private _router: Router,
     fb: FormBuilder 
     ) { 
         this.registerForm = fb.group({
@@ -73,11 +76,11 @@ export class RegisterComponent implements OnInit {
     }
       
     this._authService.registerUser("api/Accounts/register", user)
-      .subscribe(_=> {
-        console.log("Successful registration");
-      },
-      error => {
-        console.log(error.error.errors);
+      .subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+        this.validationErrors = error;
       })
   }
 

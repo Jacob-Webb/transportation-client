@@ -2,7 +2,7 @@
     <mat-toolbar color="primary" class="navbar">
       <!-- <a href="https://jacob-webb.com" class="logo">Jacob Webb</a> -->
       <div class="nav-menu-show">
-        <a mat-button routerLink="/">Register / Sign In</a>
+        <a mat-button routerLink="/access">Sign In / Register</a>
         <mat-menu #profile="matMenu" color="primary">
           
           <div>
@@ -16,7 +16,7 @@
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon-button with a menu"><mat-icon>menu</mat-icon></button>
         <mat-menu #menu="matMenu" color="primary">
           <div>
-          <a mat-menu-item routerLink="/">Sign in / Register</a>
+          <a mat-menu-item routerLink="/access">Sign in / Register</a>
           </div>
         </mat-menu>
       </div>
