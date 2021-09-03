@@ -1,1 +1,16 @@
-<p>access works!</p>
+<div class="access-container">
+  <!--
+  <h4 *ngIf="connectionError == false"></h4>
+  <h4 *ngIf="userConfirmed">Congratulations! You were successfully registered!</h4>
+  <h4 *ngIf="passwordError != null">There was an issue resetting your password</h4>
+  <h4 *ngIf="passwordSuccess != null">You have successfully changed your password</h4>
+  -->
+<mat-card>
+  <mat-card-content>
+    <mat-tab-group mat-stretch-tabs>
+      <mat-tab color="primary" label="Register"><app-register></app-register></mat-tab>
+      <mat-tab color="primary" label="Sign In"><app-signin></app-signin></mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+</div>

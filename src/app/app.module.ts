@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { AccessComponent } from './modules/home/pages/access/access.component';
 import { RegisterComponent } from './modules/home/pages/access/register/register.component';
 import { SigninComponent } from './modules/home/pages/access/signin/signin.component';
 import { HomeComponent } from './modules/home/pages/home/home.component';
+
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { HomeComponent } from './modules/home/pages/home/home.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    NgxMaskModule.forRoot(),
     SharedModule
   ],
   providers: [],
