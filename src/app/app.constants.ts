@@ -1,1 +1,0 @@
-export const URL_API = "https://xxxx-xxx-xx-x.ngrok.io/api";

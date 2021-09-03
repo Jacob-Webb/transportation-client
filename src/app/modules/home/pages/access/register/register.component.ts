@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
@@ -9,7 +9,11 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
+@Injectable({
+  providedIn:'root'
+})
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,8 +40,12 @@ export class RegisterComponent implements OnInit {
             'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z]*'), Validators.required])],
             'email':['', Validators.compose([Validators.email, Validators.required])],
             'phone':['', Validators.compose([])],
-            'new-password':['', Validators.compose([Validators.minLength(3), Validators.required])],
-            'confirm-password':['', Validators.compose([Validators.minLength(3), Validators.required])]
+            'address1': ['', Validators.compose([Validators.required])],
+            'address2': [],
+            'city':['', Validators.compose([Validators.required])],
+            'zipCode':['', Validators.compose([Validators.required])],
+            'password':['', Validators.compose([Validators.minLength(3), Validators.required])],
+            'confirmPassword':['', Validators.compose([Validators.minLength(3), Validators.required])]
         },{
             // check whether or not our password and confirm password match
             validator: this.passwordMatchValidator
@@ -51,7 +59,6 @@ export class RegisterComponent implements OnInit {
 
     const formValues = { ...registerFormValue };
     const user: User = {
-      userName: formValues.email,
       password: formValues.password,
       confirmPassword: formValues.confirmPassword,
       firstName: formValues.firstName,
@@ -62,7 +69,7 @@ export class RegisterComponent implements OnInit {
       address2: formValues.address2,
       city: formValues.city,
       zipCode: formValues.zipCode,
-      role: "User"
+      role: "Rider"
     }
       
     this._authService.registerUser("api/Accounts/register", user)
@@ -75,11 +82,11 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
-      const password: string = formGroup.get('new-password')?.value             // get password from our password form control
-      const confirmPassword: string = formGroup.get('confirm-password')?.value  // get password from our confirmPassword form control 
+      const password: string = formGroup.get('password')?.value             // get password from our password form control
+      const confirmPassword: string = formGroup.get('confirmPassword')?.value  // get password from our confirmPassword form control 
       // compare if the passwords match
       if (password !== confirmPassword) {
-          formGroup.get('confirm-password')?.setErrors({ NoPasswordMatch: true });
+          formGroup.get('confirmPassword')?.setErrors({ NoPasswordMatch: true });
       }
   }
 
