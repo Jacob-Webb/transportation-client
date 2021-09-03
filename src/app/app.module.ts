@@ -19,6 +19,7 @@ import { SigninComponent } from './modules/home/pages/access/signin/signin.compo
 import { HomeComponent } from './modules/home/pages/home/home.component';
 
 import { NgxMaskModule } from 'ngx-mask';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 
 @NgModule({
@@ -43,7 +44,13 @@ import { NgxMaskModule } from 'ngx-mask';
     NgxMaskModule.forRoot(),
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
