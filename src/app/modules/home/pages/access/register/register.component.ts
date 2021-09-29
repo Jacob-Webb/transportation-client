@@ -39,8 +39,8 @@ export class RegisterComponent implements OnInit {
     fb: FormBuilder 
     ) { 
         this.registerForm = fb.group({
-            'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z]*'), Validators.required])],
-            'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z]*'), Validators.required])],
+            'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+            'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
             'email':['', Validators.compose([Validators.email, Validators.required])],
             'phone':['', Validators.compose([])],
             'address1': ['', Validators.compose([Validators.required])],
@@ -64,24 +64,26 @@ export class RegisterComponent implements OnInit {
     const user: User = {
       password: formValues.password,
       confirmPassword: formValues.confirmPassword,
-      firstName: formValues.firstName,
-      lastName: formValues.lastName,
-      email: formValues.email,
+      firstName: formValues.firstName.trim(),
+      lastName: formValues.lastName.trim(),
+      email: formValues.email.trim(),
       phone: formValues.phone,
-      address1: formValues.address1,
-      address2: formValues.address2,
-      city: formValues.city,
-      zipCode: formValues.zipCode,
+      address1: formValues.address1.trim(),
+      address2: formValues.address2 !== null ? formValues.address2.trim() : formValues.address2,
+      city: formValues.city.trim(),
+      zipCode: formValues.zipCode.trim(),
       role: "Rider"
     }
+
+    console.log(user.address2);
       
-    this._authService.registerUser("api/Accounts/register", user)
-      .subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
-        this.validationErrors = error;
-      })
+    // this._authService.registerUser("api/Accounts/register", user)
+    //   .subscribe(response => {
+    //     console.log(response);
+    //   }, error => {
+    //     console.log(error);
+    //     this.validationErrors = error;
+    //   })
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
