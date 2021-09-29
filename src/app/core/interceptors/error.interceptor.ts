@@ -31,16 +31,16 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors.flat();
               } else {
-                let errors = Object.keys(error.error);
+                let errors = Object.values(error.error);
                 for (let i = 0; i < errors.length; ++i)
-                this.notifcationService.showError(errors[i], error.status);
+                this.notifcationService.showError(errors[i] as string, error.status);
               }
               break;
             case 401:
               this.notifcationService.showError(error.statusText, error.status);
               break;
             case 404:
-              this.router.navigateByUrl('/not-found');
+              this.router.navigateByUrl('/404');
               break;
             case 500:
               const navigationExtras: NavigationExtras = {state: {error: error.error}};
