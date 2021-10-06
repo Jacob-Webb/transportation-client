@@ -1,0 +1,19 @@
+.access-container
+{
+  width: 500px;
+  margin: 2% auto;
+}
+@media( max-width:500px )
+{
+  .access-container
+  {
+    width: 300px;
+  }
+}
+@media ( max-width: 300px )
+{
+  .access-container
+  {
+    width: 250px;
+  }
+}
