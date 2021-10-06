@@ -14,7 +14,7 @@ import { catchError } from 'rxjs/operators';
 export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(private router: Router,
-    private notifcationService: NotificationService) {}
+    private notificationService: NotificationService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
@@ -33,21 +33,27 @@ export class ErrorInterceptor implements HttpInterceptor {
               } else {
                 let errors = Object.values(error.error);
                 for (let i = 0; i < errors.length; ++i)
-                this.notifcationService.showError(errors[i] as string, error.status);
+                this.notificationService.showError(errors[i] as string, error.status);
               }
               break;
             case 401:
-              this.notifcationService.showError(error.statusText, error.status);
+              this.notificationService.showError(error.statusText, error.status);
+              break;
+            case 403: 
+              this.notificationService.showError(error.error);
               break;
             case 404:
               this.router.navigateByUrl('/404');
+              break;
+            case 409:
+              this.notificationService.showError(error.error);
               break;
             case 500:
               const navigationExtras: NavigationExtras = {state: {error: error.error}};
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
-              this.notifcationService.showError("Something unexpected went wrong");
+              this.notificationService.showError("Something unexpected went wrong");
               console.log(error);
               break;
           }
