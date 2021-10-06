@@ -23,7 +23,6 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 export class RegisterComponent implements OnInit {
     public registerForm: FormGroup;
     validationErrors: string[] = [];
-
     passwordMinLength = 3;
     hide=true;
     hideConfirm=true;
@@ -41,7 +40,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm = fb.group({
             'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
             'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-            'email':['', Validators.compose([Validators.email, Validators.required])],
+            'email':['', Validators.compose([Validators.email])],
             'phone':['', Validators.compose([])],
             'address1': ['', Validators.compose([Validators.required])],
             'address2': [],
@@ -66,29 +65,27 @@ export class RegisterComponent implements OnInit {
       confirmPassword: formValues.confirmPassword,
       firstName: formValues.firstName.trim(),
       lastName: formValues.lastName.trim(),
-      email: formValues.email.trim(),
+      email: formValues.email !== '' ? formValues.email.trim() : null,
       phone: formValues.phone,
       address1: formValues.address1.trim(),
-      address2: formValues.address2 !== null ? formValues.address2.trim() : formValues.address2,
+      address2: formValues.address2 !== null ? formValues.address2.trim() : null,
       city: formValues.city.trim(),
       zipCode: formValues.zipCode.trim(),
       role: "Rider"
     }
 
-    console.log(user.address2);
-      
-    // this._authService.registerUser("api/Accounts/register", user)
-    //   .subscribe(response => {
-    //     console.log(response);
-    //   }, error => {
-    //     console.log(error);
-    //     this.validationErrors = error;
-    //   })
+    this._authService.registerUser("api/Accounts/register", user)
+      .subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+        this.validationErrors = error;
+      })
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
-      const password: string = formGroup.get('password')?.value             // get password from our password form control
-      const confirmPassword: string = formGroup.get('confirmPassword')?.value  // get password from our confirmPassword form control 
+      const password: string = formGroup.get('password')?.value                 // get password from our password form control
+      const confirmPassword: string = formGroup.get('confirmPassword')?.value   // get password from our confirmPassword form control 
       // compare if the passwords match
       if (password !== confirmPassword) {
           formGroup.get('confirmPassword')?.setErrors({ NoPasswordMatch: true });
