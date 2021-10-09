@@ -45,6 +45,9 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 404:
               this.router.navigateByUrl('/404');
               break;
+            case 406: 
+              this.notificationService.showError(error.error);
+              break;
             case 409:
               this.notificationService.showError(error.error);
               break;
