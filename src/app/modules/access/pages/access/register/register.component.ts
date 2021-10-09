@@ -1,14 +1,9 @@
-import { Component, EventEmitter, Injectable, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
 import { User } from 'src/app/shared/models/user';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -30,13 +25,9 @@ export class RegisterComponent implements OnInit {
     isUniqueEmail=true;
     error: boolean = false;
 
-
   constructor(private _authService: AuthenticationService,
-    private notificationService: NotificationService, 
-    private http: HttpClient,
-    private _router: Router,
-    fb: FormBuilder 
-    ) { 
+    private router: Router,
+    fb: FormBuilder) { 
         this.registerForm = fb.group({
             'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
             'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -74,13 +65,16 @@ export class RegisterComponent implements OnInit {
       role: "Rider"
     }
 
-    this._authService.registerUser("api/Accounts/register", user)
-      .subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
-        this.validationErrors = error;
-      })
+    this.router.navigate(['verify-phone'], {state: {data: {user}}});
+
+    // this._authService.registerUser("api/Accounts/register", user)
+    //   .subscribe(response => {
+    //     console.log(response);
+    //     this.router.navigate(['verify-phone'], {state: {data: {user}}});
+    //   }, error => {
+    //     console.log(error);
+    //     this.validationErrors = error;
+    //   })
   }
 
   passwordMatchValidator(formGroup: FormGroup) {

@@ -14,14 +14,14 @@ export class AuthenticationService {
     private _envUrl: EnvironmentUrlService) { }
 
     public registerUser = (route: string, body: User) => {
-      return this.http.post<RegistrationResponse> (this.createCompleteRoute(route, this._envUrl.apiUrl), body);
+      return this.http.post<RegistrationResponse> (this.createCompleteRoute(this._envUrl.apiUrl, route), body);
     }
 
     public loginUser = (route: string, body: JwtToken) => {
-      return this.http.post(this.createCompleteRoute(route, this._envUrl.apiUrl), body);
+      return this.http.post(this.createCompleteRoute(this._envUrl.apiUrl, route), body);
     }
 
-    private createCompleteRoute = (route: string, envAddress: string) => {
+    private createCompleteRoute = (envAddress: string, route: string) => {
       return `${envAddress}/${route}`;
     }
 }

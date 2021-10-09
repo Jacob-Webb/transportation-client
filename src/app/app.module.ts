@@ -19,6 +19,7 @@ import { HomeComponent } from './modules/home/pages/home/home.component';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/verify-phone.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     AccessComponent,
     RegisterComponent,
     SigninComponent,
-    HomeComponent
+    HomeComponent,
+    VerifyPhoneComponent
   ],
   imports: [
     BrowserModule,
