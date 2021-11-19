@@ -32,7 +32,7 @@ export class VerifyPhoneComponent implements OnInit {
   }
 
   public verify() {
-    console.log(this.user);
+    console.log(this.verifyPhoneForm.value.verifyCode);
   }
 
 }

@@ -65,16 +65,14 @@ export class RegisterComponent implements OnInit {
       role: "Rider"
     }
 
-    this.router.navigate(['verify-phone'], {state: {data: {user}}});
-
-    // this._authService.registerUser("api/Accounts/register", user)
-    //   .subscribe(response => {
-    //     console.log(response);
-    //     this.router.navigate(['verify-phone'], {state: {data: {user}}});
-    //   }, error => {
-    //     console.log(error);
-    //     this.validationErrors = error;
-    //   })
+    this._authService.registerUser("api/Accounts/register", user)
+      .subscribe(response => {
+        console.log(response);
+        this.router.navigate(['verify-phone'], {state: {data: {user}}});
+      }, error => {
+        console.log(error);
+        this.validationErrors = error;
+      })
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
