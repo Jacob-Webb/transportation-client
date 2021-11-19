@@ -56,7 +56,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
-              this.notificationService.showError("Something unexpected went wrong");
+              //this.notificationService.showError("Something unexpected went wrong");
               console.log(error);
               break;
           }
