@@ -30,7 +30,7 @@ export class VerifyPhoneComponent implements OnInit {
   ngOnInit(): void {
     this.responseData = history.state.data;
     console.log(this.responseData);
-    if (this.responseData == '') 
+    if (this.responseData == '' || this.responseData == undefined) 
       this.router.navigate(['access']);
   }
 
@@ -46,7 +46,6 @@ export class VerifyPhoneComponent implements OnInit {
       console.log(error);
       this.validationErrors = error;
     })
-    console.log(this.verifyPhoneForm.value.verifyCode);
   }
 
 }
