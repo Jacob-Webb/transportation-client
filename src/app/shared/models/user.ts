@@ -1,4 +1,4 @@
-export interface User {
+export interface UserForRegistrationDto {
   email: string | null;
   password: string;
   confirmPassword: string;

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { User } from 'src/app/shared/models/user';
+import { UserForRegistrationDto } from 'src/app/shared/models/user';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -23,9 +23,10 @@ export class RegisterComponent implements OnInit {
     hideConfirm=true;
     submitted=false;
     isUniqueEmail=true;
+    phone = '';
     error: boolean = false;
 
-  constructor(private _authService: AuthenticationService,
+  constructor(private authService: AuthenticationService,
     private router: Router,
     fb: FormBuilder) { 
         this.registerForm = fb.group({
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
   public register = (registerFormValue: any) => {
 
     const formValues = { ...registerFormValue };
-    const user: User = {
+    const user: UserForRegistrationDto = {
       password: formValues.password,
       confirmPassword: formValues.confirmPassword,
       firstName: formValues.firstName.trim(),
@@ -65,12 +66,15 @@ export class RegisterComponent implements OnInit {
       role: "Rider"
     }
 
-    this._authService.registerUser("api/Accounts/register", user)
+    this.authService.registerUser("api/Accounts/Registration", user)
       .subscribe(response => {
         console.log(response);
-        this.router.navigate(['verify-phone'], {state: {data: {user}}});
+        this.router.navigate(['verify-phone'], {state: {data: {response}}});
       }, error => {
-        console.log(error);
+        console.log(error.status);
+        if (error.status == 403) {
+          this.router.navigate(['verify-phone'], {state: {data: formValues.phone}});
+        }
         this.validationErrors = error;
       })
   }
