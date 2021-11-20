@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user';
 import { IConfig } from 'ngx-mask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { UserForRegistrationDto } from 'src/app/shared/models/user';
+import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -14,24 +16,36 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 export class VerifyPhoneComponent implements OnInit {
   public verifyPhoneForm: FormGroup;
   codeLength: number = 6;
+  validationErrors: string[] = [];
+  private responseData: string = '';
 
-  constructor(private router: Router,
+  constructor(private authService: AuthenticationService, 
+    private router: Router,
     fb: FormBuilder) { 
       this.verifyPhoneForm = fb.group ({
         'verifyCode':['', Validators.compose([Validators.maxLength(this.codeLength), Validators.required])]
       })
     }
 
-  private user: User | undefined
-
   ngOnInit(): void {
-    this.user = history.state.data;
-
-    // if (this.user == null) 
-    // this.router.navigate(['access']);
+    this.responseData = history.state.data;
+    console.log(this.responseData);
+    if (this.responseData == '') 
+      this.router.navigate(['access']);
   }
 
   public verify() {
+    const phoneVerification: PhoneVerificationDto = {
+      code: this.verifyPhoneForm.value.verifyCode
+    }
+
+   this.authService.verifyPhone(`api/Accounts/PhoneVerification/${this.responseData}`, phoneVerification)
+    .subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+      this.validationErrors = error;
+    })
     console.log(this.verifyPhoneForm.value.verifyCode);
   }
 
