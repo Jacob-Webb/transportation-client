@@ -6,6 +6,10 @@ mat-card {
 mat-card-header {
   display:block;
 }
+
+mat-card-footer {
+  margin: 0 auto 10px;
+}
 #phone-verification {
   text-align:center;
   letter-spacing: 18px;
