@@ -15,6 +15,10 @@
           maxlength="{{ codeLength }}" formControlName="verifyCode" class="form-control" required>
           <mat-error *ngIf="verifyPhoneForm.controls['verifyCode'].invalid">Your verification code is required</mat-error>
         </mat-form-field>
+
+        <mat-card-footer>
+          <button mat-raised-button class="submit" color="primary">Verify</button>
+        </mat-card-footer>
       </form>
     </mat-card-content>
   </mat-card>
