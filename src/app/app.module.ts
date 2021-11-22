@@ -33,7 +33,7 @@ import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/
     RegisterComponent,
     SigninComponent,
     HomeComponent,
-    VerifyPhoneComponent
+    VerifyPhoneComponent,
   ],
   imports: [
     BrowserModule,
