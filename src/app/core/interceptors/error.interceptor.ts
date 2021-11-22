@@ -22,18 +22,23 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error) {
           switch (error.status) {
             case 400:
-              if (error.error.errors) {
-                const modalStateErrors = [];
-                for (const key in error.error.errors) {
-                  if (error.error.errors[key]) {
-                    modalStateErrors.push(error.error.errors[key])
-                  }
-                }
-                throw modalStateErrors.flat();
+              if(Object.values(error.error).length <= 1)
+              {
+                this.notificationService.showError(error.error);
               } else {
-                let errors = Object.values(error.error);
-                for (let i = 0; i < errors.length; ++i)
-                this.notificationService.showError(errors[i] as string, error.status);
+                if (error.error.errors) {
+                  const modalStateErrors = [];
+                  for (const key in error.error.errors) {
+                    if (error.error.errors[key]) {
+                      modalStateErrors.push(error.error.errors[key])
+                    }
+                  }
+                  throw modalStateErrors.flat();
+                } else {
+                  let errors = Object.values(error.error);
+                  for (let i = 0; i < errors.length; ++i)
+                  this.notificationService.showError(errors[i] as string, error.status);
+                }
               }
               break;
             case 401:
@@ -45,6 +50,9 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 404:
               this.router.navigateByUrl('/404');
               break;
+            case 406: 
+              this.notificationService.showError(error.error);
+              break;
             case 409:
               this.notificationService.showError(error.error);
               break;
@@ -53,7 +61,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
-              this.notificationService.showError("Something unexpected went wrong");
+              //this.notificationService.showError("Something unexpected went wrong");
               console.log(error);
               break;
           }

@@ -10,15 +10,16 @@ import { NavComponent } from './core/header/nav.component';
 
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './core/footer/footer.component';
-import { NotFoundComponent } from './modules/home/pages/errors/not-found/not-found.component';
-import { ServerErrorComponent } from './modules/home/pages/errors/server-error/server-error.component';
-import { AccessComponent } from './modules/home/pages/access/access.component';
-import { RegisterComponent } from './modules/home/pages/access/register/register.component';
-import { SigninComponent } from './modules/home/pages/access/signin/signin.component';
+import { NotFoundComponent } from './modules/errors/pages/errors/not-found/not-found.component';
+import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
+import { AccessComponent } from './modules/access/pages/access/access.component';
+import { RegisterComponent } from './modules/access/pages/access/register/register.component';
+import { SigninComponent } from './modules/access/pages/access/signin/signin.component';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/verify-phone.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     AccessComponent,
     RegisterComponent,
     SigninComponent,
-    HomeComponent
+    HomeComponent,
+    VerifyPhoneComponent,
   ],
   imports: [
     BrowserModule,
