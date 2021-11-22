@@ -1,14 +1,9 @@
-import { Component, EventEmitter, Injectable, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { User } from 'src/app/shared/models/user';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { UserForRegistrationDto } from 'src/app/shared/models/user';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -28,15 +23,12 @@ export class RegisterComponent implements OnInit {
     hideConfirm=true;
     submitted=false;
     isUniqueEmail=true;
+    phone = '';
     error: boolean = false;
 
-
-  constructor(private _authService: AuthenticationService,
-    private notificationService: NotificationService, 
-    private http: HttpClient,
-    private _router: Router,
-    fb: FormBuilder 
-    ) { 
+  constructor(private authService: AuthenticationService,
+    private router: Router,
+    fb: FormBuilder) { 
         this.registerForm = fb.group({
             'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
             'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -60,7 +52,7 @@ export class RegisterComponent implements OnInit {
   public register = (registerFormValue: any) => {
 
     const formValues = { ...registerFormValue };
-    const user: User = {
+    const user: UserForRegistrationDto = {
       password: formValues.password,
       confirmPassword: formValues.confirmPassword,
       firstName: formValues.firstName.trim(),
@@ -74,11 +66,15 @@ export class RegisterComponent implements OnInit {
       role: "Rider"
     }
 
-    this._authService.registerUser("api/Accounts/register", user)
+    this.authService.registerUser("api/Accounts/Registration", user)
       .subscribe(response => {
         console.log(response);
+        this.router.navigate(['verify-phone'], {state: {data: user.phone}});
       }, error => {
-        console.log(error);
+        console.log(error.status);
+        if (error.status == 403) {
+          this.router.navigate(['verify-phone'], {state: {data: formValues.phone}});
+        }
         this.validationErrors = error;
       })
   }
