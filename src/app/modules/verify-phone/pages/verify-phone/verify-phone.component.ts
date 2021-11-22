@@ -29,9 +29,8 @@ export class VerifyPhoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.responseData = history.state.data;
-    console.log(this.responseData);
-    // if (this.responseData == '' || this.responseData == undefined) 
-    //   this.router.navigate(['access']);
+    if (this.responseData == '' || this.responseData == undefined) 
+      this.router.navigate(['access']);
   }
 
   public verify() {
@@ -42,6 +41,7 @@ export class VerifyPhoneComponent implements OnInit {
    this.authService.verifyPhone(`api/Accounts/PhoneVerification/${this.responseData}`, phoneVerification)
     .subscribe(response => {
       console.log(response);
+      this.router.navigate(['phone-verification-confirmation'], {state: {data: this.responseData}});
     }, error => {
       console.log(error);
       this.validationErrors = error;
