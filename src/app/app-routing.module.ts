@@ -10,7 +10,6 @@ import { PhoneVerificationConfirmationComponent } from './modules/verify-phone/p
 const routes: Routes = [
   { path: '', component: AccessComponent },
   { path: 'access', component: AccessComponent },
-  { path: 'access/:token', component: AccessComponent },
   { path: 'verify-phone', component: VerifyPhoneComponent},
   { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent}, 
   { path: 'home', component: HomeComponent },
