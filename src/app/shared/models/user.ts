@@ -11,3 +11,8 @@ export interface UserForRegistrationDto {
   zipCode: string;
   role: string;
 }
+
+export interface UserForAuthenticationDto {
+  username: string;
+  password: string;
+}
