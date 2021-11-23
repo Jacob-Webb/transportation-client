@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="container">
+  <mat-card>
+    <div class="login-form">
+      <mat-card-content>
+        <form [formGroup]="loginForm"
+              (ngSubmit)="loginUser(loginForm.value)">
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Phone Number:</mat-label>
+            <input matInput type="text" name="username" formControlName="username">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error>Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Password</mat-label>
+            <input matInput name="password" [type]="hide ? 'password' : 'text'"
+                  formControlName="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error>Required</mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button class="submit" color="primary">Log In</button>
+        </form>
+        <br>
+        <form>
+          <mat-card-actions><a mat-button routerLink="/resetPassword">Forgot Password?</a></mat-card-actions>
+        </form>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>
