@@ -1,0 +1,23 @@
+.login-form
+{
+  width:75%;
+  margin: 0 auto;
+}
+mat-form-field
+{
+  display: block;
+  width:100%;
+}
+@media (max-width:500px)
+{
+  .container
+  {
+    width:100%;
+    margin: 10px auto;
+  }
+  .login-form
+  {
+    width:100%;
+    margin: 0 auto;
+  }
+}
