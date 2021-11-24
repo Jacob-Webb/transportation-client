@@ -1,5 +1,5 @@
-import { UserForRegistrationDto } from 'src/app/shared/models/user';
-import { RegistrationResponse } from 'src/app/shared/models/registration-response';
+import { UserForAuthenticationDto, UserForRegistrationDto } from 'src/app/shared/models/user';
+import { AuthResponseDto, RegistrationResponseDto } from 'src/app/shared/models/response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnvironmentUrlService } from '../services/environment-url.service';
@@ -15,15 +15,15 @@ export class AuthenticationService {
     private _envUrl: EnvironmentUrlService) { }
 
     public registerUser = (route: string, body: UserForRegistrationDto) => {
-      return this.http.post<RegistrationResponse>(this.createCompleteRoute(this._envUrl.apiUrl, route), body);
+      return this.http.post<RegistrationResponseDto>(this.createCompleteRoute(this._envUrl.apiUrl, route), body);
     }
 
     public verifyPhone = (route: string, body: PhoneVerificationDto) => {
       return this.http.post(this.createCompleteRoute(this._envUrl.apiUrl, route), body);
     }
 
-    public loginUser = (route: string, body: JwtToken) => {
-      return this.http.post(this.createCompleteRoute(this._envUrl.apiUrl, route), body);
+    public loginUser = (route: string, body: UserForAuthenticationDto) => {
+      return this.http.post<AuthResponseDto>(this.createCompleteRoute(this._envUrl.apiUrl, route), body);
     }
 
     private createCompleteRoute = (envAddress: string, route: string) => {

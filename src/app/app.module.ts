@@ -14,7 +14,7 @@ import { NotFoundComponent } from './modules/errors/pages/errors/not-found/not-f
 import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
 import { AccessComponent } from './modules/access/pages/access/access.component';
 import { RegisterComponent } from './modules/access/pages/access/register/register.component';
-import { SigninComponent } from './modules/access/pages/access/signin/signin.component';
+import { LoginComponent } from './modules/access/pages/access/login/login.component';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 
 import { NgxMaskModule } from 'ngx-mask';
@@ -31,7 +31,7 @@ import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/
     ServerErrorComponent,
     AccessComponent,
     RegisterComponent,
-    SigninComponent,
+    LoginComponent,
     HomeComponent,
     VerifyPhoneComponent,
   ],
