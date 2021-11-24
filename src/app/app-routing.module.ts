@@ -6,12 +6,14 @@ import { HomeComponent } from './modules/home/pages/home/home.component';
 import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
 import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/verify-phone.component';
 import { PhoneVerificationConfirmationComponent } from './modules/verify-phone/pages/phone-verification-confirmation/phone-verification-confirmation.component';
+import { ForgotPasswordComponent } from './modules/password/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', component: AccessComponent },
   { path: 'access', component: AccessComponent },
   { path: 'verify-phone', component: VerifyPhoneComponent},
-  { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent}, 
+  { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'home', component: HomeComponent },
   { path: '404', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
