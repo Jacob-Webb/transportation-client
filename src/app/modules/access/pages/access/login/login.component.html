@@ -6,7 +6,8 @@
               (ngSubmit)="loginUser(loginForm.value)">
           <mat-form-field appearance="outline" color="accent">
             <mat-label>Phone Number:</mat-label>
-            <input matInput type="text" name="username" formControlName="username">
+            <input matInput type="tel" id="username" name="username" mask="(000) 000-0000" [showMaskTyped] = "false"
+            placeholder="(xxx) xxx-xxxx" formControlName="username" required>
             <mat-icon matSuffix>phone</mat-icon>
             <mat-error>Required</mat-error>
           </mat-form-field>
@@ -14,17 +15,20 @@
           <mat-form-field appearance="outline" color="accent">
             <mat-label>Password</mat-label>
             <input matInput name="password" [type]="hide ? 'password' : 'text'"
-                  formControlName="password">
+                  formControlName="password" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error>Required</mat-error>
           </mat-form-field>
-
-          <button mat-raised-button class="submit" color="primary">Log In</button>
+          <div class="center">
+            <button mat-raised-button class="submit" color="primary" [disabled]="!loginForm.valid">Log In</button>
+          </div>
         </form>
-        <br>
-        <form>
-          <mat-card-actions><a mat-button routerLink="/resetPassword">Forgot Password?</a></mat-card-actions>
-        </form>
+        
+        <mat-card-footer>
+          <form>
+            <mat-card-actions><a mat-button routerLink="/forgot-password">Forgot Password?</a></mat-card-actions>
+          </form>
+        </mat-card-footer>
       </mat-card-content>
     </div>
   </mat-card>
