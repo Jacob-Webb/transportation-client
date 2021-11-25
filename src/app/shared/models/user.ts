@@ -13,6 +13,6 @@ export interface UserForRegistrationDto {
 }
 
 export interface UserForAuthenticationDto {
-  username: string;
+  phone: string;
   password: string;
 }
