@@ -3,7 +3,7 @@
       <!-- <a href="https://jacob-webb.com" class="logo">Jacob Webb</a> -->
       <div class="nav-menu-show">
         <a mat-button *ngIf="!isUserAuthenticated" routerLink="/access">Log In / Register</a>
-        <a mat-button *ngIf="isUserAuthenticated" routerLink="/">Logout</a>
+        <a mat-button *ngIf="isUserAuthenticated" (click)="logout()" routerLink="/">Logout</a>
         <mat-menu #profile="matMenu" color="primary">
           
           <div>
