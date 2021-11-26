@@ -31,4 +31,8 @@ export class NavComponent {
       this.isUserAuthenticated = result;
     })
   }
+
+  public logout = () => {
+    this.authService.logout();
+  }
 }
