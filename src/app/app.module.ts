@@ -15,12 +15,11 @@ import { ServerErrorComponent } from './modules/errors/pages/errors/server-error
 import { AuthComponent } from './modules/auth/pages/auth/auth.component';
 import { RegisterComponent } from './modules/auth/pages/auth/register/register.component';
 import { LoginComponent } from './modules/auth/pages/auth/login/login.component';
-import { HomeComponent } from './modules/home/pages/home/home.component';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
-import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/verify-phone.component';
-import { ForgotPasswordComponent } from './modules/password/forgot-password/forgot-password.component';
+import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-phone.component';
+import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboar
     AuthComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent,
     VerifyPhoneComponent,
     ForgotPasswordComponent,
     DashboardComponent
