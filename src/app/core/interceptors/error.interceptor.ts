@@ -42,7 +42,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               }
               break;
             case 401:
-              this.notificationService.showError(error.statusText, error.status);
+              this.notificationService.showError(error.error, error.statusText);
               break;
             case 403: 
               this.notificationService.showError(error.error);

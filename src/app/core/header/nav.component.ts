@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../authentication/authentication.service';
 // import { BasicAuthenticationService } from '../service/basic-authentication.service';
 // import { AUTHENTICATED_USER, FIRST_NAME, StorageService, USER_ROLE } from '../service/data/storage.service';
 
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
+  public isUserAuthenticated:boolean | undefined;
 /*
   userName: string;
   role: string;
@@ -21,7 +23,16 @@ export class NavComponent {
     this.storageService.watchStorageItem(USER_ROLE).subscribe(data => this.role = data);
   }
   */
- constructor(){}
+ constructor(private authService:AuthenticationService){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.authChanged
+    .subscribe(result =>{
+      this.isUserAuthenticated = result;
+    })
+  }
+
+  public logout = () => {
+    this.authService.logout();
+  }
 }
