@@ -28,6 +28,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Toastr Notifications
 import { ToastrModule } from 'ngx-toastr';
 
+// JWT 
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
 @NgModule({
   declarations: [],
   imports: [
@@ -54,6 +61,13 @@ import { ToastrModule } from 'ngx-toastr';
     FlexLayoutModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes: []
+      }
     })
   ],
   exports: [

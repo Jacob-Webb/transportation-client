@@ -21,11 +21,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/verify-phone.component';
 import { ForgotPasswordComponent } from './modules/password/forgot-password/forgot-password.component';
-import { JwtModule } from '@auth0/angular-jwt';
-
-export function tokenGetter() {
-  return localStorage.getItem("token");
-}
+import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +36,7 @@ export function tokenGetter() {
     HomeComponent,
     VerifyPhoneComponent,
     ForgotPasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -48,14 +45,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    SharedModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5001"],
-        disallowedRoutes: []
-      }
-    })
+    SharedModule
   ],
   providers: [
     {
