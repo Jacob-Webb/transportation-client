@@ -12,9 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './core/footer/footer.component';
 import { NotFoundComponent } from './modules/errors/pages/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
-import { AccessComponent } from './modules/access/pages/access/access.component';
-import { RegisterComponent } from './modules/access/pages/access/register/register.component';
-import { LoginComponent } from './modules/access/pages/access/login/login.component';
+import { AuthComponent } from './modules/auth/pages/auth/auth.component';
+import { RegisterComponent } from './modules/auth/pages/auth/register/register.component';
+import { LoginComponent } from './modules/auth/pages/auth/login/login.component';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 
 import { NgxMaskModule } from 'ngx-mask';
@@ -34,7 +34,7 @@ export function tokenGetter() {
     FooterComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    AccessComponent,
+    AuthComponent,
     RegisterComponent,
     LoginComponent,
     HomeComponent,

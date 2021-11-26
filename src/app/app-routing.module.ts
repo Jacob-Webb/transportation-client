@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/errors/pages/errors/not-found/not-found.component';
-import { AccessComponent } from './modules/access/pages/access/access.component';
+import { AuthComponent } from './modules/auth/pages/auth/auth.component';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
 import { VerifyPhoneComponent } from './modules/verify-phone/pages/verify-phone/verify-phone.component';
@@ -9,8 +9,8 @@ import { PhoneVerificationConfirmationComponent } from './modules/verify-phone/p
 import { ForgotPasswordComponent } from './modules/password/forgot-password/forgot-password.component';
 
 const routes: Routes = [
-  { path: '', component: AccessComponent },
-  { path: 'access', component: AccessComponent },
+  { path: '', component: AuthComponent },
+  { path: 'access', component: AuthComponent },
   { path: 'verify-phone', component: VerifyPhoneComponent},
   { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent},
