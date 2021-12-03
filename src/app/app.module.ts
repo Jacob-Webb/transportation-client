@@ -21,6 +21,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-phone.component';
 import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
+import { ManageTemplatesComponent } from './src/app/modules/church-services/manage-templates/manage-templates.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboar
     LoginComponent,
     VerifyPhoneComponent,
     ForgotPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    ManageTemplatesComponent
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthenticationService {
 
     constructor(private http: HttpClient,
-    private envUrl: EnvironmentUrlService, 
-    private jwtHelper: JwtHelperService) { }
+      private envUrl: EnvironmentUrlService, 
+      private jwtHelper: JwtHelperService) { }
+
     private authChangeSubject = new Subject<boolean>()
     public authChanged = this.authChangeSubject.asObservable();
 
