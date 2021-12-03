@@ -4,6 +4,7 @@ import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForAuthenticationDto } from 'src/app/shared/models/user';
+import { ACCOUNT_LOGIN_URL } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
         password: login.password
       }
 
-      this.authService.loginUser('api/accounts/login', userForAuth)
+      this.authService.loginUser(ACCOUNT_LOGIN_URL, userForAuth)
       .subscribe(result => {
         localStorage.setItem("token", result.token);
         this.authService.sendAuthStateChangeNotification(result.isAuthSuccessful);

@@ -4,6 +4,7 @@ import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/user';
+import { ACCOUNT_REGISTRATION_URL } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -66,7 +67,7 @@ export class RegisterComponent implements OnInit {
       role: "Rider"
     }
 
-    this.authService.registerUser("api/Accounts/Registration", user)
+    this.authService.registerUser(ACCOUNT_REGISTRATION_URL, user)
       .subscribe(response => {
         this.router.navigate(['verify-phone'], {state: {data: user.phone}});
       }, error => {
