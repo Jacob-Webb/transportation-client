@@ -8,14 +8,18 @@ import { PhoneVerificationConfirmationComponent } from './modules/auth/pages/pho
 import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
+import { ForbiddenComponent } from './modules/auth/pages/forbidden/forbidden.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
   { path: 'verify-phone', component: VerifyPhoneComponent },
   { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'manage-templates', component: ManageTemplatesComponent, canActivate: [AuthGuard] },
   { path: '404', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
