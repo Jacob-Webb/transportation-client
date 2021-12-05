@@ -10,6 +10,7 @@ import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboar
 import { AuthGuard } from './core/guards/auth.guard';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
+import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'manage-templates', component: ManageTemplatesComponent, canActivate: [AuthGuard] },
+  { path: 'manage-templates', component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: '404', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
