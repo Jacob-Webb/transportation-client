@@ -8,6 +8,7 @@ import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Roles } from 'src/app/shared/models/roles';
+import { IDENTITY_ROLES, TOKEN } from 'src/app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class AuthenticationService {
     }
 
     public logout = () => {
-      localStorage.removeItem("token");
+      localStorage.removeItem(TOKEN);
       this.sendAuthStateChangeNotification(false);
     }
 
@@ -43,15 +44,16 @@ export class AuthenticationService {
     }
 
     public isUserAuthenticated = () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem(TOKEN);
  
       return token && !this.jwtHelper.isTokenExpired(token);
     }
 
     public isUserAdmin = () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem(TOKEN);
       const decodedToken = token !== null ? this.jwtHelper.decodeToken(token) : undefined;
-      const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      const role = decodedToken[IDENTITY_ROLES];
+      console.log(role);
       return role === Roles.administrator || Roles.superAdmin;
     }
 
