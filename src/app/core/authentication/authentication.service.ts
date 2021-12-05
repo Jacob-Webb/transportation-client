@@ -7,6 +7,7 @@ import { JwtToken } from 'src/app/shared/models/jwt-token';
 import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Roles } from 'src/app/shared/models/roles';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class AuthenticationService {
       const token = localStorage.getItem("token");
       const decodedToken = token !== null ? this.jwtHelper.decodeToken(token) : undefined;
       const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-      return role === 'Administrator' || 'SuperAdmin';
+      return role === Roles.administrator || Roles.superAdmin;
     }
 
     private createCompleteRoute = (envAddress: string, route: string) => {
