@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/user';
 import { ACCOUNT_REGISTRATION_URL } from 'src/app/app.constants';
+import { Roles } from 'src/app/shared/models/roles';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -64,7 +65,7 @@ export class RegisterComponent implements OnInit {
       address2: formValues.address2 !== null ? formValues.address2.trim() : null,
       city: formValues.city.trim(),
       zipCode: formValues.zipCode.trim(),
-      role: "Rider"
+      role: Roles.user
     }
 
     this.authService.registerUser(ACCOUNT_REGISTRATION_URL, user)
