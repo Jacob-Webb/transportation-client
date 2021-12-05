@@ -2,7 +2,11 @@
 
 This project is the client side for The Rock's Transportation app. 
 
-## File Structure
+## Error Handling
+
+Logic for handling errors returned from the server can be found at core/interceptors/error.interceptor.ts.
+
+Logic for handling errors caught before leaving the client side can be found at core/guards/
 
 ## Using Angular CLI
 

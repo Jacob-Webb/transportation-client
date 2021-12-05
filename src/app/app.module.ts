@@ -10,8 +10,8 @@ import { NavComponent } from './core/header/nav.component';
 
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './core/footer/footer.component';
-import { NotFoundComponent } from './modules/errors/pages/errors/not-found/not-found.component';
-import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
+import { NotFoundComponent } from './modules/errors/pages/not-found/not-found.component';
+import { ServerErrorComponent } from './modules/errors/pages/server-error/server-error.component';
 import { AuthComponent } from './modules/auth/pages/auth/auth.component';
 import { RegisterComponent } from './modules/auth/pages/auth/register/register.component';
 import { LoginComponent } from './modules/auth/pages/auth/login/login.component';
@@ -22,7 +22,7 @@ import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-p
 import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
-import { ForbiddenComponent } from './modules/errors/forbidden/forbidden.component';
+import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [

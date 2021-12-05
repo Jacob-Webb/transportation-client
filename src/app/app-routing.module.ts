@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './modules/errors/pages/errors/not-found/not-found.component';
+import { NotFoundComponent } from './modules/errors/pages/not-found/not-found.component';
 import { AuthComponent } from './modules/auth/pages/auth/auth.component';
-import { ServerErrorComponent } from './modules/errors/pages/errors/server-error/server-error.component';
+import { ServerErrorComponent } from './modules/errors/pages/server-error/server-error.component';
 import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-phone.component';
 import { PhoneVerificationConfirmationComponent } from './modules/auth/pages/phone-verification-confirmation/phone-verification-confirmation.component';
 import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
-import { ForbiddenComponent } from './modules/auth/pages/forbidden/forbidden.component';
+import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
