@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForAuthenticationDto } from 'src/app/shared/models/user';
 import { ACCOUNT_LOGIN_URL, TOKEN } from 'src/app/app.constants';
@@ -23,15 +23,20 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   validationErrors: string[] = [];
   error: boolean = false;
+  private returnUrl: string | undefined;
+  
 
   constructor(private authService: AuthenticationService,
-    private router: Router) {}
+    private router: Router, 
+    private route: ActivatedRoute) {}
 
     ngOnInit(): void {
       this.loginForm = new FormGroup({
         username: new FormControl("", [Validators.required]),
         password: new FormControl("", [Validators.required])
       })
+
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
     public validateControl = (controlName: string) => {
       return this.loginForm.controls[controlName].invalid && this.loginForm.controls[controlName].touched
@@ -51,7 +56,7 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         localStorage.setItem(TOKEN, result.token);
         this.authService.sendAuthStateChangeNotification(result.isAuthSuccessful);
-        this.router.navigate(['dashboard']);
+        this.router.navigate([this.returnUrl]);
       }, error => {
         this.validationErrors = error;
         console.log(this.validationErrors);

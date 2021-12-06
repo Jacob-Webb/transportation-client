@@ -13,7 +13,7 @@ import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.c
 import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
-  { path: '', component: AuthComponent },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'auth', component: AuthComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'verify-phone', component: VerifyPhoneComponent },

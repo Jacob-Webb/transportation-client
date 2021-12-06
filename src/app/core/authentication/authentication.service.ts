@@ -53,8 +53,8 @@ export class AuthenticationService {
       const token = localStorage.getItem(TOKEN);
       const decodedToken = token !== null ? this.jwtHelper.decodeToken(token) : undefined;
       const role = decodedToken[IDENTITY_ROLES];
-      console.log(role);
-      return role === Roles.administrator || Roles.superAdmin;
+      return role === Roles.user;
+      //return role === Roles.administrator || Roles.superAdmin;
     }
 
     private createCompleteRoute = (envAddress: string, route: string) => {
