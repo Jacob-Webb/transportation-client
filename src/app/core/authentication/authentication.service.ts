@@ -8,7 +8,7 @@ import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Roles } from 'src/app/shared/models/roles';
-import { IDENTITY_ROLES, TOKEN } from 'src/app/app.constants';
+import { ACCESS_TOKEN, IDENTITY_ROLES } from 'src/app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class AuthenticationService {
     }
 
     public logout = () => {
-      localStorage.removeItem(TOKEN);
+      localStorage.removeItem(ACCESS_TOKEN);
       this.sendAuthStateChangeNotification(false);
     }
 
@@ -44,14 +44,14 @@ export class AuthenticationService {
     }
 
     public isUserAuthenticated = () => {
-      const token = localStorage.getItem(TOKEN);
+      const token = localStorage.getItem(ACCESS_TOKEN);
  
       return token && !this.jwtHelper.isTokenExpired(token);
     }
 
     public isUserAdmin = () => {
-      const token = localStorage.getItem(TOKEN);
-      const decodedToken = token !== null ? this.jwtHelper.decodeToken(token) : undefined;
+      const accessToken = localStorage.getItem(ACCESS_TOKEN);
+      const decodedToken = accessToken !== null ? this.jwtHelper.decodeToken(accessToken) : undefined;
       const role = decodedToken[IDENTITY_ROLES];
       return role === Roles.user;
       //return role === Roles.administrator || Roles.superAdmin;

@@ -24,7 +24,12 @@ export class NavComponent {
     this.storageService.watchStorageItem(USER_ROLE).subscribe(data => this.role = data);
   }
   */
- constructor(private authService:AuthenticationService, private router: Router){}
+ constructor(private authService:AuthenticationService, private router: Router){
+   this.authService.authChanged
+   .subscribe(result => {
+     this.isUserAuthenticated = result;
+   })
+ }
 
   ngOnInit(): void {
     this.authService.authChanged

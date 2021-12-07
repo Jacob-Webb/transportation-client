@@ -1,4 +1,5 @@
-export const TOKEN = "token";
+export const ACCESS_TOKEN = "accessToken";
+export const REFRESH_TOKEN = "refreshToken";
 export const IDENTITY_ROLES = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
 
 
