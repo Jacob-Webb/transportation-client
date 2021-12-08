@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,9 +12,10 @@ import { EnvironmentUrlService } from '../services/environment-url.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthenticationService, 
     private router: Router,
+    private http: HttpClient,
     private envUrl: EnvironmentUrlService){}
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isUserAuthenticated()) {
       return true;
     }

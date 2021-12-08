@@ -9,7 +9,6 @@ export interface UserForRegistrationDto {
   address2: string;
   city: string;
   zipCode: string;
-  role: string;
 }
 
 export interface UserForAuthenticationDto {

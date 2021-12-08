@@ -64,8 +64,7 @@ export class RegisterComponent implements OnInit {
       address1: formValues.address1.trim(),
       address2: formValues.address2 !== null ? formValues.address2.trim() : null,
       city: formValues.city.trim(),
-      zipCode: formValues.zipCode.trim(),
-      role: Roles.user
+      zipCode: formValues.zipCode.trim()
     }
 
     this.authService.registerUser(ACCOUNT_REGISTRATION_URL, user)
