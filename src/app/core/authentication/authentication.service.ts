@@ -7,6 +7,7 @@ import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from 'src/app/app.constants';
+import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class AuthenticationService {
 
     public verifyPhone = (route: string, body: PhoneVerificationDto) => {
       return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+
+    public refreshAuthentication = (route: string, body: JwtTokenDto) => {
+      return this.http.post<AuthResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     public loginUser = (route: string, body: UserForAuthenticationDto) => {
