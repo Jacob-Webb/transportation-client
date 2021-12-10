@@ -31,7 +31,7 @@ export class VerifyPhoneComponent implements OnInit {
   ngOnInit(): void {
     this.responseData = history.state.data;
     if (this.responseData == '' || this.responseData == undefined) 
-      this.router.navigate(['access']);
+      this.router.navigate(['auth']);
   }
 
   public verify() {

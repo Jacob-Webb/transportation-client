@@ -1,4 +1,4 @@
-import { UserForAuthenticationDto, UserForRegistrationDto } from 'src/app/shared/models/user';
+import { UserForAuthenticationDto, UserForgotPasswordDto, UserForRegistrationDto } from 'src/app/shared/models/user';
 import { AuthResponseDto, RegistrationResponseDto } from 'src/app/shared/models/response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,6 +26,10 @@ export class AuthenticationService {
     }
 
     public verifyPhone = (route: string, body: PhoneVerificationDto) => {
+      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+
+    public forgotPassword = (route: string, body: UserForgotPasswordDto) => {
       return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
