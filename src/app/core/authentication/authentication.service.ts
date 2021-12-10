@@ -3,12 +3,10 @@ import { AuthResponseDto, RegistrationResponseDto } from 'src/app/shared/models/
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnvironmentUrlService } from '../services/environment-url.service';
-import { JwtToken } from 'src/app/shared/models/jwt-token';
 import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Roles } from 'src/app/shared/models/roles';
-import { ACCESS_TOKEN, IDENTITY_ROLES } from 'src/app/app.constants';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from 'src/app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +34,7 @@ export class AuthenticationService {
 
     public logout = () => {
       localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(REFRESH_TOKEN);
       this.sendAuthStateChangeNotification(false);
     }
 
@@ -44,16 +43,9 @@ export class AuthenticationService {
     }
 
     public isUserAuthenticated = () => {
-      const token = localStorage.getItem(ACCESS_TOKEN);
- 
-      return token && !this.jwtHelper.isTokenExpired(token);
-    }
-
-    public isUserAdmin = () => {
       const accessToken = localStorage.getItem(ACCESS_TOKEN);
-      const decodedToken = accessToken !== null ? this.jwtHelper.decodeToken(accessToken) : undefined;
-      const role = decodedToken[IDENTITY_ROLES];
-      return role === Roles.administrator || Roles.superAdmin;
+
+      return accessToken && !this.jwtHelper.isTokenExpired(accessToken);
     }
 
     private createCompleteRoute = (envAddress: string, route: string) => {

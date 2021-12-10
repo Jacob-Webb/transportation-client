@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
-// import { BasicAuthenticationService } from '../service/basic-authentication.service';
-// import { AUTHENTICATED_USER, FIRST_NAME, StorageService, USER_ROLE } from '../service/data/storage.service';
 
 @Component({
   selector: 'app-nav',

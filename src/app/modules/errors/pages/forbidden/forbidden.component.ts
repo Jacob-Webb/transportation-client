@@ -13,7 +13,7 @@ export class ForbiddenComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl']||'/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']||'';
   }
 
   public navigateToLogin = () => {

@@ -30,9 +30,10 @@ import { ToastrModule } from 'ngx-toastr';
 
 // JWT 
 import { JwtModule } from '@auth0/angular-jwt';
+import { ACCESS_TOKEN } from '../app.constants';
 
 export function tokenGetter() {
-  return localStorage.getItem("token");
+  return localStorage.getItem(ACCESS_TOKEN);
 }
 
 @NgModule({

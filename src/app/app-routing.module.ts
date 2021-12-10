@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'verify-phone', component: VerifyPhoneComponent },
   { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'manage-templates', component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: '404', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
