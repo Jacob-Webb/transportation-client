@@ -15,3 +15,7 @@ export interface UserForAuthenticationDto {
   phone: string;
   password: string;
 }
+
+export interface UserForgotPasswordDto {
+  phone: string;
+}
