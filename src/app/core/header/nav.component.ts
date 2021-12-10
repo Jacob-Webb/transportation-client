@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
-// import { BasicAuthenticationService } from '../service/basic-authentication.service';
-// import { AUTHENTICATED_USER, FIRST_NAME, StorageService, USER_ROLE } from '../service/data/storage.service';
 
 @Component({
   selector: 'app-nav',
@@ -23,7 +22,12 @@ export class NavComponent {
     this.storageService.watchStorageItem(USER_ROLE).subscribe(data => this.role = data);
   }
   */
- constructor(private authService:AuthenticationService){}
+ constructor(private authService:AuthenticationService, private router: Router){
+   this.authService.authChanged
+   .subscribe(result => {
+     this.isUserAuthenticated = result;
+   })
+ }
 
   ngOnInit(): void {
     this.authService.authChanged
@@ -34,5 +38,6 @@ export class NavComponent {
 
   public logout = () => {
     this.authService.logout();
+    this.router.navigate(['/auth']);
   }
 }

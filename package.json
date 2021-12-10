@@ -10,19 +10,6 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@angular/animations": "~12.2.0",
-    "@angular/cdk": "^12.2.3",
-    "@angular/common": "~12.2.0",
-    "@angular/compiler": "~12.2.0",
-    "@angular/core": "~12.2.0",
-    "@angular/flex-layout": "^12.0.0-beta.34",
-    "@angular/forms": "~12.2.0",
-    "@angular/material": "^12.2.3",
-    "@angular/platform-browser": "~12.2.0",
-    "@angular/platform-browser-dynamic": "~12.2.0",
-    "@angular/router": "~12.2.0",
-=======
     "@angular/animations": "~13.0.2",
     "@angular/cdk": "^12.2.3",
     "@angular/common": "~13.0.2",
@@ -35,7 +22,6 @@
     "@angular/platform-browser-dynamic": "~13.0.2",
     "@angular/router": "~13.0.2",
     "@auth0/angular-jwt": "^5.0.2",
->>>>>>> log-in
     "ngx-mask": "^12.0.0",
     "ngx-toastr": "^14.1.0",
     "rxjs": "~6.6.0",

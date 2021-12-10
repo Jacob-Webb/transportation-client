@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/user';
 import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
+import { PHONE_VERIFICATION_URL } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -38,7 +39,7 @@ export class VerifyPhoneComponent implements OnInit {
       code: this.verifyPhoneForm.value.verifyCode
     }
 
-   this.authService.verifyPhone(`api/Accounts/PhoneVerification/${this.responseData}`, phoneVerification)
+   this.authService.verifyPhone(PHONE_VERIFICATION_URL + `/${this.responseData}`, phoneVerification)
     .subscribe(response => {
       console.log(response);
       this.router.navigate(['phone-verification-confirmation'], {state: {data: this.responseData}});

@@ -1,9 +1,11 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForAuthenticationDto } from 'src/app/shared/models/user';
+import { ACCESS_TOKEN, ACCOUNT_LOGIN_URL, REFRESH_TOKEN } from 'src/app/app.constants';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -22,15 +24,20 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   validationErrors: string[] = [];
   error: boolean = false;
+  private returnUrl: string | undefined;
 
   constructor(private authService: AuthenticationService,
-    private router: Router) {}
+    private router: Router, 
+    private route: ActivatedRoute,
+    private jwtHelper: JwtHelperService) {}
 
     ngOnInit(): void {
       this.loginForm = new FormGroup({
         username: new FormControl("", [Validators.required]),
         password: new FormControl("", [Validators.required])
       })
+
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
     }
     public validateControl = (controlName: string) => {
       return this.loginForm.controls[controlName].invalid && this.loginForm.controls[controlName].touched
@@ -41,16 +48,17 @@ export class LoginComponent implements OnInit {
 
     public loginUser = (loginFormValue: any) => {
       const login = {...loginFormValue};
-      const userForAuth: UserForAuthenticationDto = {
+      const userForAuthDto: UserForAuthenticationDto = {
         phone: login.username,
         password: login.password
       }
 
-      this.authService.loginUser('api/accounts/login', userForAuth)
+      this.authService.loginUser(ACCOUNT_LOGIN_URL, userForAuthDto)
       .subscribe(result => {
-        localStorage.setItem("token", result.token);
+        localStorage.setItem(ACCESS_TOKEN, result.accessToken);
+        localStorage.setItem(REFRESH_TOKEN, result.refreshToken);
         this.authService.sendAuthStateChangeNotification(result.isAuthSuccessful);
-        this.router.navigate(['/']);
+        this.router.navigate([this.returnUrl]);
       }, error => {
         this.validationErrors = error;
         console.log(this.validationErrors);

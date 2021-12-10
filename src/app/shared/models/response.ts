@@ -5,5 +5,6 @@ export interface RegistrationResponseDto {
 
 export interface AuthResponseDto {
   isAuthSuccessful: boolean;
-  token: string;
+  accessToken: string;
+  refreshToken: string;
 }
