@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/user';
 import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
-import { PHONE_VERIFICATION_URL } from 'src/app/app.constants';
+import { PHONE_CONFIRMATION_URL } from 'src/app/app.constants';
 import { UrlService } from 'src/app/core/services/url.service';
 import { Observable } from 'rxjs';
 
@@ -44,8 +44,9 @@ export class VerifyPhoneComponent implements OnInit {
   }
 
   public verify() {
-    const phoneVerification: PhoneVerificationDto = {
-      code: this.verifyPhoneForm.value.verifyCode
+    const phoneVerificationDto: PhoneVerificationDto = {
+      code: this.verifyPhoneForm.value.verifyCode,
+      phoneNumber: this.responseData
     }
 
     if (this.previousUrl == '/forgot-password') {
@@ -53,10 +54,10 @@ export class VerifyPhoneComponent implements OnInit {
     }
 
     if (this.previousUrl == '/register') {
-      this.authService.verifyPhone(PHONE_VERIFICATION_URL + `/${this.responseData}`, phoneVerification)
+      this.authService.verifyPhone(PHONE_CONFIRMATION_URL, phoneVerificationDto)
       .subscribe(response => {
         console.log(response);
-        this.router.navigate(['phone-confirmation'], {state: {data: this.responseData}});
+        this.router.navigate(['phone-confirmation'], {state: {data: phoneVerificationDto.phoneNumber}});
       }, error => {
         console.log(error);
         this.validationErrors = error;
