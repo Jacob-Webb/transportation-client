@@ -1,11 +1,10 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForAuthenticationDto } from 'src/app/shared/models/user';
 import { ACCESS_TOKEN, ACCOUNT_LOGIN_URL, REFRESH_TOKEN } from 'src/app/app.constants';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -28,8 +27,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
     private router: Router, 
-    private route: ActivatedRoute,
-    private jwtHelper: JwtHelperService) {}
+    private route: ActivatedRoute) {}
 
     ngOnInit(): void {
       this.loginForm = new FormGroup({
