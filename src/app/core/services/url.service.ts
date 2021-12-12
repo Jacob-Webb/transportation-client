@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Event, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -8,9 +9,10 @@ export class UrlService {
   private previousUrl: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   public previousUrl$: Observable<string | null> = this.previousUrl.asObservable();
 
-  constructor() { }
+  constructor() {}
 
-  public setPreviousUrl(previousUrl: string | null): void {
+  public setPreviousUrl(previousUrl: string | null) {
     this.previousUrl.next(previousUrl);
   }
+
 }

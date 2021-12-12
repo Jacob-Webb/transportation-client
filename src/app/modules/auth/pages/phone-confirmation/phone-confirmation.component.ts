@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
-  templateUrl: './phone-verification-confirmation.component.html',
-  styleUrls: ['./phone-verification-confirmation.component.scss']
+  templateUrl: './phone-confirmation.component.html',
+  styleUrls: ['./phone-confirmation.component.scss']
 })
-export class PhoneVerificationConfirmationComponent implements OnInit {
+export class PhoneConfirmationComponent implements OnInit {
   responseData: string = '';
 
   constructor(private router: Router) { }
@@ -15,6 +15,7 @@ export class PhoneVerificationConfirmationComponent implements OnInit {
     this.responseData = history.state.data;
     if (this.responseData == '' || this.responseData == undefined) 
       this.router.navigate(['auth']);
+
   }
 
 }

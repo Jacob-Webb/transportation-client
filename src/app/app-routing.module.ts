@@ -4,7 +4,7 @@ import { NotFoundComponent } from './modules/errors/pages/not-found/not-found.co
 import { AuthComponent } from './modules/auth/pages/auth/auth.component';
 import { ServerErrorComponent } from './modules/errors/pages/server-error/server-error.component';
 import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-phone.component';
-import { PhoneVerificationConfirmationComponent } from './modules/auth/pages/phone-verification-confirmation/phone-verification-confirmation.component';
+import { PhoneConfirmationComponent } from './modules/auth/pages/phone-confirmation/phone-confirmation.component';
 import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guards/auth.guard';
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'verify-phone', component: VerifyPhoneComponent },
-  { path: 'phone-verification-confirmation', component: PhoneVerificationConfirmationComponent },
+  { path: 'phone-confirmation', component: PhoneConfirmationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'manage-templates', component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: '404', component: NotFoundComponent },

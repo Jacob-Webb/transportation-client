@@ -23,6 +23,7 @@ import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-pa
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
+import { UrlService } from './core/services/url.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.c
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    },  
+    UrlService
   ],
   bootstrap: [AppComponent]
 })
