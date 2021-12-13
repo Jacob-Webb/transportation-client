@@ -11,6 +11,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { ResetPasswordComponent } from './modules/auth/pages/password/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'verify-phone', component: VerifyPhoneComponent },
   { path: 'phone-confirmation', component: PhoneConfirmationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'manage-templates', component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: '404', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },

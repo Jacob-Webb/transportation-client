@@ -53,7 +53,7 @@ export class VerifyPhoneComponent implements OnInit {
         this.router.navigate(['phone-confirmation'], {state: {data: phoneVerificationDto.phoneNumber}});
       }
       if (this.previousUrl == '/forgot-password') {
-        this.router.navigate([''], {state: {data: phoneVerificationDto.phoneNumber}});
+        this.router.navigate(['/reset-password'], {state: {data: phoneVerificationDto.phoneNumber}});
       }
     }, error => {
       console.log(error);

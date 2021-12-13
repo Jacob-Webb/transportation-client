@@ -23,6 +23,8 @@ import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-pa
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
+import { ResetPasswordComponent } from './modules/auth/pages/password/reset-password/reset-password.component';
+
 import { UrlService } from './core/services/url.service';
 
 @NgModule({
@@ -39,7 +41,8 @@ import { UrlService } from './core/services/url.service';
     ForgotPasswordComponent,
     DashboardComponent,
     ManageTemplatesComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
