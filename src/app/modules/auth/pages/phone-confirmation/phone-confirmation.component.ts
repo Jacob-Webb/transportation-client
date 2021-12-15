@@ -8,15 +8,17 @@ import { ROUTING_AUTH } from 'src/app/app.constants';
   styleUrls: ['./phone-confirmation.component.scss']
 })
 export class PhoneConfirmationComponent implements OnInit {
-  responseData: string = '';
+  userPhone: string = '';
+  formattedPhone: string | null = null;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.responseData = history.state.data;
-    if (this.responseData == '' || this.responseData == undefined) 
+    this.userPhone = history.state.data;
+    if (this.userPhone == '' || this.userPhone == undefined) 
       this.router.navigate([ROUTING_AUTH]);
 
+      this.formattedPhone = "(" + this.userPhone.substring(0, 3) + ")" + this.userPhone.substring(3, 6) + "-" + this.userPhone.substring(6);
   }
 
 }

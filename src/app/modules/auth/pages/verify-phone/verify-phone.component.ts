@@ -48,10 +48,11 @@ export class VerifyPhoneComponent implements OnInit {
 
     let apiUrl = '';
     let navigationUrl = '';
-    if (this.previousUrl == ROUTING_AUTH) {
+    
+    if (this.previousUrl?.includes(ROUTING_AUTH)) {
       apiUrl = API_ACCOUNTS_CONFIRM;
       navigationUrl = ROUTING_CONFIRM_PHONE;
-    } else if (this.previousUrl == ROUTING_FORGOT_PASSWORD) {
+    } else if (this.previousUrl?.includes(ROUTING_FORGOT_PASSWORD)) {
       apiUrl = API_ACCOUNTS_VERIFICATION;
       navigationUrl = ROUTING_RESET_PASSWORD;
     }

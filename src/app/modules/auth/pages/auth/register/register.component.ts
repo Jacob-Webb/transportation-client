@@ -69,10 +69,10 @@ export class RegisterComponent implements OnInit {
 
     this.authService.registerUser(API_ACCOUNTS_REGISTRATION, user)
       .subscribe(response => {
-        this.router.navigate([ROUTING_VERIFY_PHONE, {state: {data: user.phone}});
+        this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: user.phone}});
       }, error => {
         if (error.status == 403) {
-          this.router.navigate([ROUTING_VERIFY_PHONE, {state: {data: formValues.phone}});
+          this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: formValues.phone}});
         }
         this.validationErrors = error;
       })

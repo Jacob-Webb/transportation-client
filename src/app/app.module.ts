@@ -24,6 +24,7 @@ import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboar
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
 import { ResetPasswordComponent } from './modules/auth/pages/password/reset-password/reset-password.component';
+import { PhoneConfirmationComponent } from './modules/auth/pages/phone-confirmation/phone-confirmation.component';
 
 import { UrlService } from './core/services/url.service';
 
@@ -42,16 +43,17 @@ import { UrlService } from './core/services/url.service';
     DashboardComponent,
     ManageTemplatesComponent,
     ForbiddenComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PhoneConfirmationComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxMaskModule.forRoot(),
-    SharedModule
+    NgxMaskModule.forRoot()
   ],
   providers: [
     {
