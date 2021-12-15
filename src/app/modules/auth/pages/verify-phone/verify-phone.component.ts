@@ -4,7 +4,7 @@ import { IConfig } from 'ngx-mask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
-import { PHONE_VERIFICATION_URL } from 'src/app/app.constants';
+import { API_ACCOUNTS_VERIFICATION, API_ACCOUNTS_CONFIRM, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORGOT_PASSWORD, ROUTING_RESET_PASSWORD } from 'src/app/app.constants';
 import { UrlService } from 'src/app/core/services/url.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -33,11 +33,10 @@ export class VerifyPhoneComponent implements OnInit {
   ngOnInit(): void {
     this.responseData = history.state.data;
     if (this.responseData == '' || this.responseData == undefined) 
-      this.router.navigate(['auth']); 
+      this.router.navigate([ROUTING_AUTH]); 
 
     this.urlService.previousUrl$.subscribe((previousUrl: string | null) => {
       this.previousUrl = previousUrl;
-      console.log(this.previousUrl);
     })
   }
 
@@ -47,14 +46,19 @@ export class VerifyPhoneComponent implements OnInit {
       phoneNumber: this.responseData
     }
 
-    this.authService.verifyPhone(PHONE_VERIFICATION_URL, phoneVerificationDto)
-    .subscribe(response => {
-      if (this.previousUrl == '/register') {
-        this.router.navigate(['phone-confirmation'], {state: {data: phoneVerificationDto.phoneNumber}});
-      }
-      if (this.previousUrl == '/forgot-password') {
-        this.router.navigate(['/reset-password'], {state: {data: phoneVerificationDto.phoneNumber}});
-      }
+    let apiUrl = '';
+    let navigationUrl = '';
+    if (this.previousUrl == ROUTING_AUTH) {
+      apiUrl = API_ACCOUNTS_CONFIRM;
+      navigationUrl = ROUTING_CONFIRM_PHONE;
+    } else if (this.previousUrl == ROUTING_FORGOT_PASSWORD) {
+      apiUrl = API_ACCOUNTS_VERIFICATION;
+      navigationUrl = ROUTING_RESET_PASSWORD;
+    }
+  
+    this.authService.verifyPhone(apiUrl, phoneVerificationDto)
+    .subscribe(() => {
+      this.router.navigate([navigationUrl], {state: {data: phoneVerificationDto.phoneNumber}});
     }, error => {
       console.log(error);
       this.validationErrors = error;

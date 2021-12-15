@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { ACCESS_TOKEN, REFRESH_TOKEN, TOKEN_REFRESH_URL } from 'src/app/app.constants';
+import { ACCESS_TOKEN, REFRESH_TOKEN, API_TOKENS_REFRESH, ROUTING_AUTH } from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
 import { AuthResponseDto } from 'src/app/shared/models/response';
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
     const isRefreshSuccess = await this.tryRefreshingTokens(accessToken);
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
-      this.router.navigate(['auth'], { queryParams: { returnUrl: state.url }});
+      this.router.navigate([ROUTING_AUTH], { queryParams: { returnUrl: state.url }});
     }
 
     this.authService.sendAuthStateChangeNotification(isRefreshSuccess);
@@ -45,7 +45,7 @@ export class AuthGuard implements CanActivate {
     let isRefreshSuccess: boolean;
 
     try {
-      const response = await this.authService.refreshAuthentication(TOKEN_REFRESH_URL, jwtToken).toPromise();
+      const response = await this.authService.refreshAuthentication(API_TOKENS_REFRESH, jwtToken).toPromise();
 
       const newToken = response.accessToken;
       const newRefreshToken = response.refreshToken;

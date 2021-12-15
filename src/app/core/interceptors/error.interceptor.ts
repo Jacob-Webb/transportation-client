@@ -9,6 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
+import { NOT_FOUND, SERVER_ERROR } from 'src/app/app.constants';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -33,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.notificationService.showError(error.error);
               break;
             case 404:
-              this.router.navigateByUrl('/404');
+              this.router.navigateByUrl(NOT_FOUND);
               break;
             case 406: 
               this.notificationService.showError(error.error);
@@ -43,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
             case 500:
               const navigationExtras: NavigationExtras = {state: {error: error.error}};
-              this.router.navigateByUrl('/server-error', navigationExtras);
+              this.router.navigateByUrl(SERVER_ERROR, navigationExtras);
               break;
             default:
               //this.notificationService.showError("Something unexpected went wrong");

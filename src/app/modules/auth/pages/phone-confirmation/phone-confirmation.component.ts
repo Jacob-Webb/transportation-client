@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ROUTING_AUTH } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-confirmation',
@@ -14,7 +15,7 @@ export class PhoneConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.responseData = history.state.data;
     if (this.responseData == '' || this.responseData == undefined) 
-      this.router.navigate(['auth']);
+      this.router.navigate([ROUTING_AUTH]);
 
   }
 

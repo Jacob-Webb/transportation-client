@@ -4,7 +4,7 @@ import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/user';
-import { ACCOUNT_REGISTRATION_URL } from 'src/app/app.constants';
+import { API_ACCOUNTS_REGISTRATION, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
 import { Roles } from 'src/app/shared/models/roles';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -67,12 +67,12 @@ export class RegisterComponent implements OnInit {
       zipCode: formValues.zipCode.trim()
     }
 
-    this.authService.registerUser(ACCOUNT_REGISTRATION_URL, user)
+    this.authService.registerUser(API_ACCOUNTS_REGISTRATION, user)
       .subscribe(response => {
-        this.router.navigate(['verify-phone'], {state: {data: user.phone}});
+        this.router.navigate([ROUTING_VERIFY_PHONE, {state: {data: user.phone}});
       }, error => {
         if (error.status == 403) {
-          this.router.navigate(['verify-phone'], {state: {data: formValues.phone}});
+          this.router.navigate([ROUTING_VERIFY_PHONE, {state: {data: formValues.phone}});
         }
         this.validationErrors = error;
       })
