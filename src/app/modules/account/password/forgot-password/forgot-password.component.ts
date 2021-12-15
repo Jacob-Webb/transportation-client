@@ -1,8 +1,9 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { IConfig } from 'ngx-mask';
+import { filter, pairwise } from 'rxjs/operators';
 import { API_ACCOUNTS_FORGOT_PASSWORD, ROUTING_AUTH, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UrlService } from 'src/app/core/services/url.service';
@@ -32,19 +33,11 @@ export class ForgotPasswordComponent implements OnInit {
     })
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-
-    // Getting previous Url allows us to set a type of guard pre-login for this page
-    this.urlService.previousUrl$.subscribe((previousUrl: string | null) => {
-      if (!previousUrl?.includes(ROUTING_AUTH)) {
-        console.log(previousUrl);
-        this.router.navigate([ROUTING_AUTH]);
-      }
-    })
   }
 
   public submit = (forgotPasswordForm: any) => {
     var forgotPasswordDto: UserForgotPasswordDto = { phone: forgotPasswordForm.phone}
-
+    console.log(forgotPasswordDto.phone);
     this.authService.forgotPassword(API_ACCOUNTS_FORGOT_PASSWORD, forgotPasswordDto)
     .subscribe(response => {
       this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: forgotPasswordDto.phone}});

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/errors/pages/not-found/not-found.component';
-import { AuthComponent } from './modules/auth/pages/auth/auth.component';
+import { AuthComponent } from './modules/account/auth/auth.component';
 import { ServerErrorComponent } from './modules/errors/pages/server-error/server-error.component';
-import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-phone.component';
-import { PhoneConfirmationComponent } from './modules/auth/pages/phone-confirmation/phone-confirmation.component';
-import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
+import { VerifyPhoneComponent } from './modules/account/phone/verify-phone/verify-phone.component';
+import { PhoneConfirmationComponent } from './modules/account/phone/phone-confirmation/phone-confirmation.component';
+import { ForgotPasswordComponent } from './modules/account/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
 import { AdminGuard } from './core/guards/admin.guard';
-import { ResetPasswordComponent } from './modules/auth/pages/password/reset-password/reset-password.component';
+import { ResetPasswordComponent } from './modules/account/password/reset-password/reset-password.component';
 import { NOT_FOUND, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORBIDDEN, ROUTING_FORGOT_PASSWORD, ROUTING_MANAGE_TEMPLATES, ROUTING_RESET_PASSWORD, ROUTING_VERIFY_PHONE, SERVER_ERROR } from './app.constants';
 
 const routes: Routes = [

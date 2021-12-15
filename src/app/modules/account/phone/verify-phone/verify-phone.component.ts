@@ -48,7 +48,7 @@ export class VerifyPhoneComponent implements OnInit {
 
     let apiUrl = '';
     let navigationUrl = '';
-    
+    console.log("Previous Url: " + this.previousUrl)
     if (this.previousUrl?.includes(ROUTING_AUTH)) {
       apiUrl = API_ACCOUNTS_CONFIRM;
       navigationUrl = ROUTING_CONFIRM_PHONE;
