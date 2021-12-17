@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_UPDATED_PASSWORD } from 'src/app/app.constants';
+import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_UPDATE_CONFIRMED } from 'src/app/app.constants';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UrlService } from 'src/app/core/services/url.service';
 import Validation from 'src/app/shared/directives/validation';
@@ -52,7 +52,7 @@ export class ResetPasswordComponent implements OnInit {
 
     this.authService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
       .subscribe(() => {
-        this.router.navigate([ROUTING_UPDATED_PASSWORD]);
+        this.router.navigate([ROUTING_UPDATE_CONFIRMED]);
       }, error => {
         this.router.navigate([ROUTING_AUTH])
       })
