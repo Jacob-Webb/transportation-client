@@ -27,7 +27,7 @@ import { ResetPasswordComponent } from './modules/account/password/reset-passwor
 import { PhoneConfirmationComponent } from './modules/account/phone/phone-confirmation/phone-confirmation.component';
 
 import { UrlService } from './core/services/url.service';
-import { ResetConfirmationComponent } from './modules/account/password/reset-confirmation/reset-confirmation.component';
+import { UpdateConfirmedComponent } from './modules/account/password/update-confirmed/update-confirmed.component';
 import { PasswordComponent } from './modules/account/password/password.component';
 
 @NgModule({
@@ -47,7 +47,7 @@ import { PasswordComponent } from './modules/account/password/password.component
     ForbiddenComponent,
     ResetPasswordComponent,
     PhoneConfirmationComponent,
-    ResetConfirmationComponent,
+    UpdateConfirmedComponent,
     PasswordComponent
   ],
   imports: [

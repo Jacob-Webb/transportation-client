@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ROUTING_AUTH } from 'src/app/app.constants';
 
 @Component({
-  selector: 'app-reset-confirmation',
-  templateUrl: './reset-confirmation.component.html',
-  styleUrls: ['./reset-confirmation.component.scss']
+  selector: 'app-update-confirmed',
+  templateUrl: './update-confirmed.component.html',
+  styleUrls: ['./update-confirmed.component.scss']
 })
-export class ResetConfirmationComponent implements OnInit {
+export class UpdateConfirmedComponent implements OnInit {
    
   constructor() { }
 
