@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_CONFIRMATION } from 'src/app/app.constants';
+import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_UPDATED_PASSWORD } from 'src/app/app.constants';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UrlService } from 'src/app/core/services/url.service';
 import Validation from 'src/app/shared/directives/validation';
@@ -26,9 +26,9 @@ export class ResetPasswordComponent implements OnInit {
     private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    // this.responseData = history.state.data;
-    // if (this.responseData == null || this.responseData == undefined) 
-    //   this.router.navigate([ROUTING_AUTH]); 
+    this.responseData = history.state.data;
+    if (this.responseData == null || this.responseData == undefined) 
+      this.router.navigate([ROUTING_AUTH]); 
 
     this.resetPasswordForm = new FormGroup({
       password: new FormControl("", [
@@ -49,11 +49,11 @@ export class ResetPasswordComponent implements OnInit {
       password: formValue.password,
       token: this.responseData?.token
     }
-    this.router.navigate(['/confirmation'], {relativeTo: this.route});
-    // this.authService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
-    //   .subscribe(() => {
-    //     this.router.navigate(['/confirmation'], {relativeTo: this.route});
-    //   })
+
+    this.authService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
+      .subscribe(() => {
+        this.router.navigate(['/confirmation'], {relativeTo: this.route});
+      })
   }
 
 }

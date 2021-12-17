@@ -9,7 +9,7 @@ import { ROUTING_AUTH } from 'src/app/app.constants';
 })
 export class ResetConfirmationComponent implements OnInit {
    
-  constructor() {console.log("We here now") }
+  constructor() { }
 
   ngOnInit(): void {
   }
