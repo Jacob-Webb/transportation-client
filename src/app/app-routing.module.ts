@@ -22,15 +22,10 @@ const routes: Routes = [
   { path: ROUTING_FORBIDDEN, component: ForbiddenComponent },
   { path: ROUTING_VERIFY_PHONE, component: VerifyPhoneComponent },
   { path: ROUTING_CONFIRM_PHONE, component: PhoneConfirmationComponent },
-  { 
-    path: 'password', 
-    component: PasswordComponent,
-    children: [
-      { path: ROUTING_FORGOT_PASSWORD, component: ForgotPasswordComponent },
-      { path: ROUTING_RESET_PASSWORD, component: ResetPasswordComponent },
-      { path: ROUTING_UPDATE_CONFIRMED, component: UpdateConfirmedComponent }
-    ]
-  },
+  { path: 'password', redirectTo: '/', pathMatch: 'full' },
+  { path: 'password/forgot-password', component: ForgotPasswordComponent },
+  { path: 'password/update-password', component: ResetPasswordComponent },
+  { path: 'password/update-confirmed', component: UpdateConfirmedComponent },
   { path: ROUTING_UPDATE_CONFIRMED, component: UpdateConfirmedComponent},
   { path: ROUTING_MANAGE_TEMPLATES, component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: NOT_FOUND, component: NotFoundComponent },
