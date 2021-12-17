@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { UserForRegistrationDto } from 'src/app/shared/models/user';
-import { API_ACCOUNTS_REGISTRATION, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
+import { UserForRegistrationDto } from 'src/app/shared/models/account';
+import { API_REGISTRATION, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
 import { Roles } from 'src/app/shared/models/roles';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     hideConfirm=true;
     submitted=false;
     isUniqueEmail=true;
-    phone = '';
+    phoneNumber = '';
     error: boolean = false;
 
   constructor(private authService: AuthenticationService,
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
             'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
             'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
             'email':['', Validators.compose([Validators.email])],
-            'phone':['', Validators.compose([])],
+            'phoneNumber':['', Validators.compose([])],
             'address1': ['', Validators.compose([Validators.required])],
             'address2': [],
             'city':['', Validators.compose([Validators.required])],
@@ -56,23 +56,22 @@ export class RegisterComponent implements OnInit {
     const formValues = { ...registerFormValue };
     const user: UserForRegistrationDto = {
       password: formValues.password,
-      confirmPassword: formValues.confirmPassword,
+      phoneNumber: formValues.phoneNumber,
       firstName: formValues.firstName.trim(),
       lastName: formValues.lastName.trim(),
       email: formValues.email !== '' ? formValues.email.trim() : null,
-      phone: formValues.phone,
       address1: formValues.address1.trim(),
       address2: formValues.address2 !== null ? formValues.address2.trim() : null,
       city: formValues.city.trim(),
       zipCode: formValues.zipCode.trim()
     }
 
-    this.authService.registerUser(API_ACCOUNTS_REGISTRATION, user)
+    this.authService.registerUser(API_REGISTRATION, user)
       .subscribe(response => {
-        this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: user.phone}});
+        this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: response}});
       }, error => {
         if (error.status == 403) {
-          this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: formValues.phone}});
+          this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: user}});
         }
         this.validationErrors = error;
       })

@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { UserForAuthenticationDto } from 'src/app/shared/models/user';
-import { ACCESS_TOKEN, API_ACCOUNTS_LOGIN, REFRESH_TOKEN } from 'src/app/app.constants';
+import { AuthenticationDto } from 'src/app/shared/models/account';
+import { ACCESS_TOKEN, API_LOGIN, REFRESH_TOKEN } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -46,12 +46,12 @@ export class LoginComponent implements OnInit {
 
     public loginUser = (loginFormValue: any) => {
       const login = {...loginFormValue};
-      const userForAuthDto: UserForAuthenticationDto = {
-        phone: login.username,
+      const userForAuthDto: AuthenticationDto = {
+        phoneNumber: login.username,
         password: login.password
       }
 
-      this.authService.loginUser(API_ACCOUNTS_LOGIN, userForAuthDto)
+      this.authService.loginUser(API_LOGIN, userForAuthDto)
       .subscribe(result => {
         localStorage.setItem(ACCESS_TOKEN, result.accessToken);
         localStorage.setItem(REFRESH_TOKEN, result.refreshToken);

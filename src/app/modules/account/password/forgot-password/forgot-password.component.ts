@@ -1,13 +1,10 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IConfig } from 'ngx-mask';
-import { filter, pairwise } from 'rxjs/operators';
-import { API_ACCOUNTS_FORGOT_PASSWORD, ROUTING_AUTH, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
+import { API_FORGOT_PASSWORD, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { UrlService } from 'src/app/core/services/url.service';
-import { UserForgotPasswordDto } from 'src/app/shared/models/user';
+import { ResetPasswordDto, PhoneNumberDto } from 'src/app/shared/models/account';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -19,13 +16,11 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 export class ForgotPasswordComponent implements OnInit {
   public forgotPasswordForm!: FormGroup;
   public hide: boolean = true;
-  private previousUrl: string | null = null;
-  private returnUrl: string | undefined;
+  private returnUrl: string | undefined = undefined;
 
   constructor(private authService: AuthenticationService,
     private router: Router,
-    private route: ActivatedRoute,
-    private urlService: UrlService) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.forgotPasswordForm = new FormGroup({
@@ -36,11 +31,11 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public submit = (forgotPasswordForm: any) => {
-    var forgotPasswordDto: UserForgotPasswordDto = { phone: forgotPasswordForm.phone}
-    console.log(forgotPasswordDto.phone);
-    this.authService.forgotPassword(API_ACCOUNTS_FORGOT_PASSWORD, forgotPasswordDto)
-    .subscribe(response => {
-      this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: forgotPasswordDto.phone}});
+    var phoneNumberDto: PhoneNumberDto = { phoneNumber: forgotPasswordForm.phone}
+
+    this.authService.forgotPassword(API_FORGOT_PASSWORD, phoneNumberDto)
+    .subscribe(() => {
+      this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: phoneNumberDto}});
     })
   }
 

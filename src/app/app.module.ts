@@ -27,6 +27,7 @@ import { ResetPasswordComponent } from './modules/account/password/reset-passwor
 import { PhoneConfirmationComponent } from './modules/account/phone/phone-confirmation/phone-confirmation.component';
 
 import { UrlService } from './core/services/url.service';
+import { ResetConfirmationComponent } from './modules/account/password/reset-confirmation/reset-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UrlService } from './core/services/url.service';
     ManageTemplatesComponent,
     ForbiddenComponent,
     ResetPasswordComponent,
-    PhoneConfirmationComponent
+    PhoneConfirmationComponent,
+    ResetConfirmationComponent
   ],
   imports: [
     AppRoutingModule,

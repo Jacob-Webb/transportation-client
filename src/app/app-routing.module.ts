@@ -12,7 +12,8 @@ import { ManageTemplatesComponent } from './modules/church-services/manage-templ
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { ResetPasswordComponent } from './modules/account/password/reset-password/reset-password.component';
-import { NOT_FOUND, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORBIDDEN, ROUTING_FORGOT_PASSWORD, ROUTING_MANAGE_TEMPLATES, ROUTING_RESET_PASSWORD, ROUTING_VERIFY_PHONE, SERVER_ERROR } from './app.constants';
+import { NOT_FOUND, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORBIDDEN, ROUTING_FORGOT_PASSWORD, ROUTING_MANAGE_TEMPLATES, ROUTING_CONFIRMATION, ROUTING_RESET_PASSWORD, ROUTING_VERIFY_PHONE, SERVER_ERROR } from './app.constants';
+import { ResetConfirmationComponent } from './modules/account/password/reset-confirmation/reset-confirmation.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -21,7 +22,12 @@ const routes: Routes = [
   { path: ROUTING_VERIFY_PHONE, component: VerifyPhoneComponent },
   { path: ROUTING_CONFIRM_PHONE, component: PhoneConfirmationComponent },
   { path: ROUTING_FORGOT_PASSWORD, component: ForgotPasswordComponent },
-  { path: ROUTING_RESET_PASSWORD, component: ResetPasswordComponent },
+  { path: ROUTING_RESET_PASSWORD, component: ResetPasswordComponent,
+    children: [
+      {path: 'confirmed', component:ResetConfirmationComponent}
+    ] 
+  },
+  { path: 'password-confirmed', component: ResetConfirmationComponent},
   { path: ROUTING_MANAGE_TEMPLATES, component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: NOT_FOUND, component: NotFoundComponent },
   { path: SERVER_ERROR, component: ServerErrorComponent },

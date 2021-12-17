@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { IConfig } from 'ngx-mask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
-import { API_ACCOUNTS_VERIFICATION, API_ACCOUNTS_CONFIRM, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORGOT_PASSWORD, ROUTING_RESET_PASSWORD } from 'src/app/app.constants';
+import { API_VERIFICATION, API_CONFIRM_PHONE, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORGOT_PASSWORD, ROUTING_RESET_PASSWORD, API_RESET_PASSWORD_TOKEN } from 'src/app/app.constants';
 import { UrlService } from 'src/app/core/services/url.service';
+import { PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto } from 'src/app/shared/models/account';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -17,8 +17,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
 export class VerifyPhoneComponent implements OnInit {
   public verifyPhoneForm: FormGroup;
   codeLength: number = 6;
-  validationErrors: string[] = [];
-  private responseData: string = '';
+  private phoneNumber: string | null | undefined;
+  private responseData: PhoneNumberDto | ResetPasswordDto | null = null;
   private previousUrl: string | null = null;
 
   constructor(private authService: AuthenticationService,
@@ -30,10 +30,13 @@ export class VerifyPhoneComponent implements OnInit {
       })
     }
 
+    // Should accept an object with a phoneNumber property
   ngOnInit(): void {
     this.responseData = history.state.data;
-    if (this.responseData == '' || this.responseData == undefined) 
+    if (this.responseData == null || this.responseData == undefined) 
       this.router.navigate([ROUTING_AUTH]); 
+
+    this.phoneNumber = this.responseData?.phoneNumber;
 
     this.urlService.previousUrl$.subscribe((previousUrl: string | null) => {
       this.previousUrl = previousUrl;
@@ -43,26 +46,25 @@ export class VerifyPhoneComponent implements OnInit {
   public verify() {
     const phoneVerificationDto: PhoneVerificationDto = {
       code: this.verifyPhoneForm.value.verifyCode,
-      phoneNumber: this.responseData
+      phoneNumber: this.phoneNumber
     }
 
-    let apiUrl = '';
-    let navigationUrl = '';
-    console.log("Previous Url: " + this.previousUrl)
+    // Set the information to branch where verify phone sends its data
     if (this.previousUrl?.includes(ROUTING_AUTH)) {
-      apiUrl = API_ACCOUNTS_CONFIRM;
-      navigationUrl = ROUTING_CONFIRM_PHONE;
-    } else if (this.previousUrl?.includes(ROUTING_FORGOT_PASSWORD)) {
-      apiUrl = API_ACCOUNTS_VERIFICATION;
-      navigationUrl = ROUTING_RESET_PASSWORD;
+      // If the previous url was the auth (registration) page, verify and confirm phone number
+      this.authService.confirmPhone(API_CONFIRM_PHONE, phoneVerificationDto)
+      .subscribe(() => {
+        this.router.navigate([ROUTING_CONFIRM_PHONE], {state: {data: this.phoneNumber}});
+      }, error => {
+        this.router.navigate([ROUTING_AUTH])
+      })
+    } else if (this.previousUrl?.includes(ROUTING_FORGOT_PASSWORD)){
+      this.authService.resetPasswordToken(API_RESET_PASSWORD_TOKEN, phoneVerificationDto)
+      .subscribe(response => {
+        this.router.navigate([ROUTING_RESET_PASSWORD], {state: {data: response}});
+      }, error => {
+        this.router.navigate([ROUTING_AUTH])
+      })
     }
-  
-    this.authService.verifyPhone(apiUrl, phoneVerificationDto)
-    .subscribe(() => {
-      this.router.navigate([navigationUrl], {state: {data: phoneVerificationDto.phoneNumber}});
-    }, error => {
-      console.log(error);
-      this.validationErrors = error;
-    })
-  }
+  }  
 }
