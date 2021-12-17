@@ -13,8 +13,7 @@ import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.c
 import { AdminGuard } from './core/guards/admin.guard';
 import { ResetPasswordComponent } from './modules/account/password/reset-password/reset-password.component';
 import { NOT_FOUND, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORBIDDEN, ROUTING_FORGOT_PASSWORD, ROUTING_MANAGE_TEMPLATES, ROUTING_UPDATE_CONFIRMED, ROUTING_RESET_PASSWORD, ROUTING_VERIFY_PHONE, SERVER_ERROR } from './app.constants';
-import { UpdateConfirmedComponent } from './modules/account/password/update-confirmed/update-confirmed.component';
-import { PasswordComponent } from './modules/account/password/password.component';
+import { UpdatedPasswordComponent } from './modules/account/password/updated-password/updated-password.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -23,10 +22,9 @@ const routes: Routes = [
   { path: ROUTING_VERIFY_PHONE, component: VerifyPhoneComponent },
   { path: ROUTING_CONFIRM_PHONE, component: PhoneConfirmationComponent },
   { path: 'password', redirectTo: '/', pathMatch: 'full' },
-  { path: 'password/forgot-password', component: ForgotPasswordComponent },
-  { path: 'password/update-password', component: ResetPasswordComponent },
-  { path: 'password/update-confirmed', component: UpdateConfirmedComponent },
-  { path: ROUTING_UPDATE_CONFIRMED, component: UpdateConfirmedComponent},
+  { path: ROUTING_FORGOT_PASSWORD, component: ForgotPasswordComponent },
+  { path: ROUTING_RESET_PASSWORD, component: ResetPasswordComponent },
+  { path: ROUTING_UPDATE_CONFIRMED, component: UpdatedPasswordComponent },
   { path: ROUTING_MANAGE_TEMPLATES, component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
   { path: NOT_FOUND, component: NotFoundComponent },
   { path: SERVER_ERROR, component: ServerErrorComponent },
