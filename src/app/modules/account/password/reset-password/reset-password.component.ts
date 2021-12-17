@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_UPDATE_CONFIRMED } from 'src/app/app.constants';
+import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_UPDATED_PASSWORD } from 'src/app/app.constants';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UrlService } from 'src/app/core/services/url.service';
 import Validation from 'src/app/shared/directives/validation';
@@ -19,16 +19,19 @@ export class ResetPasswordComponent implements OnInit {
   public hide: boolean = true;
   public hideConfirm: boolean = true;
   public error: boolean = false;
-  private responseData: ResetPasswordDto | null = null;
+  private returnUrl: string | undefined;
+  private previousNavigationData: ResetPasswordDto | null = null;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.responseData = history.state.data;
-    if (this.responseData == null || this.responseData == undefined) 
-      this.router.navigate([ROUTING_AUTH]); 
+    this.previousNavigationData = history.state.data;
+    if (this.previousNavigationData == null || this.previousNavigationData == undefined) 
+      this.router.navigate(['/']); 
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
 
     this.resetPasswordForm = new FormGroup({
       password: new FormControl("", [
@@ -45,16 +48,16 @@ export class ResetPasswordComponent implements OnInit {
   public submit = (resetPasswordFormValue: any) => {
     const formValue = { ...resetPasswordFormValue };
     const resetPasswordDto: ResetPasswordDto = {
-      phoneNumber: this.responseData?.phoneNumber,
+      phoneNumber: this.previousNavigationData?.phoneNumber,
       password: formValue.password,
-      token: this.responseData?.token
+      token: this.previousNavigationData?.token
     }
 
     this.authService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
       .subscribe(() => {
-        this.router.navigate([ROUTING_UPDATE_CONFIRMED]);
+        this.router.navigate([ROUTING_UPDATED_PASSWORD], {state: {data: resetPasswordDto.phoneNumber}});
       }, error => {
-        this.router.navigate([ROUTING_AUTH])
+        this.router.navigate([this.returnUrl])
       })
   }
 

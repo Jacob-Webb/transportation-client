@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTING_AUTH } from 'src/app/app.constants';
 
 @Component({
@@ -8,10 +8,15 @@ import { ROUTING_AUTH } from 'src/app/app.constants';
   styleUrls: ['./updated-password.component.scss']
 })
 export class UpdatedPasswordComponent implements OnInit {
-   
-  constructor() { }
+   previousNavigationData: string | undefined;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.previousNavigationData = history.state.data;
+    if (this.previousNavigationData == '' || this.previousNavigationData == undefined) {
+      this.router.navigate(['/']); 
+    }
   }
 
 }

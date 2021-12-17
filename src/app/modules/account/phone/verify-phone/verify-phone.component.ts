@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IConfig } from 'ngx-mask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
@@ -18,11 +18,13 @@ export class VerifyPhoneComponent implements OnInit {
   public verifyPhoneForm: FormGroup;
   codeLength: number = 6;
   private phoneNumber: string | null | undefined;
-  private responseData: PhoneNumberDto | ResetPasswordDto | null = null;
+  private previousNavigationData: PhoneNumberDto | ResetPasswordDto | null = null;
   private previousUrl: string | null = null;
+  private returnUrl: string| undefined;
 
   constructor(private authService: AuthenticationService,
     private router: Router,
+    private route: ActivatedRoute,
     private urlService: UrlService,
     fb: FormBuilder) { 
       this.verifyPhoneForm = fb.group ({
@@ -32,11 +34,13 @@ export class VerifyPhoneComponent implements OnInit {
 
     // Should accept an object with a phoneNumber property
   ngOnInit(): void {
-    this.responseData = history.state.data;
-    if (this.responseData == null || this.responseData == undefined) 
-      this.router.navigate([ROUTING_AUTH]); 
+    this.previousNavigationData = history.state.data;
+    if (this.previousNavigationData == null || this.previousNavigationData == undefined) 
+      this.router.navigate(['/']); 
 
-    this.phoneNumber = this.responseData?.phoneNumber;
+    this.phoneNumber = this.previousNavigationData?.phoneNumber;
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
 
     this.urlService.previousUrl$.subscribe((previousUrl: string | null) => {
       this.previousUrl = previousUrl;
@@ -56,14 +60,14 @@ export class VerifyPhoneComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate([ROUTING_CONFIRM_PHONE], {state: {data: this.phoneNumber}});
       }, error => {
-        this.router.navigate([ROUTING_AUTH])
+        this.router.navigate([this.returnUrl])
       })
     } else if (this.previousUrl?.includes(ROUTING_FORGOT_PASSWORD)){
       this.authService.resetPasswordToken(API_RESET_PASSWORD_TOKEN, phoneVerificationDto)
       .subscribe(response => {
         this.router.navigate([ROUTING_RESET_PASSWORD], {state: {data: response}});
       }, error => {
-        this.router.navigate([ROUTING_AUTH])
+        this.router.navigate([this.returnUrl])
       })
     }
   }  
