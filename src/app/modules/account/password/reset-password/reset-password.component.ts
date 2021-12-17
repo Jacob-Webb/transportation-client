@@ -52,7 +52,9 @@ export class ResetPasswordComponent implements OnInit {
 
     this.authService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
       .subscribe(() => {
-        this.router.navigate(['/confirmation'], {relativeTo: this.route});
+        this.router.navigate([ROUTING_UPDATED_PASSWORD]);
+      }, error => {
+        this.router.navigate([ROUTING_AUTH])
       })
   }
 
