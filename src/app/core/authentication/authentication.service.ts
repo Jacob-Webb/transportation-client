@@ -1,9 +1,8 @@
-import { UserForAuthenticationDto, UserForgotPasswordDto, UserForRegistrationDto } from 'src/app/shared/models/user';
+import { AuthenticationDto, PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto, UserForRegistrationDto } from 'src/app/shared/models/account';
 import { AuthResponseDto, RegistrationResponseDto } from 'src/app/shared/models/response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnvironmentUrlService } from '../services/environment-url.service';
-import { PhoneVerificationDto } from 'src/app/shared/models/phone-verification';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from 'src/app/app.constants';
@@ -22,22 +21,10 @@ export class AuthenticationService {
     public authChanged = this.authChangeSubject.asObservable();
 
     public registerUser = (route: string, body: UserForRegistrationDto) => {
-      return this.http.post<RegistrationResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post<PhoneNumberDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
-    public verifyPhone = (route: string, body: PhoneVerificationDto) => {
-      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
-    }
-
-    public forgotPassword = (route: string, body: UserForgotPasswordDto) => {
-      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
-    }
-
-    public refreshAuthentication = (route: string, body: JwtTokenDto) => {
-      return this.http.post<AuthResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
-    }
-
-    public loginUser = (route: string, body: UserForAuthenticationDto) => {
+    public loginUser = (route: string, body: AuthenticationDto) => {
       return this.http.post<AuthResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
@@ -55,6 +42,32 @@ export class AuthenticationService {
       const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
       return accessToken && !this.jwtHelper.isTokenExpired(accessToken);
+    }
+
+    public refreshAuthentication = (route: string, body: JwtTokenDto) => {
+      return this.http.post<AuthResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+
+    public confirmPhone = (route: string, body: PhoneVerificationDto) => {
+      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+
+    public resetPasswordToken = (route: string, body: PhoneVerificationDto) => {
+      return this.http.post<ResetPasswordDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+
+    public forgotPassword = (route: string, body: PhoneNumberDto) => {
+      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+    
+    /**
+     *  resetPassword sends a payload of body to the route and receives a password reset token.
+     * @param route The route to the api controller.
+     * @param body Payload of type ResetPasswordDto sent to the api controller on the backend
+     * @returns Observable of type string. This string should represent a password reset token
+     */
+    public resetPassword = (route: string, body: ResetPasswordDto) => {
+      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     private createCompleteRoute = (envAddress: string, route: string) => {

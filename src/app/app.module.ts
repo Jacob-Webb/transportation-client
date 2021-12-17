@@ -12,18 +12,22 @@ import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './core/footer/footer.component';
 import { NotFoundComponent } from './modules/errors/pages/not-found/not-found.component';
 import { ServerErrorComponent } from './modules/errors/pages/server-error/server-error.component';
-import { AuthComponent } from './modules/auth/pages/auth/auth.component';
-import { RegisterComponent } from './modules/auth/pages/auth/register/register.component';
-import { LoginComponent } from './modules/auth/pages/auth/login/login.component';
+import { AuthComponent } from './modules/account/auth/auth.component';
+import { RegisterComponent } from './modules/account/auth/register/register.component';
+import { LoginComponent } from './modules/account/auth/login/login.component';
 
 import { NgxMaskModule } from 'ngx-mask';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
-import { VerifyPhoneComponent } from './modules/auth/pages/verify-phone/verify-phone.component';
-import { ForgotPasswordComponent } from './modules/auth/pages/password/forgot-password/forgot-password.component';
+import { VerifyPhoneComponent } from './modules/account/phone/verify-phone/verify-phone.component';
+import { ForgotPasswordComponent } from './modules/account/password/forgot-password/forgot-password.component';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
+import { ResetPasswordComponent } from './modules/account/password/reset-password/reset-password.component';
+import { PhoneConfirmationComponent } from './modules/account/phone/phone-confirmation/phone-confirmation.component';
+
 import { UrlService } from './core/services/url.service';
+import { ResetConfirmationComponent } from './modules/account/password/reset-confirmation/reset-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -39,16 +43,19 @@ import { UrlService } from './core/services/url.service';
     ForgotPasswordComponent,
     DashboardComponent,
     ManageTemplatesComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ResetPasswordComponent,
+    PhoneConfirmationComponent,
+    ResetConfirmationComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxMaskModule.forRoot(),
-    SharedModule
+    NgxMaskModule.forRoot()
   ],
   providers: [
     {
