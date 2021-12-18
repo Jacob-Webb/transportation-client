@@ -1,11 +1,12 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/account';
 import { API_REGISTRATION, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
 import { Roles } from 'src/app/shared/models/roles';
+import Validation from 'src/app/shared/directives/validation';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -18,7 +19,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    public registerForm: FormGroup;
+    public registerForm!: FormGroup;
     validationErrors: string[] = [];
     passwordMinLength = 3;
     hide=true;
@@ -29,26 +30,37 @@ export class RegisterComponent implements OnInit {
     error: boolean = false;
 
   constructor(private authService: AuthenticationService,
-    private router: Router,
-    fb: FormBuilder) { 
-        this.registerForm = fb.group({
-            'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-            'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-            'email':['', Validators.compose([Validators.email])],
-            'phoneNumber':['', Validators.compose([])],
-            'address1': ['', Validators.compose([Validators.required])],
-            'address2': [],
-            'city':['', Validators.compose([Validators.required])],
-            'zipCode':['', Validators.compose([Validators.required])],
-            'password':['', Validators.compose([Validators.minLength(3), Validators.required])],
-            'confirmPassword':['', Validators.compose([Validators.minLength(3), Validators.required])]
-        },{
-            // check whether or not our password and confirm password match
-            validator: this.passwordMatchValidator
-        })
-    }
+    private router: Router) {}
 
   ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      firstName: new FormControl("", [
+        Validators.required, 
+        Validators.maxLength(20), 
+        Validators.pattern('[a-zA-Z]*')
+      ]),
+      lastName: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z]*')
+      ]), 
+      email: new FormControl("", [Validators.email]),
+      phoneNumber: new FormControl(""),
+      address1: new FormControl("", [Validators.required]),
+      address2: new FormControl(""),
+      city: new FormControl("", [Validators.required]),
+      zipCode: new FormControl("", [Validators.required]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      confirmPassword: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3)
+      ])
+    }, {
+      validators: [Validation.match('password', 'confirmPassword')]
+    });
   }
 
   public register = (registerFormValue: any) => {
@@ -75,15 +87,6 @@ export class RegisterComponent implements OnInit {
         }
         this.validationErrors = error;
       })
-  }
-
-  passwordMatchValidator(formGroup: FormGroup) {
-      const password: string = formGroup.get('password')?.value                 // get password from our password form control
-      const confirmPassword: string = formGroup.get('confirmPassword')?.value   // get password from our confirmPassword form control 
-      // compare if the passwords match
-      if (password !== confirmPassword) {
-          formGroup.get('confirmPassword')?.setErrors({ NoPasswordMatch: true });
-      }
   }
 
   getEmailError() {
