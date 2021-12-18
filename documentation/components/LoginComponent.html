@@ -609,7 +609,7 @@ import { IConfig } from &#x27;ngx-mask&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 import { AuthenticationService } from &#x27;src/app/core/authentication/authentication.service&#x27;;
 import { AuthenticationDto } from &#x27;src/app/shared/models/account&#x27;;
-import { ACCESS_TOKEN, API_LOGIN, REFRESH_TOKEN } from &#x27;src/app/app.constants&#x27;;
+import { apiPaths, tokens } from &#x27;src/app/app.constants&#x27;;
 
 export let options: Partial&lt;IConfig&gt; | (() &#x3D;&gt; Partial&lt;IConfig&gt;);
 
@@ -656,10 +656,10 @@ export class LoginComponent implements OnInit {
         password: login.password
       }
 
-      this.authService.loginUser(API_LOGIN, userForAuthDto)
+      this.authService.loginUser(apiPaths.login, userForAuthDto)
       .subscribe(result &#x3D;&gt; {
-        localStorage.setItem(ACCESS_TOKEN, result.accessToken);
-        localStorage.setItem(REFRESH_TOKEN, result.refreshToken);
+        localStorage.setItem(tokens.access, result.accessToken);
+        localStorage.setItem(tokens.refresh, result.refreshToken);
         this.authService.sendAuthStateChangeNotification(result.isAuthSuccessful);
         this.router.navigate([this.returnUrl]);
       }, error &#x3D;&gt; {

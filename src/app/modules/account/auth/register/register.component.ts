@@ -1,12 +1,11 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/account';
-import { API_REGISTRATION, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
-import { Roles } from 'src/app/shared/models/roles';
 import Validation from 'src/app/shared/directives/validation';
+import { apiPaths, routerPaths } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -78,12 +77,12 @@ export class RegisterComponent implements OnInit {
       zipCode: formValues.zipCode.trim()
     }
 
-    this.authService.registerUser(API_REGISTRATION, user)
+    this.authService.registerUser(apiPaths.registration, user)
       .subscribe(response => {
-        this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: response}});
+        this.router.navigate([routerPaths.verifyPhone], {state: {data: response}});
       }, error => {
         if (error.status == 403) {
-          this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: user}});
+          this.router.navigate([routerPaths.verifyPhone], {state: {data: user}});
         }
         this.validationErrors = error;
       })

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IConfig } from 'ngx-mask';
-import { API_FORGOT_PASSWORD, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
+import { apiPaths, routerPaths } from 'src/app/app.constants';
 import { AccountService } from 'src/app/core/services/account.service';
 import { PhoneNumberDto } from 'src/app/shared/models/account';
 
@@ -33,9 +33,9 @@ export class ForgotPasswordComponent implements OnInit {
   public submit = (forgotPasswordForm: any) => {
     var phoneNumberDto: PhoneNumberDto = { phoneNumber: forgotPasswordForm.phone}
 
-    this.accountService.forgotPassword(API_FORGOT_PASSWORD, phoneNumberDto)
+    this.accountService.forgotPassword(apiPaths.forgotPassword, phoneNumberDto)
     .subscribe(() => {
-      this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: phoneNumberDto}});
+      this.router.navigate([routerPaths.verifyPhone], {state: {data: phoneNumberDto}});
     })
   }
 

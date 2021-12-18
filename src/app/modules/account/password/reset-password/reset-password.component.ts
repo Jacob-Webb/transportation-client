@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { API_RESET_PASSWORD, ROUTING_UPDATED_PASSWORD } from 'src/app/app.constants';
+import { apiPaths, routerPaths } from 'src/app/app.constants';
 import { AccountService } from 'src/app/core/services/account.service';
 import Validation from 'src/app/shared/directives/validation';
 import { ResetPasswordDto } from 'src/app/shared/models/account';
@@ -52,9 +52,9 @@ export class ResetPasswordComponent implements OnInit {
       token: this.previousNavigationData?.token
     }
 
-    this.accountService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
+    this.accountService.resetPassword(apiPaths.resetPassword, resetPasswordDto)
       .subscribe(() => {
-        this.router.navigate([ROUTING_UPDATED_PASSWORD], {state: {data: resetPasswordDto.phoneNumber}});
+        this.router.navigate([routerPaths.updatedPassword], {state: {data: resetPasswordDto.phoneNumber}});
       }, error => {
         this.router.navigate([this.returnUrl])
       })

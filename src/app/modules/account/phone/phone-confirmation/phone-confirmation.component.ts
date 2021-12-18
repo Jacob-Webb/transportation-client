@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTING_AUTH } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-confirmation',

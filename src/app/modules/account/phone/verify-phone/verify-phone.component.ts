@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IConfig } from 'ngx-mask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { API_VERIFICATION, API_CONFIRM_PHONE, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORGOT_PASSWORD, ROUTING_RESET_PASSWORD, API_RESET_PASSWORD_TOKEN } from 'src/app/app.constants';
 import { UrlService } from 'src/app/core/services/url.service';
 import { PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto } from 'src/app/shared/models/account';
 import { AccountService } from 'src/app/core/services/account.service';
+import { apiPaths, routerPaths } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -56,18 +56,18 @@ export class VerifyPhoneComponent implements OnInit {
     }
 
     // Set the information to branch where verify phone sends its data
-    if (this.previousUrl?.includes(ROUTING_AUTH)) {
+    if (this.previousUrl?.includes(routerPaths.auth)) {
       // If the previous url was the auth (registration) page, verify and confirm phone number
-      this.authService.confirmPhone(API_CONFIRM_PHONE, phoneVerificationDto)
+      this.authService.confirmPhone(apiPaths.confirmPhone, phoneVerificationDto)
       .subscribe(() => {
-        this.router.navigate([ROUTING_CONFIRM_PHONE], {state: {data: this.phoneNumber}});
+        this.router.navigate([routerPaths.confirmPhone], {state: {data: this.phoneNumber}});
       }, error => {
         this.router.navigate([this.returnUrl])
       })
-    } else if (this.previousUrl?.includes(ROUTING_FORGOT_PASSWORD)){
-      this.accountService.resetPasswordToken(API_RESET_PASSWORD_TOKEN, phoneVerificationDto)
+    } else if (this.previousUrl?.includes(routerPaths.forgotPassword)){
+      this.accountService.resetPasswordToken(apiPaths.resetPasswordToken, phoneVerificationDto)
       .subscribe(response => {
-        this.router.navigate([ROUTING_RESET_PASSWORD], {state: {data: response}});
+        this.router.navigate([routerPaths.resetPassword], {state: {data: response}});
       }, error => {
         this.router.navigate([this.returnUrl])
       })

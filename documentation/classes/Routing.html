@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >Validation</li>
+  <li >Routing</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/directives/validation.ts</code>
+            <code>src/app/shared/directives/routing.ts</code>
         </p>
 
 
@@ -69,7 +69,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Custom validation methods for forms.</p>
+                <p>Custom routing methods for navigation.</p>
 
             </p>
 
@@ -80,10 +80,9 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -91,7 +90,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Static</span>
-                                <a href="#match" >match</a>
+                                <a href="#createCompleteRoute" >createCompleteRoute</a>
                             </li>
                         </ul>
                     </td>
@@ -101,115 +100,83 @@
 
 
 
+
         </tbody>
     </table>
 </section>
 
 
-
             <section>
     
-    <h3 id="methods">
-        Methods
+    <h3 id="inputs">
+        Properties
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="match"></a>
+                    <a name="createCompleteRoute"></a>
                     <span class="name">
-                        <span class="modifier">Static</span>
-                        <span ><b>match</b></span>
-                        <a href="#match"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Static</span>
+                        <span ><b>createCompleteRoute</b></span>
+                        <a href="#createCompleteRoute"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>match(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, checkControlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/shared/directives/validation.ts:14</a></div>
-                </td>
-            </tr>
-
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/directives/routing.ts:11</a></div>
+                        </td>
+                    </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Checks whether or not two strings are equal.
-Returns <code>null</code> otherwise.</p>
+                    <div class="io-description"><p>Concatenates two strings with a <code>/</code> between them.</p>
 </div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>controlName</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The name of a form&#39;s FormControl.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>checkControlName</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The name of the FormControl to check against <code>controlName</code>.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The <code>matching</code> property is set to <code>true</code> if <code>checkControlName</code> equals <code>controlName</code>. 
-Returns <code>null</code> otherwise.</p>
-
-                    </div>
                 </td>
             </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>envAddress</td>
+                                                    <td>
+                                                            <code><p>The API url found in <code>environment.ts</code>.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>route</td>
+                                                    <td>
+                                                            <code><p>The route of the API&#39;s controller.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
 </section>
+
+
 
 
 
@@ -219,39 +186,15 @@ Returns <code>null</code> otherwise.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AbstractControl, ValidatorFn } from &quot;@angular/forms&quot;;
-
-/**
- * Custom validation methods for forms.
- */
-export default class Validation {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export default class Routing {
   /**
-   * Checks whether or not two strings are equal.
-   * @param controlName The name of a form&#x27;s FormControl.
-   * @param checkControlName The name of the FormControl to check against &#x60;controlName&#x60;.
-   * @returns The &#x60;matching&#x60; property is set to &#x60;true&#x60; if &#x60;checkControlName&#x60; equals &#x60;controlName&#x60;. 
-   * Returns &#x60;null&#x60; otherwise.
+   * Concatenates two strings with a &#x60;/&#x60; between them.
+   * @param envAddress The API url found in &#x60;environment.ts&#x60;.
+   * @param route The route of the API&#x27;s controller.
+   * @returns A complete route from API url to the API&#x27;s controller method. 
    */
-  static match(controlName: string, checkControlName: string): ValidatorFn {
-    return (controls: AbstractControl) &#x3D;&gt; {
-      const control &#x3D; controls.get(controlName);
-      const checkControl &#x3D; controls.get(checkControlName);
-
-      if (control &#x3D;&#x3D; null || checkControl &#x3D;&#x3D; null) {
-        return null; 
-      }
-
-      if (checkControl.errors &amp;&amp; !checkControl.errors.matching) {
-        return null;
-      }
-
-      if (control.value !&#x3D;&#x3D; checkControl.value) {
-        controls.get(checkControlName)?.setErrors({ matching: true });
-        return { matching: true };
-      } else {
-        return null;
-      }
-    };
+  static createCompleteRoute &#x3D; (envAddress: string, route: string) : string &#x3D;&gt; {
+    return &#x60;${envAddress}/${route}&#x60;;
   }
 }
 </code></pre>
@@ -291,7 +234,7 @@ export default class Validation {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Validation.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Routing.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

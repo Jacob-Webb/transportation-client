@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { EnvironmentUrlService } from '../services/environment-url.service';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from 'src/app/app.constants';
+import { tokens } from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
 import Routing from 'src/app/shared/directives/routing';
 
@@ -13,7 +13,7 @@ import Routing from 'src/app/shared/directives/routing';
   providedIn: 'root'
 })
 /**
- * 
+ * A service to manage users' authentication in the app.
  */
 export class AuthenticationService {
 
@@ -33,8 +33,8 @@ export class AuthenticationService {
     }
 
     public logout = () => {
-      localStorage.removeItem(ACCESS_TOKEN);
-      localStorage.removeItem(REFRESH_TOKEN);
+      localStorage.removeItem(tokens.access);
+      localStorage.removeItem(tokens.refresh);
       this.sendAuthStateChangeNotification(false);
     }
 
@@ -43,7 +43,7 @@ export class AuthenticationService {
     }
 
     public isUserAuthenticated = () => {
-      const accessToken = localStorage.getItem(ACCESS_TOKEN);
+      const accessToken = localStorage.getItem(tokens.access);
 
       return accessToken && !this.jwtHelper.isTokenExpired(accessToken);
     }

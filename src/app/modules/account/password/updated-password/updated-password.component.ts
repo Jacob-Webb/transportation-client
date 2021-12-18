@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ROUTING_AUTH } from 'src/app/app.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-updated-password',

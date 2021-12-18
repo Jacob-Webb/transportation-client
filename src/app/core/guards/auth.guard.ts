@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { ACCESS_TOKEN, REFRESH_TOKEN, API_TOKENS_REFRESH, ROUTING_AUTH } from 'src/app/app.constants';
+import { apiPaths, routerPaths, tokens} from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
 import { AuthResponseDto } from 'src/app/shared/models/response';
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -22,12 +22,12 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    const accessToken = localStorage.getItem(tokens.access);
 
     const isRefreshSuccess = await this.tryRefreshingTokens(accessToken);
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
-      this.router.navigate([ROUTING_AUTH], { queryParams: { returnUrl: state.url }});
+      this.router.navigate([routerPaths.auth], { queryParams: { returnUrl: state.url }});
     }
 
     this.authService.sendAuthStateChangeNotification(isRefreshSuccess);
@@ -36,7 +36,7 @@ export class AuthGuard implements CanActivate {
 
   private async tryRefreshingTokens(accessToken: string | null): Promise<boolean> {
     // Try refreshing tokens using refresh token
-    const refreshToken: string | null = localStorage.getItem(REFRESH_TOKEN);
+    const refreshToken: string | null = localStorage.getItem(tokens.refresh);
 
     if(!accessToken || !refreshToken) return false;
 
@@ -45,13 +45,13 @@ export class AuthGuard implements CanActivate {
     let isRefreshSuccess: boolean;
 
     try {
-      const response = await this.authService.refreshAuthentication(API_TOKENS_REFRESH, jwtToken).toPromise();
+      const response = await this.authService.refreshAuthentication(apiPaths.refreshTokens, jwtToken).toPromise();
 
       const newToken = response.accessToken;
       const newRefreshToken = response.refreshToken;
 
-      localStorage.setItem(ACCESS_TOKEN, newToken);
-      localStorage.setItem(REFRESH_TOKEN, newRefreshToken);
+      localStorage.setItem(tokens.access, newToken);
+      localStorage.setItem(tokens.refresh, newRefreshToken);
       isRefreshSuccess = true;
     } catch(ex) {
       isRefreshSuccess = false;

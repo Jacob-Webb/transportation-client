@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content interceptor">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -37,10 +37,9 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li>Interceptors</li>
-  <li >ErrorInterceptor</li>
+  <li>Injectables</li>
+  <li >AccountService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,8 +57,9 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/interceptors/error.interceptor.ts</code>
+            <code>src/app/core/services/account.service.ts</code>
         </p>
+
 
 
 
@@ -68,21 +68,30 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#intercept" >intercept</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#forgotPassword" >forgotPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#resetPassword" >resetPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#resetPasswordToken" >resetPasswordToken</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
 
 
 
@@ -98,12 +107,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, envUrl: <a href="../injectables/EnvironmentUrlService.html" target="_self">EnvironmentUrlService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/interceptors/error.interceptor.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/account.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -121,10 +130,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>http</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -133,10 +142,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>notificationService</td>
+                                                        <td>envUrl</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                                        <code><a href="../injectables/EnvironmentUrlService.html" target="_self" >EnvironmentUrlService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -153,90 +162,125 @@
         </table>
 </section>
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
+    <h3 id="inputs">
+        Properties
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="intercept"></a>
+                    <a name="forgotPassword"></a>
                     <span class="name">
-                        <span ><b>intercept</b></span>
-                        <a href="#intercept"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                        <span ><b>forgotPassword</b></span>
+                        <a href="#forgotPassword"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/core/services/account.service.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-<code>intercept(request: HttpRequest<>, next: <a href="https://angular.io/api/common/http/HttpHandler" target="_blank">HttpHandler</a>)</code>
+                    <a name="resetPassword"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>resetPassword</b></span>
+                        <a href="#resetPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/core/services/account.service.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p> resetPassword sends a payload of body to the route and receives a password reset token.</p>
+</div>
                 </td>
             </tr>
 
-
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>route</td>
+                                                    <td>
+                                                            <code><p>The route to the api controller.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>body</td>
+                                                    <td>
+                                                            <code><p>Payload of type ResetPasswordDto sent to the api controller on the backend</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/core/interceptors/error.interceptor.ts:20</a></div>
+                    <a name="resetPasswordToken"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>resetPasswordToken</b></span>
+                        <a href="#resetPasswordToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/account.service.ts:16</a></div>
+                        </td>
+                    </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>request</td>
-                                    <td>
-                                            <code>HttpRequest&lt;&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>next</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/common/http/HttpHandler" target="_blank" >HttpHandler</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;HttpEvent&lt;&gt;&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
         </tbody>
     </table>
 </section>
@@ -245,68 +289,44 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from &#x27;@angular/common/http&#x27;;
-import { Observable, throwError } from &#x27;rxjs&#x27;;
-import { NotificationService } from &#x27;../services/notification.service&#x27;;
-import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
-import { catchError } from &#x27;rxjs/operators&#x27;;
-import { routerPaths } from &#x27;src/app/app.constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import Routing from &#x27;src/app/shared/directives/routing&#x27;;
+import { PhoneVerificationDto, ResetPasswordDto, PhoneNumberDto } from &#x27;src/app/shared/models/account&#x27;;
+import { EnvironmentUrlService } from &#x27;./environment-url.service&#x27;;
 
-@Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class AccountService {
 
-  constructor(private router: Router,
-    private notificationService: NotificationService) {}
+  constructor(private http: HttpClient, 
+    private envUrl: EnvironmentUrlService
+    ) {}
 
-  intercept(request: HttpRequest&lt;unknown&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;unknown&gt;&gt; {
-    return next.handle(request).pipe(
-      catchError(error &#x3D;&gt; {
-        if (error) {
-          switch (error.status) {
-            case 400:
-              let errors: string[] &#x3D; Object.values(error.error);
-              let errorsAsString &#x3D; errors.join(&quot;&quot;)
-              this.notificationService.showError(errorsAsString, error.statusText);
-              break;
-            case 401:
-              this.notificationService.showError(error.error, error.statusText);
-              break;
-            case 403: 
-              this.notificationService.showError(error.error);
-              break;
-            case 404:
-              this.router.navigateByUrl(routerPaths.notFound);
-              break;
-            case 406: 
-              this.notificationService.showError(error.error);
-              break;
-            case 409:
-              this.notificationService.showError(error.error);
-              break;
-            case 500:
-              const navigationExtras: NavigationExtras &#x3D; {state: {error: error.error}};
-              this.router.navigateByUrl(routerPaths.serverError, navigationExtras);
-              break;
-            default:
-              //this.notificationService.showError(&quot;Something unexpected went wrong&quot;);
-              console.log(error);
-              break;
-          }
-        }
-        return throwError(error);
-      })
-    );
-  }
+    public resetPasswordToken &#x3D; (route: string, body: PhoneVerificationDto) &#x3D;&gt; {
+      return this.http.post&lt;ResetPasswordDto&gt;(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+
+    public forgotPassword &#x3D; (route: string, body: PhoneNumberDto) &#x3D;&gt; {
+      return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
+    
+    /**
+     *  resetPassword sends a payload of body to the route and receives a password reset token.
+     * @param route The route to the api controller.
+     * @param body Payload of type ResetPasswordDto sent to the api controller on the backend
+     * @returns Observable of type string. This string should represent a password reset token
+     */
+    public resetPassword &#x3D; (route: string, body: ResetPasswordDto) &#x3D;&gt; {
+      return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    }
 }
 </code></pre>
     </div>
+
 </div>
+
 
 
 
@@ -343,8 +363,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interceptor';
-            var COMPODOC_CURRENT_PAGE_URL = 'ErrorInterceptor.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AccountService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
