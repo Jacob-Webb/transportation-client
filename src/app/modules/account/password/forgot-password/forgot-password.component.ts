@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IConfig } from 'ngx-mask';
 import { API_FORGOT_PASSWORD, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { ResetPasswordDto, PhoneNumberDto } from 'src/app/shared/models/account';
+import { AccountService } from 'src/app/core/services/account.service';
+import { PhoneNumberDto } from 'src/app/shared/models/account';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -18,7 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
   public hide: boolean = true;
   private returnUrl: string | undefined = undefined;
 
-  constructor(private authService: AuthenticationService,
+  constructor(private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
   public submit = (forgotPasswordForm: any) => {
     var phoneNumberDto: PhoneNumberDto = { phoneNumber: forgotPasswordForm.phone}
 
-    this.authService.forgotPassword(API_FORGOT_PASSWORD, phoneNumberDto)
+    this.accountService.forgotPassword(API_FORGOT_PASSWORD, phoneNumberDto)
     .subscribe(() => {
       this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: phoneNumberDto}});
     })

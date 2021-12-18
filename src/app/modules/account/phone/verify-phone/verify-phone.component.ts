@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 import { API_VERIFICATION, API_CONFIRM_PHONE, ROUTING_AUTH, ROUTING_CONFIRM_PHONE, ROUTING_FORGOT_PASSWORD, ROUTING_RESET_PASSWORD, API_RESET_PASSWORD_TOKEN } from 'src/app/app.constants';
 import { UrlService } from 'src/app/core/services/url.service';
 import { PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto } from 'src/app/shared/models/account';
+import { AccountService } from 'src/app/core/services/account.service';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -23,6 +24,7 @@ export class VerifyPhoneComponent implements OnInit {
   private returnUrl: string| undefined;
 
   constructor(private authService: AuthenticationService,
+    private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute,
     private urlService: UrlService,
@@ -63,7 +65,7 @@ export class VerifyPhoneComponent implements OnInit {
         this.router.navigate([this.returnUrl])
       })
     } else if (this.previousUrl?.includes(ROUTING_FORGOT_PASSWORD)){
-      this.authService.resetPasswordToken(API_RESET_PASSWORD_TOKEN, phoneVerificationDto)
+      this.accountService.resetPasswordToken(API_RESET_PASSWORD_TOKEN, phoneVerificationDto)
       .subscribe(response => {
         this.router.navigate([ROUTING_RESET_PASSWORD], {state: {data: response}});
       }, error => {
