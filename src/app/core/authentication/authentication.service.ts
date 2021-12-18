@@ -7,10 +7,14 @@ import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
+import Routing from 'src/app/shared/directives/routing';
 
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * 
+ */
 export class AuthenticationService {
 
     constructor(private http: HttpClient,
@@ -21,11 +25,11 @@ export class AuthenticationService {
     public authChanged = this.authChangeSubject.asObservable();
 
     public registerUser = (route: string, body: UserForRegistrationDto) => {
-      return this.http.post<PhoneNumberDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post<PhoneNumberDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     public loginUser = (route: string, body: AuthenticationDto) => {
-      return this.http.post<AuthResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post<AuthResponseDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     public logout = () => {
@@ -45,19 +49,19 @@ export class AuthenticationService {
     }
 
     public refreshAuthentication = (route: string, body: JwtTokenDto) => {
-      return this.http.post<AuthResponseDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post<AuthResponseDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     public confirmPhone = (route: string, body: PhoneVerificationDto) => {
-      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     public resetPasswordToken = (route: string, body: PhoneVerificationDto) => {
-      return this.http.post<ResetPasswordDto>(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post<ResetPasswordDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
     public forgotPassword = (route: string, body: PhoneNumberDto) => {
-      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
     
     /**
@@ -67,10 +71,10 @@ export class AuthenticationService {
      * @returns Observable of type string. This string should represent a password reset token
      */
     public resetPassword = (route: string, body: ResetPasswordDto) => {
-      return this.http.post(this.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
 
-    private createCompleteRoute = (envAddress: string, route: string) => {
-      return `${envAddress}/${route}`;
-    }
+    // private createCompleteRoute = (envAddress: string, route: string) => {
+    //   return `${envAddress}/${route}`;
+    // }
 }
