@@ -1,5 +1,5 @@
 import { AuthenticationDto, PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto, UserForRegistrationDto } from 'src/app/shared/models/account';
-import { AuthResponseDto, RegistrationResponseDto } from 'src/app/shared/models/response';
+import { AuthResponseDto } from 'src/app/shared/models/response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EnvironmentUrlService } from '../services/environment-url.service';

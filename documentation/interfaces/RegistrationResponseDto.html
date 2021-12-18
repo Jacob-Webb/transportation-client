@@ -68,6 +68,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A Data Transfer Object to flag a successful registration attempt along
+with any errors that were encountered.</p>
+
+            </p>
 
 
         <section>
@@ -136,6 +144,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Records any and all errors encountered when attempting a registration.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -169,6 +183,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>A flag recording whether a registration attempt was successful.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -176,15 +196,33 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface RegistrationResponseDto {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JwtTokenDto } from &quot;./jwt-token&quot;;
+
+/**
+ * A Data Transfer Object to flag a successful registration attempt along 
+ * with any errors that were encountered. 
+ * 
+ */
+export interface RegistrationResponseDto {
+    /**
+     * A flag recording whether a registration attempt was successful. 
+     */
     isSuccessfulRegistration: boolean;
+
+    /**
+     * Records any and all errors encountered when attempting a registration. 
+     */
     errors: string[];
 }
 
-export interface AuthResponseDto {
+/**
+ * A Data Transfer Object to pass access and refresh tokens upon successful authentication. 
+ */
+export interface AuthResponseDto extends JwtTokenDto {
+  /**
+   * A flag recording whether an authentication attempt was successful. 
+   */
   isAuthSuccessful: boolean;
-  accessToken: string;
-  refreshToken: string;
 }
 </code></pre>
     </div>

@@ -32,6 +32,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ACCESS_TOKEN } from '../app.constants';
 
+/**
+ * Gets the user's access token for authentication. 
+ * @returns The access token stored in local storage.
+ */
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN);
 }

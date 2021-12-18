@@ -609,7 +609,7 @@ import { IConfig } from &#x27;ngx-mask&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 import { AuthenticationService } from &#x27;src/app/core/authentication/authentication.service&#x27;;
 import { AuthenticationDto } from &#x27;src/app/shared/models/account&#x27;;
-import { ACCESS_TOKEN, API_ACCOUNTS_LOGIN, REFRESH_TOKEN } from &#x27;src/app/app.constants&#x27;;
+import { ACCESS_TOKEN, API_LOGIN, REFRESH_TOKEN } from &#x27;src/app/app.constants&#x27;;
 
 export let options: Partial&lt;IConfig&gt; | (() &#x3D;&gt; Partial&lt;IConfig&gt;);
 
@@ -656,7 +656,7 @@ export class LoginComponent implements OnInit {
         password: login.password
       }
 
-      this.authService.loginUser(API_ACCOUNTS_LOGIN, userForAuthDto)
+      this.authService.loginUser(API_LOGIN, userForAuthDto)
       .subscribe(result &#x3D;&gt; {
         localStorage.setItem(ACCESS_TOKEN, result.accessToken);
         localStorage.setItem(REFRESH_TOKEN, result.refreshToken);
@@ -700,7 +700,7 @@ export class LoginComponent implements OnInit {
         
         &lt;mat-card-footer&gt;
           &lt;form&gt;
-            &lt;mat-card-actions&gt;&lt;a mat-button routerLink&#x3D;&quot;/forgot-password&quot;&gt;Forgot Password?&lt;/a&gt;&lt;/mat-card-actions&gt;
+            &lt;mat-card-actions&gt;&lt;a mat-button routerLink&#x3D;&quot;/password/forgot-password&quot;&gt;Forgot Password?&lt;/a&gt;&lt;/mat-card-actions&gt;
           &lt;/form&gt;
         &lt;/mat-card-footer&gt;
       &lt;/mat-card-content&gt;
@@ -773,8 +773,8 @@ mat-card-footer
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">  <mat-card>    <div class="login-form">      <mat-card-content>        <form [formGroup]="loginForm"              (ngSubmit)="loginUser(loginForm.value)">          <mat-form-field appearance="outline" color="accent">            <mat-label>Phone Number:</mat-label>            <input matInput type="tel" id="username" name="username" mask="(000) 000-0000" [showMaskTyped] = "false"            placeholder="(xxx) xxx-xxxx" formControlName="username" required>            <mat-icon matSuffix>phone</mat-icon>            <mat-error>Required</mat-error>          </mat-form-field>          <mat-form-field appearance="outline" color="accent">            <mat-label>Password</mat-label>            <input matInput name="password" [type]="hide ? \'password\' : \'text\'"                  formControlName="password" required>            <mat-icon matSuffix (click)="hide = !hide">{{hide ? \'visibility_off\' : \'visibility\'}}</mat-icon>            <mat-error>Required</mat-error>          </mat-form-field>          <div class="center">            <button mat-raised-button class="submit" color="primary" [disabled]="!loginForm.valid">Log In</button>          </div>        </form>                <mat-card-footer>          <form>            <mat-card-actions><a mat-button routerLink="/forgot-password">Forgot Password?</a></mat-card-actions>          </form>        </mat-card-footer>      </mat-card-content>    </div>  </mat-card></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForbiddenComponent', 'selector': 'app-forbidden'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageTemplatesComponent', 'selector': 'app-manage-templates'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'PhoneConfirmationComponent', 'selector': 'app-confirmation'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ServerErrorComponent', 'selector': 'app-server-error'},{'name': 'VerifyPhoneComponent', 'selector': 'app-confirm-phone'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <mat-card>    <div class="login-form">      <mat-card-content>        <form [formGroup]="loginForm"              (ngSubmit)="loginUser(loginForm.value)">          <mat-form-field appearance="outline" color="accent">            <mat-label>Phone Number:</mat-label>            <input matInput type="tel" id="username" name="username" mask="(000) 000-0000" [showMaskTyped] = "false"            placeholder="(xxx) xxx-xxxx" formControlName="username" required>            <mat-icon matSuffix>phone</mat-icon>            <mat-error>Required</mat-error>          </mat-form-field>          <mat-form-field appearance="outline" color="accent">            <mat-label>Password</mat-label>            <input matInput name="password" [type]="hide ? \'password\' : \'text\'"                  formControlName="password" required>            <mat-icon matSuffix (click)="hide = !hide">{{hide ? \'visibility_off\' : \'visibility\'}}</mat-icon>            <mat-error>Required</mat-error>          </mat-form-field>          <div class="center">            <button mat-raised-button class="submit" color="primary" [disabled]="!loginForm.valid">Log In</button>          </div>        </form>                <mat-card-footer>          <form>            <mat-card-actions><a mat-button routerLink="/password/forgot-password">Forgot Password?</a></mat-card-actions>          </form>        </mat-card-footer>      </mat-card-content>    </div>  </mat-card></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForbiddenComponent', 'selector': 'app-forbidden'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageTemplatesComponent', 'selector': 'app-manage-templates'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'PhoneConfirmationComponent', 'selector': 'app-confirmation'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ServerErrorComponent', 'selector': 'app-server-error'},{'name': 'UpdatedPasswordComponent', 'selector': 'app-updated-password'},{'name': 'VerifyPhoneComponent', 'selector': 'app-confirm-phone'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

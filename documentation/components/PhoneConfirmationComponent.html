@@ -353,7 +353,7 @@ export class PhoneConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.userPhone &#x3D; history.state.data;
     if (this.userPhone &#x3D;&#x3D; &#x27;&#x27; || this.userPhone &#x3D;&#x3D; undefined) 
-      this.router.navigate([ROUTING_AUTH]);
+      this.router.navigate([&#x27;/&#x27;]);
 
       this.formattedPhone &#x3D; &quot;(&quot; + this.userPhone.substring(0, 3) + &quot;)&quot; + this.userPhone.substring(3, 6) + &quot;-&quot; + this.userPhone.substring(6);
   }
@@ -402,7 +402,7 @@ export class PhoneConfirmationComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><p>The phone number {{formattedPhone}} was successfully registered for The Rock Church\'s Transportation app.</p><p>Please <a routerLink="/auth">Log In</a> to access the app.</p></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForbiddenComponent', 'selector': 'app-forbidden'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageTemplatesComponent', 'selector': 'app-manage-templates'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'PhoneConfirmationComponent', 'selector': 'app-confirmation'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ServerErrorComponent', 'selector': 'app-server-error'},{'name': 'VerifyPhoneComponent', 'selector': 'app-confirm-phone'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForbiddenComponent', 'selector': 'app-forbidden'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManageTemplatesComponent', 'selector': 'app-manage-templates'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'PhoneConfirmationComponent', 'selector': 'app-confirmation'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'ServerErrorComponent', 'selector': 'app-server-error'},{'name': 'UpdatedPasswordComponent', 'selector': 'app-updated-password'},{'name': 'VerifyPhoneComponent', 'selector': 'app-confirm-phone'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PhoneConfirmationComponent'};
 </script>
