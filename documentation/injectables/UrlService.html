@@ -61,6 +61,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A service to access the url while navigating.</p>
+
+            </p>
 
 
 
@@ -112,24 +119,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/url.service.ts:10</a></div>
-                            </td>
-                        </tr>
-
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -158,14 +147,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/core/services/url.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/core/services/url.service.ts:30</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sets the <code>next</code> value to this.previousUrl</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -176,6 +167,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -190,6 +182,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>The previous url after navigating to a new page.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -238,10 +234,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/core/services/url.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/services/url.service.ts:15</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>When subscribed to, previousUrl will give the previous url after navigation.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -270,10 +272,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/url.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/url.service.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>An Observable type of this.previousUrl.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -287,15 +295,31 @@
 import { Event, NavigationEnd, Router } from &#x27;@angular/router&#x27;;
 import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
+/**
+ * A service to access the url while navigating.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class UrlService {
+  /**
+   * When subscribed to, previousUrl will give the previous url after navigation.
+   */
   private previousUrl: BehaviorSubject&lt;string | null&gt; &#x3D; new BehaviorSubject&lt;string | null&gt;(null);
+  /**
+   * An Observable type of this.previousUrl.
+   */
   public previousUrl$: Observable&lt;string | null&gt; &#x3D; this.previousUrl.asObservable();
 
+  /**
+   * @ignore
+   */
   constructor() {}
 
+  /**
+   * Sets the &#x60;next&#x60; value to this.previousUrl
+   * @param previousUrl The previous url after navigating to a new page.
+   */
   public setPreviousUrl(previousUrl: string | null) {
     this.previousUrl.next(previousUrl);
   }

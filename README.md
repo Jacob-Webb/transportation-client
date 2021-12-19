@@ -8,6 +8,12 @@ Logic for handling errors returned from the server can be found at core/intercep
 
 Logic for handling errors caught before leaving the client side can be found at core/guards/
 
+## App Documentation
+
+Documentation is created using [Compodoc](https://compodoc.app/guides/features.html). 
+To create a `src/documentation`, run `npm run compodoc` in `src`. 
+Open the `index.html` file with your browser of choice.
+
 ## Using Angular CLI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.

@@ -68,8 +68,6 @@ export class VerifyPhoneComponent implements OnInit {
       this.accountService.resetPasswordToken(apiPaths.resetPasswordToken, phoneVerificationDto)
       .subscribe(response => {
         this.router.navigate([routerPaths.resetPassword], {state: {data: response}});
-      }, error => {
-        this.router.navigate([this.returnUrl])
       })
     }
   }  

@@ -62,6 +62,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Intercepts errors received from Http requests.</p>
+
+            </p>
 
 
             <section>
@@ -103,12 +110,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/interceptors/error.interceptor.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/interceptors/error.interceptor.ts:13</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Injects dependencies into interceptor.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -117,6 +126,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -131,6 +141,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Used for internal navigation.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>notificationService</td>
@@ -143,6 +157,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Sends messages as notifications to the user.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -178,14 +196,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/core/interceptors/error.interceptor.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/core/interceptors/error.interceptor.ts:29</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Intercepts and handles various errors.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -196,6 +216,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,6 +231,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>The Http request to intercept</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>next</td>
@@ -222,6 +247,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Adds the request to the Http handler.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -233,7 +262,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>An error instance of Http Events.</p>
+
                     </div>
                 </td>
             </tr>
@@ -246,24 +276,33 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from &#x27;@angular/common/http&#x27;;
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from &#x27;@angular/common/http&#x27;;
 import { Observable, throwError } from &#x27;rxjs&#x27;;
 import { NotificationService } from &#x27;../services/notification.service&#x27;;
 import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
 import { catchError } from &#x27;rxjs/operators&#x27;;
 import { routerPaths } from &#x27;src/app/app.constants&#x27;;
 
+/**
+ * Intercepts errors received from Http requests.
+ */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
+  /**
+   * Injects dependencies into interceptor.
+   * @param router Used for internal navigation. 
+   * @param notificationService Sends messages as notifications to the user. 
+   */
   constructor(private router: Router,
     private notificationService: NotificationService) {}
 
+  /**
+   * Intercepts and handles various errors.
+   * @param request The Http request to intercept
+   * @param next Adds the request to the Http handler.
+   * @returns An error instance of Http Events. 
+   */
   intercept(request: HttpRequest&lt;unknown&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;unknown&gt;&gt; {
     return next.handle(request).pipe(
       catchError(error &#x3D;&gt; {

@@ -61,6 +61,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A service to manage users&#39; authentication in the app.</p>
+
+            </p>
 
 
 
@@ -142,6 +149,8 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Injects dependencies into the service.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -150,6 +159,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -164,6 +174,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Sends and receives Http calls to the API.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>envUrl</td>
@@ -176,6 +190,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Accesses the environment url.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>jwtHelper</td>
@@ -188,6 +206,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Accesses helper functions for JWT&#39;s.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -223,10 +245,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/core/authentication/authentication.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/core/authentication/authentication.service.ts:37</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The Obervable version of authChangeSubject, allowing authentication status to be observed.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -249,10 +277,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/authentication/authentication.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/authentication/authentication.service.ts:33</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tracks the changes to users&#39; authentication status.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -275,11 +309,48 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/core/authentication/authentication.service.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/core/authentication/authentication.service.ts:45</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sends data to the API and receives response to confirm users&#39; phone numbers.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>route</td>
+                                                    <td>
+                                                            <code><p>The API route to phone confirmation.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>body</td>
+                                                    <td>
+                                                            <code><p>Data sent to the API. An instance of the PhoneVerificationDto.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -301,10 +372,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/core/authentication/authentication.service.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/core/authentication/authentication.service.ts:53</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets users&#39; authentication status from tokens stored in local storage.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -327,11 +404,48 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/core/authentication/authentication.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/core/authentication/authentication.service.ts:65</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sends data to the API and receives response for authenticating user, logging him/her in if successful.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>route</td>
+                                                    <td>
+                                                            <code><p>The API route to authentication.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>body</td>
+                                                    <td>
+                                                            <code><p>Data sent to the API. An instance of AuthenticationDto.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -353,10 +467,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/core/authentication/authentication.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/core/authentication/authentication.service.ts:72</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes access and refresh tokens from local storage and updates <code>authChangeSubject</code> to <code>false</code>.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -379,11 +499,48 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/core/authentication/authentication.service.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/core/authentication/authentication.service.ts:84</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sends data to the API and receives response for refreshing authentication.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>route</td>
+                                                    <td>
+                                                            <code><p>The API route to authentication refreshing.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>body</td>
+                                                    <td>
+                                                            <code><p>Data sent to the API. An instance of JwtTokenDto.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -405,11 +562,48 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/authentication/authentication.service.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/core/authentication/authentication.service.ts:94</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sends data to the API and receives response for user registration.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>route</td>
+                                                    <td>
+                                                            <code><p>The API route to registration.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                    <td>body</td>
+                                                    <td>
+                                                            <code><p>Data sent to the API. An instance of the UserForRegistrationDto.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
@@ -431,11 +625,41 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/core/authentication/authentication.service.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/core/authentication/authentication.service.ts:102</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the users&#39; authentication status.</p>
+</div>
+                </td>
+            </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>isAuthenticated</td>
+                                                    <td>
+                                                            <code><p>A users&#39; authentication status.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
         </tbody>
     </table>
 </section>
@@ -455,52 +679,99 @@ import { tokens } from &#x27;src/app/app.constants&#x27;;
 import { JwtTokenDto } from &#x27;src/app/shared/models/jwt-token&#x27;;
 import Routing from &#x27;src/app/shared/directives/routing&#x27;;
 
-@Injectable({
-  providedIn: &#x27;root&#x27;
-})
 /**
  * A service to manage users&#x27; authentication in the app.
  */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
 export class AuthenticationService {
 
-    constructor(private http: HttpClient,
-      private envUrl: EnvironmentUrlService, 
-      private jwtHelper: JwtHelperService) { }
+  /**
+   * Injects dependencies into the service. 
+   * @param http Sends and receives Http calls to the API.
+   * @param envUrl Accesses the environment url.
+   * @param jwtHelper Accesses helper functions for JWT&#x27;s.
+   */
+  constructor(private http: HttpClient,
+    private envUrl: EnvironmentUrlService, 
+    private jwtHelper: JwtHelperService) { }
 
-    private authChangeSubject &#x3D; new Subject&lt;boolean&gt;()
-    public authChanged &#x3D; this.authChangeSubject.asObservable();
+  /**
+   * Tracks the changes to users&#x27; authentication status.
+   */
+  private authChangeSubject &#x3D; new Subject&lt;boolean&gt;();
+  /**
+   * The Obervable version of authChangeSubject, allowing authentication status to be observed.
+   */
+  public authChanged &#x3D; this.authChangeSubject.asObservable();
 
-    public registerUser &#x3D; (route: string, body: UserForRegistrationDto) &#x3D;&gt; {
+  /**
+   * Sends data to the API and receives response to confirm users&#x27; phone numbers. 
+   * @param route The API route to phone confirmation.
+   * @param body Data sent to the API. An instance of the PhoneVerificationDto.
+   * @returns An instance of HttpClient. 
+   */
+  public confirmPhone &#x3D; (route: string, body: PhoneVerificationDto) &#x3D;&gt; {
+    return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+  }
+
+  /**
+   * Gets users&#x27; authentication status from tokens stored in local storage. 
+   * @returns {boolean} &#x60;true&#x60; if an access token is present and not expired.
+   */
+  public isUserAuthenticated &#x3D; () &#x3D;&gt; {
+    const accessToken &#x3D; localStorage.getItem(tokens.access);
+
+    return accessToken &amp;&amp; !this.jwtHelper.isTokenExpired(accessToken);
+  }
+
+  /**
+   * Sends data to the API and receives response for authenticating user, logging him/her in if successful.
+   * @param route The API route to authentication.
+   * @param body Data sent to the API. An instance of AuthenticationDto.
+   * @returns An instance of HttpClient with type AuthResponseDto.
+   */
+  public loginUser &#x3D; (route: string, body: AuthenticationDto) &#x3D;&gt; {
+    return this.http.post&lt;AuthResponseDto&gt;(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+  }
+
+  /**
+   * Removes access and refresh tokens from local storage and updates &#x60;authChangeSubject&#x60; to &#x60;false&#x60;.
+   */
+  public logout &#x3D; () : void &#x3D;&gt; {
+    localStorage.removeItem(tokens.access);
+    localStorage.removeItem(tokens.refresh);
+    this.sendAuthStateChangeNotification(false);
+  }
+
+  /**
+   * Sends data to the API and receives response for refreshing authentication. 
+   * @param route The API route to authentication refreshing. 
+   * @param body Data sent to the API. An instance of JwtTokenDto.
+   * @returns An instance of HttpClient of type AuthResponseDto.
+   */
+  public refreshAuthentication &#x3D; (route: string, body: JwtTokenDto) &#x3D;&gt; {
+    return this.http.post&lt;AuthResponseDto&gt;(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+  }
+
+  /**
+   * Sends data to the API and receives response for user registration. 
+   * @param route The API route to registration.
+   * @param body Data sent to the API. An instance of the UserForRegistrationDto.
+   * @returns An instance of HttpClient of type PhoneNuberDto. 
+   */
+     public registerUser &#x3D; (route: string, body: UserForRegistrationDto) &#x3D;&gt; {
       return this.http.post&lt;PhoneNumberDto&gt;(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
     }
-
-    public loginUser &#x3D; (route: string, body: AuthenticationDto) &#x3D;&gt; {
-      return this.http.post&lt;AuthResponseDto&gt;(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
-    }
-
-    public logout &#x3D; () &#x3D;&gt; {
-      localStorage.removeItem(tokens.access);
-      localStorage.removeItem(tokens.refresh);
-      this.sendAuthStateChangeNotification(false);
-    }
-
-    public sendAuthStateChangeNotification &#x3D; (isAuthenticated:boolean) &#x3D;&gt; {
-      this.authChangeSubject.next(isAuthenticated);
-    }
-
-    public isUserAuthenticated &#x3D; () &#x3D;&gt; {
-      const accessToken &#x3D; localStorage.getItem(tokens.access);
-
-      return accessToken &amp;&amp; !this.jwtHelper.isTokenExpired(accessToken);
-    }
-
-    public refreshAuthentication &#x3D; (route: string, body: JwtTokenDto) &#x3D;&gt; {
-      return this.http.post&lt;AuthResponseDto&gt;(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
-    }
-
-    public confirmPhone &#x3D; (route: string, body: PhoneVerificationDto) &#x3D;&gt; {
-      return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
-    }
+ 
+  /**
+   * Updates the users&#x27; authentication status. 
+   * @param isAuthenticated A users&#x27; authentication status.
+   */
+  public sendAuthStateChangeNotification &#x3D; (isAuthenticated:boolean) : void &#x3D;&gt; {
+    this.authChangeSubject.next(isAuthenticated);
+  }
 }
 </code></pre>
     </div>

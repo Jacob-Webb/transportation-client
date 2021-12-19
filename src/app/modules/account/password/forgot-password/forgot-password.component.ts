@@ -36,6 +36,8 @@ export class ForgotPasswordComponent implements OnInit {
     this.accountService.forgotPassword(apiPaths.forgotPassword, phoneNumberDto)
     .subscribe(() => {
       this.router.navigate([routerPaths.verifyPhone], {state: {data: phoneNumberDto}});
+    }, error => {
+      this.router.navigate(['/']);
     })
   }
 

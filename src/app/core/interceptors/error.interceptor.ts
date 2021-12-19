@@ -1,22 +1,31 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { routerPaths } from 'src/app/app.constants';
 
+/**
+ * Intercepts errors received from Http requests.
+ */
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
+  /**
+   * Injects dependencies into interceptor.
+   * @param router Used for internal navigation. 
+   * @param notificationService Sends messages as notifications to the user. 
+   */
   constructor(private router: Router,
     private notificationService: NotificationService) {}
 
+  /**
+   * Intercepts and handles various errors.
+   * @param request The Http request to intercept
+   * @param next Adds the request to the Http handler.
+   * @returns An error instance of Http Events. 
+   */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(error => {

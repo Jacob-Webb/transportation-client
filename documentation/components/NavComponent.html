@@ -68,6 +68,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Navbar component for the app.</p>
+
+    </p>
 
 
 
@@ -173,12 +180,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/core/header/nav.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/header/nav.component.ts:17</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Injects dependencies into component and initializes <code>isUserAuthenticated</code>.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -187,6 +196,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -201,6 +211,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Service for assertaining a user&#39;s authentication status.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>router</td>
@@ -213,6 +227,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Used for internal navigation.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -252,14 +270,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/core/header/nav.component.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/core/header/nav.component.ts:34</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Continually check a user&#39;s authentication status.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -295,10 +315,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/core/header/nav.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/header/nav.component.ts:17</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Flag representing a user&#39;s authentication status.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -321,10 +347,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/core/header/nav.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/core/header/nav.component.ts:44</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>On logout, remove a user&#39;s authentication status and send the user to the login page.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -338,33 +370,35 @@
 import { Router } from &#x27;@angular/router&#x27;;
 import { AuthenticationService } from &#x27;../authentication/authentication.service&#x27;;
 
+/**
+ * Navbar component for the app.
+ */
 @Component({
   selector: &#x27;app-nav&#x27;,
   templateUrl: &#x27;./nav.component.html&#x27;,
   styleUrls: [&#x27;./nav.component.scss&#x27;]
 })
 export class NavComponent {
+  /**
+   * Flag representing a user&#x27;s authentication status. 
+   */
   public isUserAuthenticated:boolean | undefined;
-/*
-  userName: string;
-  role: string;
-  name: string;
-  email: string;
 
-  constructor(public basicAuthenticationService: BasicAuthenticationService,
-              private storageService: StorageService) {
-    this.storageService.watchStorageItem(AUTHENTICATED_USER).subscribe(data &#x3D;&gt; this.userName &#x3D; data);
-    this.storageService.watchStorageItem(FIRST_NAME).subscribe(data &#x3D;&gt; this.name &#x3D; data);
-    this.storageService.watchStorageItem(USER_ROLE).subscribe(data &#x3D;&gt; this.role &#x3D; data);
+  /**
+   * Injects dependencies into component and initializes &#x60;isUserAuthenticated&#x60;.
+   * @param authService Service for assertaining a user&#x27;s authentication status. 
+   * @param router Used for internal navigation.
+   */
+  constructor(private authService:AuthenticationService, private router: Router){
+    this.authService.authChanged
+    .subscribe(result &#x3D;&gt; {
+      this.isUserAuthenticated &#x3D; result;
+    })
   }
-  */
- constructor(private authService:AuthenticationService, private router: Router){
-   this.authService.authChanged
-   .subscribe(result &#x3D;&gt; {
-     this.isUserAuthenticated &#x3D; result;
-   })
- }
-
+  
+  /**
+   * Continually check a user&#x27;s authentication status. 
+   */
   ngOnInit(): void {
     this.authService.authChanged
     .subscribe(result &#x3D;&gt;{
@@ -372,6 +406,9 @@ export class NavComponent {
     })
   }
 
+  /**
+   * On logout, remove a user&#x27;s authentication status and send the user to the login page. 
+   */
   public logout &#x3D; () &#x3D;&gt; {
     this.authService.logout();
     this.router.navigate([&#x27;/auth&#x27;]);

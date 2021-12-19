@@ -63,6 +63,13 @@
             </p>
 
 
+                <p class="comment">
+                <h3>Description</h3>
+                </p>
+                <p class="comment">
+                    <p>AuthGuard is used for components to only allow users who have been authenticated.</p>
+
+                </p>
 
 
 
@@ -107,7 +114,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthenticationService.html" target="_self">AuthenticationService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, envUrl: <a href="../injectables/EnvironmentUrlService.html" target="_self">EnvironmentUrlService</a>)</code>
+<code>constructor(authService: <a href="../injectables/AuthenticationService.html" target="_self">AuthenticationService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -118,6 +125,8 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Injects dependencies into the guard.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -126,6 +135,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -140,6 +150,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>A service for accessing a user&#39;s authentication status.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>router</td>
@@ -152,30 +166,10 @@
                                                             No
                                                     </td>
                                                     
-                                                </tr>
-                                                <tr>
-                                                        <td>http</td>
-                                                  
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                                <p>Navigates the user after authentication status verification.</p>
+
                                                         </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>envUrl</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EnvironmentUrlService.html" target="_self" >EnvironmentUrlService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -213,14 +207,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/core/guards/auth.guard.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/core/guards/auth.guard.ts:29</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Attempts to refresh the user&#39;s authentication. If successful allows user to activate component. Otherwise, navigates user to login page.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -231,6 +227,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -245,6 +242,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>A required parameter for canActivate. Not used in this context.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>state</td>
@@ -257,6 +258,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Adds the current url as a query parameter.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -264,11 +269,12 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
 
                     </div>
                     <div class="io-description">
-                        
+                        <p><code>true</code> if user is authenticated, <code>false</code> otherwise.</p>
+
                     </div>
                 </td>
             </tr>
@@ -297,14 +303,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/app/core/guards/auth.guard.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/core/guards/auth.guard.ts:53</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Attempts to refresh the access token via the API.
+If successful, new refresh and access tokens are placed in local storage.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -315,6 +324,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -329,6 +339,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>A users access token.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -340,7 +354,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p><code>true</code> on successful operation, <code>false</code> otherwise.</p>
+
                     </div>
                 </td>
             </tr>
@@ -351,26 +366,35 @@
 
 
         <div class="tab-pane fade  tab-source-code" id="c-source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
+            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from &#x27;@angular/router&#x27;;
 import { apiPaths, routerPaths, tokens} from &#x27;src/app/app.constants&#x27;;
 import { JwtTokenDto } from &#x27;src/app/shared/models/jwt-token&#x27;;
-import { AuthResponseDto } from &#x27;src/app/shared/models/response&#x27;;
 import { AuthenticationService } from &#x27;../authentication/authentication.service&#x27;;
-import { EnvironmentUrlService } from &#x27;../services/environment-url.service&#x27;;
 
+/**
+ * AuthGuard is used for components to only allow users who have been authenticated.  
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class AuthGuard implements CanActivate {
 
+  /**
+   * Injects dependencies into the guard.
+   * @param authService A service for accessing a user&#x27;s authentication status. 
+   * @param router Navigates the user after authentication status verification.
+   */
   constructor(private authService: AuthenticationService, 
-    private router: Router,
-    private http: HttpClient,
-    private envUrl: EnvironmentUrlService){}
+    private router: Router){}
 
-  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  /**
+   * Attempts to refresh the user&#x27;s authentication. If successful allows user to activate component. Otherwise, navigates user to login page.
+   * @param next A required parameter for canActivate. Not used in this context.
+   * @param state Adds the current url as a query parameter.
+   * @returns {boolean} &#x60;true&#x60; if user is authenticated, &#x60;false&#x60; otherwise. 
+   */
+  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise&lt;boolean&gt;{
     if (this.authService.isUserAuthenticated()) {
       return true;
     }
@@ -378,6 +402,7 @@ export class AuthGuard implements CanActivate {
     const accessToken &#x3D; localStorage.getItem(tokens.access);
 
     const isRefreshSuccess &#x3D; await this.tryRefreshingTokens(accessToken);
+
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
       this.router.navigate([routerPaths.auth], { queryParams: { returnUrl: state.url }});
@@ -387,6 +412,12 @@ export class AuthGuard implements CanActivate {
     return isRefreshSuccess;
   }
 
+  /**
+   * Attempts to refresh the access token via the API. 
+   * If successful, new refresh and access tokens are placed in local storage.
+   * @param accessToken A users access token. 
+   * @returns &#x60;true&#x60; on successful operation, &#x60;false&#x60; otherwise. 
+   */
   private async tryRefreshingTokens(accessToken: string | null): Promise&lt;boolean&gt; {
     // Try refreshing tokens using refresh token
     const refreshToken: string | null &#x3D; localStorage.getItem(tokens.refresh);

@@ -63,6 +63,13 @@
             </p>
 
 
+                <p class="comment">
+                <h3>Description</h3>
+                </p>
+                <p class="comment">
+                    <p>AdminGuard is used for components to only allow users who have the role of Administrator.</p>
+
+                </p>
 
 
 
@@ -106,12 +113,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/core/guards/admin.guard.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/core/guards/admin.guard.ts:11</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Injects dependencies into the guard.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -120,6 +129,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -134,6 +144,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Gets the users&#39; authorization level.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>router</td>
@@ -146,6 +160,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Navigates the user if necessary.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -181,14 +199,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/core/guards/admin.guard.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/core/guards/admin.guard.ts:26</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>A user can activate a component if their authorization level is Admin, otherwise navigates to <code>/forbidden</code>.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -199,6 +219,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -213,6 +234,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>A required parameter for canActivate. Not used in this context.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>state</td>
@@ -225,6 +250,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>Adds the current url as a query parameter.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -236,7 +265,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p><code>true</code> if the user has the administrator role, <code>false</code> otherwise.</p>
+
                     </div>
                 </td>
             </tr>
@@ -251,13 +281,27 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from &#x27;@angular/router&#x27;;
 import { AuthorizationService } from &#x27;../services/authorization.service&#x27;;
 
+/**
+ * AdminGuard is used for components to only allow users who have the role of Administrator.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class AdminGuard implements CanActivate {
 
+  /**
+   * Injects dependencies into the guard.
+   * @param authorizationService Gets the users&#x27; authorization level. 
+   * @param router Navigates the user if necessary. 
+   */
   constructor(private authorizationService: AuthorizationService, private router: Router) {}
 
+  /**
+   * A user can activate a component if their authorization level is Admin, otherwise navigates to &#x60;/forbidden&#x60;.
+   * @param next A required parameter for canActivate. Not used in this context.
+   * @param state Adds the current url as a query parameter.
+   * @returns {boolean} &#x60;true&#x60; if the user has the administrator role, &#x60;false&#x60; otherwise.
+   */
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authorizationService.isUserAdmin())
       return true;

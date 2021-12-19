@@ -8,6 +8,9 @@ import { apiPaths, tokens } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
+/**
+ * The component for user authentication.
+ */
 @Injectable({
   providedIn:'root'
 })
@@ -17,49 +20,63 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  /**
+   * The group of data making up the login form.
+   */
   public loginForm!: FormGroup;
-  username!: string;
-  password!: string;
+  /**
+   * `true` value hides the password, `false` value allows the password to be displayed
+   */
   hide: boolean = true;
-  validationErrors: string[] = [];
-  error: boolean = false;
+  /**
+   * When a user requests a resource and is not authenticated, user is redirected to the login page.
+   * returnUrl is set to the page they were currently on. Once the user is authenticated, the user 
+   * will be redirected to the resource as defined in returnUrl. 
+   */
   private returnUrl: string | undefined;
 
+  /**
+   * Injects dependencies to the component when constructed. 
+   * @param authService A service for managing authentication. 
+   * @param router Used for internal navigation.
+   * @param route Functionality for the activated route.
+   */
   constructor(private authService: AuthenticationService,
     private router: Router, 
     private route: ActivatedRoute) {}
 
-    ngOnInit(): void {
-      this.loginForm = new FormGroup({
-        username: new FormControl("", [Validators.required]),
-        password: new FormControl("", [Validators.required])
-      })
+  /**
+   * Initializes the loginForm and sets the return url.
+   */
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      username: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required])
+    })
 
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-    }
-    public validateControl = (controlName: string) => {
-      return this.loginForm.controls[controlName].invalid && this.loginForm.controls[controlName].touched
-    }
-    public hasError = (controlName: string, errorName: string) => {
-      return this.loginForm.controls[controlName].hasError(errorName)
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+  }
+
+  /**
+   * On submission of the login form: 
+   * Pass the log in data to the API.
+   * If successful, set the access and refresh tokens in local storage, update the user's authentication status,
+   * and navigate to the return url.
+   * @param loginFormValue 
+   */
+  public loginUser = (loginFormValue: any) => {
+    const login = {...loginFormValue};
+    const userForAuthDto: AuthenticationDto = {
+      phoneNumber: login.username,
+      password: login.password
     }
 
-    public loginUser = (loginFormValue: any) => {
-      const login = {...loginFormValue};
-      const userForAuthDto: AuthenticationDto = {
-        phoneNumber: login.username,
-        password: login.password
-      }
-
-      this.authService.loginUser(apiPaths.login, userForAuthDto)
-      .subscribe(result => {
-        localStorage.setItem(tokens.access, result.accessToken);
-        localStorage.setItem(tokens.refresh, result.refreshToken);
-        this.authService.sendAuthStateChangeNotification(result.isAuthSuccessful);
-        this.router.navigate([this.returnUrl]);
-      }, error => {
-        this.validationErrors = error;
-        console.log(this.validationErrors);
-      })
-    }
+    this.authService.loginUser(apiPaths.login, userForAuthDto)
+    .subscribe(result => {
+      localStorage.setItem(tokens.access, result.accessToken);
+      localStorage.setItem(tokens.refresh, result.refreshToken);
+      this.authService.sendAuthStateChangeNotification(result.isAuthSuccessful);
+      this.router.navigate([this.returnUrl]);
+    })
+  }
 }

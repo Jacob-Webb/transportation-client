@@ -9,6 +9,9 @@ import { apiPaths, routerPaths } from 'src/app/app.constants';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
+/**
+ * 
+ */
 @Injectable({
   providedIn:'root'
 })

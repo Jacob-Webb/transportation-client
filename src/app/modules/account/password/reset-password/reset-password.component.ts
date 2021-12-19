@@ -29,7 +29,7 @@ export class ResetPasswordComponent implements OnInit {
     this.previousNavigationData = history.state.data;
     if (this.previousNavigationData == null || this.previousNavigationData == undefined) 
       this.router.navigate(['/']); 
-
+    console.log(this.previousNavigationData);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
 
     this.resetPasswordForm = new FormGroup({
