@@ -6,11 +6,12 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 import { UserForRegistrationDto } from 'src/app/shared/models/account';
 import Validation from 'src/app/shared/directives/validation';
 import { apiPaths, routerPaths } from 'src/app/app.constants';
+import { Observable } from 'rxjs';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 /**
- * 
+ * The component for users to register.
  */
 @Injectable({
   providedIn:'root'
@@ -21,19 +22,33 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    public registerForm!: FormGroup;
-    validationErrors: string[] = [];
-    passwordMinLength = 3;
-    hide=true;
-    hideConfirm=true;
-    submitted=false;
-    isUniqueEmail=true;
-    phoneNumber = '';
-    error: boolean = false;
+  /** Collects all data for the registration form. */
+  public registerForm!: FormGroup;
+  /** The minimum length of a password. */
+  passwordMinLength: number;
+  /** true` value hides the password, `false` value allows the password to be displayed. */
+  hide: boolean;
+  /** true` value hides the `confirmPassword` input, `false` value allows it to be displayed. */
+  hideConfirm: boolean;
+  /** Set to `true` when an uncaught error occurs. */
+  displayError: boolean;
 
+  /**
+   * Injects dependencies into the component and initializes properties.
+   * @param authService Functionality to get and set authentication status.
+   * @param router Functionality for internal navigation.
+   */
   constructor(private authService: AuthenticationService,
-    private router: Router) {}
+    private router: Router) {
+      this.passwordMinLength = 3;
+      this.hide = true;
+      this.hideConfirm = true;
+      this.displayError = false;
+    }
 
+  /**
+   * Initializes `registerForm` with the controls.
+   */
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       firstName: new FormControl("", [
@@ -65,6 +80,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /**
+   * Send the data from the form to the API.
+   * @param registerFormValue 
+   */
   public register = (registerFormValue: any) => {
 
     const formValues = { ...registerFormValue };
@@ -87,25 +106,37 @@ export class RegisterComponent implements OnInit {
         if (error.status == 403) {
           this.router.navigate([routerPaths.verifyPhone], {state: {data: user}});
         }
-        this.validationErrors = error;
+        this.displayError = true;
       })
   }
 
-  getEmailError() {
+  /**
+   * Checks for errors determined by `email`'s validators.
+   * @returns Message for user depending on the type of error encountered.
+   */
+  getEmailError() : string {
       if (this.registerForm.controls['email'].hasError('required')) {
           return 'You must enter a value';
       }
       return this.registerForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
-  getFirstNameError() {
+    /**
+   * Checks for errors determined by `firstName`'s validators.
+   * @returns Message for user depending on the type of error encountered.
+   */
+  getFirstNameError() : string {
     if (this.registerForm.controls['firstName'].hasError('required')) {
       return 'First name is required';
     }
     return this.registerForm.controls['firstName'].hasError('pattern') ? 'Name can only contain letters' : '';
   }
 
-  getLastNameError() {
+  /**
+   * Checks for errors determined by `lastName`'s validators.
+   * @returns Message for user depending on the type of error encountered.
+   */
+  getLastNameError() : string {
     if (this.registerForm.controls['lastName'].hasError('required')) {
       return 'Last name is required';
     }

@@ -1,5 +1,5 @@
 <div class="container">
-    <h4 *ngIf="error" class="error">An unexpected error ocurred.</h4>
+    <h4 *ngIf="displayError" class="error">An unexpected error ocurred.</h4>
     <mat-card>
       <div class="register-form">
         <mat-card-content>
@@ -28,7 +28,6 @@
                     placeholder="example@example.com" formControlName="email">
                 <mat-icon matSuffix>mail</mat-icon>
                 <mat-error *ngIf="registerForm.controls['email'].invalid">{{getEmailError()}}</mat-error>
-                <mat-hint *ngIf="!isUniqueEmail" class="error">This email is already in use</mat-hint>
               </mat-form-field>
               <mat-form-field appearance="outline" color="accent">
                 <mat-label>Phone:</mat-label>

@@ -20,14 +20,11 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  /**
-   * The group of data making up the login form.
-   */
+
+  /** The group of data making up the login form. */
   public loginForm!: FormGroup;
-  /**
-   * `true` value hides the password, `false` value allows the password to be displayed
-   */
-  hide: boolean = true;
+  /** `true` value hides the password, `false` value allows the password to be displayed. */
+  hide: boolean;
   /**
    * When a user requests a resource and is not authenticated, user is redirected to the login page.
    * returnUrl is set to the page they were currently on. Once the user is authenticated, the user 
@@ -36,14 +33,16 @@ export class LoginComponent implements OnInit {
   private returnUrl: string | undefined;
 
   /**
-   * Injects dependencies to the component when constructed. 
+   * Injects dependencies to the component when constructed and initializes properties. 
    * @param authService A service for managing authentication. 
    * @param router Used for internal navigation.
    * @param route Functionality for the activated route.
    */
   constructor(private authService: AuthenticationService,
     private router: Router, 
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute) {
+      this.hide = true;
+    }
 
   /**
    * Initializes the loginForm and sets the return url.
