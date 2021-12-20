@@ -81,8 +81,8 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Send the data from the form to the API.
-   * @param registerFormValue 
+   * Send the data from `registerForm` to the API.
+   * @param registerFormValue Values from `registerForm`.
    */
   public register = (registerFormValue: any) => {
 

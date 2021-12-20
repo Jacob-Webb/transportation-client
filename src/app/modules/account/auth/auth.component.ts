@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * A parent component to `register` and `login`. 
+ */
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -7,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
+  /** @ignore */
   constructor() { }
 
+  /** @ignore */
   ngOnInit(): void {
   }
 
