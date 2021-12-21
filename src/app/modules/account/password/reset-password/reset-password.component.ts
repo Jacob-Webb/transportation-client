@@ -19,12 +19,15 @@ export class ResetPasswordComponent implements OnInit {
   public resetPasswordForm!: FormGroup;
   /** Password minimum length. */
   public passwordMinLength;
+  /** Set to `true` when an uncaught error occurs. */
+  public displayError;
   /** true` value hides the password, `false` value allows the password to be displayed. */
   hide: boolean;
   /** true` value hides the `confirmPassword` input, `false` value allows it to be displayed. */
   hideConfirm: boolean;
   /** This component expects to get data from a previous component. */
   private previousNavigationData: ResetPasswordDto | null;
+  
 
   /**
    * Injects dependencies into the component and initializes properties.
@@ -34,6 +37,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private router: Router,
     private accountService: AccountService,) {
       this.passwordMinLength = 3;
+      this.displayError = false;
       this.hide = true;
       this.hideConfirm = true;
       this.previousNavigationData = null;
@@ -78,6 +82,7 @@ export class ResetPasswordComponent implements OnInit {
         this.router.navigate([routerPaths.updatedPassword], {state: {data: resetPasswordDto.phoneNumber}});
       }, error => {
         this.router.navigate(['/'])
+        this.displayError = true;
       })
   }
 

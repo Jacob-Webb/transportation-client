@@ -1,14 +1,10 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IConfig } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/account';
 import Validation from 'src/app/shared/directives/validation';
 import { apiPaths, routerPaths } from 'src/app/app.constants';
-import { Observable } from 'rxjs';
-
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 /**
  * The component for users to register.

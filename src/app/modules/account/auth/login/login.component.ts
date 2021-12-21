@@ -1,12 +1,9 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IConfig } from 'ngx-mask';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { AuthenticationDto } from 'src/app/shared/models/account';
 import { apiPaths, tokens } from 'src/app/app.constants';
-
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 /**
  * The component for user authentication.

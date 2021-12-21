@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IConfig } from 'ngx-mask';
 import { apiPaths, routerPaths } from 'src/app/app.constants';
 import { AccountService } from 'src/app/core/services/account.service';
 import { PhoneNumberDto } from 'src/app/shared/models/account';
-
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 /**
  * The component to begin a password reset when the user has forgotten it.

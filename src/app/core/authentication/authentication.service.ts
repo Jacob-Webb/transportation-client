@@ -2,12 +2,12 @@ import { AuthenticationDto, PhoneNumberDto, PhoneVerificationDto, ResetPasswordD
 import { AuthResponseDto } from 'src/app/shared/models/response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EnvironmentUrlService } from '../services/environment-url.service';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { tokens } from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
 import Routing from 'src/app/shared/directives/routing';
+import { environment } from 'src/environments/environment';
 
 /**
  * A service to manage users' authentication in the app.
@@ -23,8 +23,7 @@ export class AuthenticationService {
    * @param envUrl Accesses the environment url.
    * @param jwtHelper Accesses helper functions for JWT's.
    */
-  constructor(private http: HttpClient,
-    private envUrl: EnvironmentUrlService, 
+  constructor(private http: HttpClient, 
     private jwtHelper: JwtHelperService) { }
 
   /**
@@ -43,7 +42,7 @@ export class AuthenticationService {
    * @returns An instance of HttpClient. 
    */
   public confirmPhone = (route: string, body: PhoneVerificationDto) => {
-    return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    return this.http.post(Routing.createCompleteRoute(environment.apiUrl, route), body);
   }
 
   /**
@@ -63,7 +62,7 @@ export class AuthenticationService {
    * @returns An instance of HttpClient with type AuthResponseDto.
    */
   public loginUser = (route: string, body: AuthenticationDto) => {
-    return this.http.post<AuthResponseDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    return this.http.post<AuthResponseDto>(Routing.createCompleteRoute(environment.apiUrl, route), body);
   }
 
   /**
@@ -82,7 +81,7 @@ export class AuthenticationService {
    * @returns An instance of HttpClient of type AuthResponseDto.
    */
   public refreshAuthentication = (route: string, body: JwtTokenDto) => {
-    return this.http.post<AuthResponseDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    return this.http.post<AuthResponseDto>(Routing.createCompleteRoute(environment.apiUrl, route), body);
   }
 
   /**
@@ -92,7 +91,7 @@ export class AuthenticationService {
    * @returns An instance of HttpClient of type PhoneNuberDto. 
    */
      public registerUser = (route: string, body: UserForRegistrationDto) => {
-      return this.http.post<PhoneNumberDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+      return this.http.post<PhoneNumberDto>(Routing.createCompleteRoute(environment.apiUrl, route), body);
     }
  
   /**

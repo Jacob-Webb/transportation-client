@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Routing from 'src/app/shared/directives/routing';
 import { PhoneVerificationDto, ResetPasswordDto, PhoneNumberDto } from 'src/app/shared/models/account';
-import { EnvironmentUrlService } from './environment-url.service';
+import { environment } from 'src/environments/environment';
 
 /**
  * A service to manage aspects of a user's account. 
@@ -18,8 +18,7 @@ export class AccountService {
    * @param http Sends and receives Http calls to the API.
    * @param envUrl Accesses the environment url.
    */
-  constructor(private http: HttpClient, 
-    private envUrl: EnvironmentUrlService
+  constructor(private http: HttpClient
     ) {}
 
   /**
@@ -29,7 +28,7 @@ export class AccountService {
    * @returns An instance of HttpClient with type ResetPasswordDto. 
    */
   public resetPasswordToken = (route: string, body: PhoneVerificationDto) : Observable<ResetPasswordDto> => {
-    return this.http.post<ResetPasswordDto>(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    return this.http.post<ResetPasswordDto>(Routing.createCompleteRoute(environment.apiUrl, route), body);
   }
 
   /**
@@ -39,7 +38,7 @@ export class AccountService {
    * @returns An instance of HttpClient.
    */
   public forgotPassword = (route: string, body: PhoneNumberDto) : Observable<any> => {
-    return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    return this.http.post(Routing.createCompleteRoute(environment.apiUrl, route), body);
   }
   
   /**
@@ -49,6 +48,6 @@ export class AccountService {
    * @returns Observable of type string. This string should represent a password reset token.
    */
   public resetPassword = (route: string, body: ResetPasswordDto) : Observable<any> => {
-    return this.http.post(Routing.createCompleteRoute(this.envUrl.apiUrl, route), body);
+    return this.http.post(Routing.createCompleteRoute(environment.apiUrl, route), body);
   }
 }

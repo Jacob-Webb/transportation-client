@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IConfig } from 'ngx-mask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UrlService } from 'src/app/core/services/url.service';
 import { PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto } from 'src/app/shared/models/account';
 import { AccountService } from 'src/app/core/services/account.service';
 import { apiPaths, routerPaths } from 'src/app/app.constants';
-
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 /**
  * A component to input and send a verification code to the API.
