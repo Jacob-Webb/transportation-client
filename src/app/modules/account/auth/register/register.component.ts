@@ -1,14 +1,14 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IConfig } from 'ngx-mask';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/models/account';
-import { API_REGISTRATION, ROUTING_VERIFY_PHONE } from 'src/app/app.constants';
-import { Roles } from 'src/app/shared/models/roles';
+import Validation from 'src/app/shared/directives/validation';
+import { apiPaths, routerPaths } from 'src/app/app.constants';
 
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
-
+/**
+ * The component for users to register.
+ */
 @Injectable({
   providedIn:'root'
 })
@@ -18,39 +18,68 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    public registerForm: FormGroup;
-    validationErrors: string[] = [];
-    passwordMinLength = 3;
-    hide=true;
-    hideConfirm=true;
-    submitted=false;
-    isUniqueEmail=true;
-    phoneNumber = '';
-    error: boolean = false;
+  /** Collects all data for the registration form. */
+  public registerForm!: FormGroup;
+  /** The minimum length of a password. */
+  passwordMinLength: number;
+  /** true` value hides the password, `false` value allows the password to be displayed. */
+  hide: boolean;
+  /** true` value hides the `confirmPassword` input, `false` value allows it to be displayed. */
+  hideConfirm: boolean;
+  /** Set to `true` when an uncaught error occurs. */
+  displayError: boolean;
 
+  /**
+   * Injects dependencies into the component and initializes properties.
+   * @param authService Functionality to get and set authentication status.
+   * @param router Functionality for internal navigation.
+   */
   constructor(private authService: AuthenticationService,
-    private router: Router,
-    fb: FormBuilder) { 
-        this.registerForm = fb.group({
-            'firstName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-            'lastName':['', Validators.compose([Validators.maxLength(20), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-            'email':['', Validators.compose([Validators.email])],
-            'phoneNumber':['', Validators.compose([])],
-            'address1': ['', Validators.compose([Validators.required])],
-            'address2': [],
-            'city':['', Validators.compose([Validators.required])],
-            'zipCode':['', Validators.compose([Validators.required])],
-            'password':['', Validators.compose([Validators.minLength(3), Validators.required])],
-            'confirmPassword':['', Validators.compose([Validators.minLength(3), Validators.required])]
-        },{
-            // check whether or not our password and confirm password match
-            validator: this.passwordMatchValidator
-        })
+    private router: Router) {
+      this.passwordMinLength = 3;
+      this.hide = true;
+      this.hideConfirm = true;
+      this.displayError = false;
     }
 
+  /**
+   * Initializes `registerForm` with the controls.
+   */
   ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      firstName: new FormControl("", [
+        Validators.required, 
+        Validators.maxLength(20), 
+        Validators.pattern('[a-zA-Z]*')
+      ]),
+      lastName: new FormControl("", [
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z]*')
+      ]), 
+      email: new FormControl("", [Validators.email]),
+      phoneNumber: new FormControl(""),
+      address1: new FormControl("", [Validators.required]),
+      address2: new FormControl(""),
+      city: new FormControl("", [Validators.required]),
+      zipCode: new FormControl("", [Validators.required]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      confirmPassword: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3)
+      ])
+    }, {
+      validators: [Validation.match('password', 'confirmPassword')]
+    });
   }
 
+  /**
+   * Send the data from `registerForm` to the API.
+   * @param registerFormValue Values from `registerForm`.
+   */
   public register = (registerFormValue: any) => {
 
     const formValues = { ...registerFormValue };
@@ -66,41 +95,44 @@ export class RegisterComponent implements OnInit {
       zipCode: formValues.zipCode.trim()
     }
 
-    this.authService.registerUser(API_REGISTRATION, user)
+    this.authService.registerUser(apiPaths.registration, user)
       .subscribe(response => {
-        this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: response}});
+        this.router.navigate([routerPaths.verifyPhone], {state: {data: response}});
       }, error => {
         if (error.status == 403) {
-          this.router.navigate([ROUTING_VERIFY_PHONE], {state: {data: user}});
+          this.router.navigate([routerPaths.verifyPhone], {state: {data: user}});
         }
-        this.validationErrors = error;
+        this.displayError = true;
       })
   }
 
-  passwordMatchValidator(formGroup: FormGroup) {
-      const password: string = formGroup.get('password')?.value                 // get password from our password form control
-      const confirmPassword: string = formGroup.get('confirmPassword')?.value   // get password from our confirmPassword form control 
-      // compare if the passwords match
-      if (password !== confirmPassword) {
-          formGroup.get('confirmPassword')?.setErrors({ NoPasswordMatch: true });
-      }
-  }
-
-  getEmailError() {
+  /**
+   * Checks for errors determined by `email`'s validators.
+   * @returns Message for user depending on the type of error encountered.
+   */
+  getEmailError() : string {
       if (this.registerForm.controls['email'].hasError('required')) {
           return 'You must enter a value';
       }
       return this.registerForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
-  getFirstNameError() {
+    /**
+   * Checks for errors determined by `firstName`'s validators.
+   * @returns Message for user depending on the type of error encountered.
+   */
+  getFirstNameError() : string {
     if (this.registerForm.controls['firstName'].hasError('required')) {
       return 'First name is required';
     }
     return this.registerForm.controls['firstName'].hasError('pattern') ? 'Name can only contain letters' : '';
   }
 
-  getLastNameError() {
+  /**
+   * Checks for errors determined by `lastName`'s validators.
+   * @returns Message for user depending on the type of error encountered.
+   */
+  getLastNameError() : string {
     if (this.registerForm.controls['lastName'].hasError('required')) {
       return 'Last name is required';
     }

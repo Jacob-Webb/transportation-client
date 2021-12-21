@@ -1,42 +1,58 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { ACCESS_TOKEN, REFRESH_TOKEN, API_TOKENS_REFRESH, ROUTING_AUTH } from 'src/app/app.constants';
+import { apiPaths, routerPaths, tokens} from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
-import { AuthResponseDto } from 'src/app/shared/models/response';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { EnvironmentUrlService } from '../services/environment-url.service';
 
+/**
+ * AuthGuard is used for components to only allow users who have been authenticated.  
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
+  /**
+   * Injects dependencies into the guard.
+   * @param authService A service for accessing a user's authentication status. 
+   * @param router Navigates the user after authentication status verification.
+   */
   constructor(private authService: AuthenticationService, 
-    private router: Router,
-    private http: HttpClient,
-    private envUrl: EnvironmentUrlService){}
+    private router: Router){}
 
-  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  /**
+   * Attempts to refresh the user's authentication. If successful allows user to activate component. Otherwise, navigates user to login page.
+   * @param next A required parameter for canActivate. Not used in this context.
+   * @param state Adds the current url as a query parameter.
+   * @returns {boolean} `true` if user is authenticated, `false` otherwise. 
+   */
+  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean>{
     if (this.authService.isUserAuthenticated()) {
       return true;
     }
 
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+    const accessToken = localStorage.getItem(tokens.access);
 
     const isRefreshSuccess = await this.tryRefreshingTokens(accessToken);
+
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
-      this.router.navigate([ROUTING_AUTH], { queryParams: { returnUrl: state.url }});
+      this.router.navigate([routerPaths.auth], { queryParams: { returnUrl: state.url }});
     }
 
     this.authService.sendAuthStateChangeNotification(isRefreshSuccess);
     return isRefreshSuccess;
   }
 
+  /**
+   * Attempts to refresh the access token via the API. 
+   * If successful, new refresh and access tokens are placed in local storage.
+   * @param accessToken A users access token. 
+   * @returns `true` on successful operation, `false` otherwise. 
+   */
   private async tryRefreshingTokens(accessToken: string | null): Promise<boolean> {
     // Try refreshing tokens using refresh token
-    const refreshToken: string | null = localStorage.getItem(REFRESH_TOKEN);
+    const refreshToken: string | null = localStorage.getItem(tokens.refresh);
 
     if(!accessToken || !refreshToken) return false;
 
@@ -45,13 +61,13 @@ export class AuthGuard implements CanActivate {
     let isRefreshSuccess: boolean;
 
     try {
-      const response = await this.authService.refreshAuthentication(API_TOKENS_REFRESH, jwtToken).toPromise();
+      const response = await this.authService.refreshAuthentication(apiPaths.refreshTokens, jwtToken).toPromise();
 
       const newToken = response.accessToken;
       const newRefreshToken = response.refreshToken;
 
-      localStorage.setItem(ACCESS_TOKEN, newToken);
-      localStorage.setItem(REFRESH_TOKEN, newRefreshToken);
+      localStorage.setItem(tokens.access, newToken);
+      localStorage.setItem(tokens.refresh, newRefreshToken);
       isRefreshSuccess = true;
     } catch(ex) {
       isRefreshSuccess = false;

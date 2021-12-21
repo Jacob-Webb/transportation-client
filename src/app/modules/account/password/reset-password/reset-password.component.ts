@@ -1,37 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { API_RESET_PASSWORD, ROUTING_AUTH, ROUTING_UPDATED_PASSWORD } from 'src/app/app.constants';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { UrlService } from 'src/app/core/services/url.service';
+import { Router } from '@angular/router';
+import { apiPaths, routerPaths } from 'src/app/app.constants';
+import { AccountService } from 'src/app/core/services/account.service';
 import Validation from 'src/app/shared/directives/validation';
 import { ResetPasswordDto } from 'src/app/shared/models/account';
 
+/**
+ * The component for resetting a user's password. 
+ */
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
+  /** Collects all data for the resetting password form. */
   public resetPasswordForm!: FormGroup;
-  public password: string | null = null;
-  public passwordMinLength = 3;
-  public hide: boolean = true;
-  public hideConfirm: boolean = true;
-  public error: boolean = false;
-  private returnUrl: string | undefined;
-  private previousNavigationData: ResetPasswordDto | null = null;
+  /** Password minimum length. */
+  public passwordMinLength;
+  /** Set to `true` when an uncaught error occurs. */
+  public displayError;
+  /** true` value hides the password, `false` value allows the password to be displayed. */
+  hide: boolean;
+  /** true` value hides the `confirmPassword` input, `false` value allows it to be displayed. */
+  hideConfirm: boolean;
+  /** This component expects to get data from a previous component. */
+  private previousNavigationData: ResetPasswordDto | null;
+  
 
+  /**
+   * Injects dependencies into the component and initializes properties.
+   * @param router Functionality for internal navigation.
+   * @param accountService Functionality for managing account user account information.
+   */
   constructor(private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthenticationService) { }
+    private accountService: AccountService,) {
+      this.passwordMinLength = 3;
+      this.displayError = false;
+      this.hide = true;
+      this.hideConfirm = true;
+      this.previousNavigationData = null;
+     }
 
+  /**
+   * Restricts access to the component by checking that this page was navigated to by a 
+   * previous page that passed an instance of ResetPasswordDto. 
+   * Initializes the `resetPasswordForm`. 
+   */
   ngOnInit(): void {
     this.previousNavigationData = history.state.data;
     if (this.previousNavigationData == null || this.previousNavigationData == undefined) 
       this.router.navigate(['/']); 
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
 
     this.resetPasswordForm = new FormGroup({
       password: new FormControl("", [
@@ -45,6 +65,10 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
+  /**
+   * Submits the data from `resetPasswordForm` to the API.
+   * @param resetPasswordFormValue Values from `resetPasswordForm`.
+   */
   public submit = (resetPasswordFormValue: any) => {
     const formValue = { ...resetPasswordFormValue };
     const resetPasswordDto: ResetPasswordDto = {
@@ -53,11 +77,12 @@ export class ResetPasswordComponent implements OnInit {
       token: this.previousNavigationData?.token
     }
 
-    this.authService.resetPassword(API_RESET_PASSWORD, resetPasswordDto)
+    this.accountService.resetPassword(apiPaths.resetPassword, resetPasswordDto)
       .subscribe(() => {
-        this.router.navigate([ROUTING_UPDATED_PASSWORD], {state: {data: resetPasswordDto.phoneNumber}});
+        this.router.navigate([routerPaths.updatedPassword], {state: {data: resetPasswordDto.phoneNumber}});
       }, error => {
-        this.router.navigate([this.returnUrl])
+        this.router.navigate(['/'])
+        this.displayError = true;
       })
   }
 
