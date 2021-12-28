@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Forms imports
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Angular Material imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,12 +28,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 // Angular CDK imports
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-// Toastr Notifications
-import { ToastrModule } from 'ngx-toastr';
+import { NgxMaskModule } from 'ngx-mask';
 
 // JWT 
 import { JwtModule } from '@auth0/angular-jwt';
 import { tokens } from '../app.constants';
+
+// Toastr Notifications
+import { ToastrModule } from 'ngx-toastr';
 
 /**
  * Gets the user's access token for authentication. 
@@ -64,6 +69,9 @@ export function tokenGetter() {
     MatToolbarModule,
     MatTooltipModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
@@ -96,6 +104,9 @@ export function tokenGetter() {
     MatToolbarModule,
     MatTooltipModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule,
     ToastrModule
   ]
 })
