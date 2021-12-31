@@ -1,20 +1,26 @@
 .header
 {
-  justify-content: flex-end;
-  // justify-content: space-between;
   padding: 0 2% 0 1%;
-}
-.header a
-{
-  font-size: 0.9em;
 }
 .logo
 {
   font-family: 'Helvetica';
-  font-size: 14px;
+  font-size: 0.8em;
   color: white;
   text-decoration:none;
 }
-.icon-large {
-  transform: scale(1.5);
+.icon-xl {
+  transform: scale(1.66);
+}
+.icon-lg {
+  transform: scale(1.33);
+}
+.icon-md {
+  transform: scale(1);
+}
+.icon-sm {
+  transform: scale(0.66);
+}
+.icon-xs {
+  transform: scale(0.33);
 }
