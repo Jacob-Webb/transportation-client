@@ -1,4 +1,14 @@
-#### 0.0.0 (2021-12-28)
+### 0.1.0 (2021-12-31)
+
+##### Documentation Changes
+
+*  create and fill out TODO.md (142abda3)
+
+##### New Features
+
+*  add sidebar navigation (81168486)
+
+#### 0.0.1 (2021-12-28)
 
 - Localized components and modules
 - Removed envUrl service and finished documentation
@@ -17,77 +27,3 @@
 - Removed children from password path and set password path to redirect to dashboard
 - Changed reset-password-confirmation to update-confirmed
 - Added child routes for password components
-- removed relative path
-- Added route from reset-password to updated-password
-- Added reset password confirmation
-- Renamed Auth to Account to allow for passwords and phone
-- Added documentation via compodoc
-- Added urlService to forgot-password to allow for guarding the page from external navigation
-- Added routing constants to allow for uniformity when navigating
-- Created reset password componenet and added to routing
-- Route from verify-phone to phone-confirmation or update-password depending on previousUrl
-- aSet forgot-password and register in verify-phone
-- Added url service to get previous and current url paths to component
-- Created url service
-- Added ForgotPassword page and routed to VerifyPhone page
-- Set error intercept to accept multiple Bad Request errors or only one
-- Added refreshAuthentication to auth service to clean up code
-- Debugged error with refresh token
-- Roles at registration are set on server side instead of client
-- Added tryRefreshingSuccess to authGuard
-- AUpdated authguard to include isRefreshSucces in CanActivate
-- added refresh token to response
-- Added returnUrl
-- Replaced strings with constants in modules
-- Replaced token and identity roles strings with constants
-- Created Roles enum to match server-side roles
-- Added Admin guard
-- Moved forbidden, server-error, and not-found components to modules/errors/pages
-- updated REadme
-- Created a Forbidden page for unauthorized access
-- Created Manage Service Templates component
-- Renamed Access folder to Auth and added url strings to Constants file
-- reorganized phone verification and password to be under auth module
-- added dashboard page
-- renamed access to auth
-- added jwtModule to appModule
-- updated package.json after merge
-- merged log-in branch
-- updated logout function
-- rebase to avoid large files
-- updated angular material
-- using node v16.10
-- installed auth jwt for angular
-- added logout service
-- logout button added
-- created forgot-password component
-- added login component and view
-- change signin to login
-- added environment to gitignore
-- added phone verification confirmation page
-- added verify button
-- removed environment variables from tracking
-- updated error interceptor for 400 code
-- added body to verify-phone http request
-- update environment for transportationAPI url moving to localhost
-- changed confirm-phone to verify-phone
-- separated modules into different folders inside modules
-- mremoved modules/home and moved pages to module/pages
-- updated ngrok
-- Made email not required and updated error interceptor to take 403 and 409 cases
-- updated authentication
-- replaced error service with error interceptor and created error notificaitons
-- register form fields created
-- restructured the folders
-- moved services and modules inside shared directory
-- account service set up
-- created access, login, and register directories
-- updated app files
-- updated not-found error
-- created folder and components for errors
-- added footer with logo
-- navbar styles complete
-- added modules to shared modules file
-- added guards interceptors models modules and services directories
-- added angular material and cdk
-- initial commit
