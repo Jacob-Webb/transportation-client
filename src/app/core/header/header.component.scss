@@ -1,23 +1,23 @@
-.navbar
+.header
 {
   justify-content: flex-end;
   // justify-content: space-between;
   padding: 0 2% 0 1%;
 }
 
-.navbar a
+.header a
 {
   font-size: 0.9em;
 }
 
 @media (max-width: 499px){
-  .nav-menu-show
+  .header-menu-show
   {
     display: none;
   }
 }
 @media (min-width: 500px){
-  .nav-menu-hide
+  .header-menu-hide
   {
     display: none;
   }

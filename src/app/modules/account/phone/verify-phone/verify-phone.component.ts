@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { UrlService } from 'src/app/core/services/url.service';
+import { NavService } from 'src/app/core/services/nav.service';
 import { PhoneNumberDto, PhoneVerificationDto, ResetPasswordDto } from 'src/app/shared/models/account';
 import { AccountService } from 'src/app/core/services/account.service';
 import { apiPaths, routerPaths } from 'src/app/app.constants';
@@ -38,7 +38,7 @@ export class VerifyPhoneComponent implements OnInit {
   constructor(private authService: AuthenticationService,
     private accountService: AccountService,
     private router: Router,
-    private urlService: UrlService,
+    private urlService: NavService,
     fb: FormBuilder) { 
       this.previousNavigationData = null;
       this.previousUrl = null;

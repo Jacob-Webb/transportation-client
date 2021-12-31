@@ -23,6 +23,9 @@
 
 ### In Progress  
 
+- [ ] Add sidebar navigation #feat  
+  - [ ] Expandable subnavs
+
 ### Completed 
 
 - [x] Created CHANGELOG.md

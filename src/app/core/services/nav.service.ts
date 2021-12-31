@@ -8,20 +8,25 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UrlService {
-  /**
-   * When subscribed to, previousUrl will give the previous url after navigation.
-   */
+export class NavService {
+  /** When subscribed to, previousUrl will give the previous url after navigation. */
   private previousUrl: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  /**
-   * An Observable type of this.previousUrl.
-   */
+  /** An Observable type of this.previousUrl. */
   public previousUrl$: Observable<string | null> = this.previousUrl.asObservable();
+  /** Represents the url where the user is currently. */
+   public currentUrl = new BehaviorSubject<string | undefined>(undefined);
 
   /**
-   * @ignore
+   * Injects dependencies into the service.
+   * @param router Functionality for internal navigation.
    */
-  constructor() {}
+  constructor(private router: Router) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+          this.currentUrl.next(event.urlAfterRedirects);
+      }
+  });
+  }
 
   /**
    * Sets the `next` value to this.previousUrl

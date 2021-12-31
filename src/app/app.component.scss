@@ -5,10 +5,6 @@ content {
     align-items: stretch;
 }
 
-main {
-    flex-grow: 1;
-}
-
-app-nav, main, app-footer {
+app-header, main, app-footer {
     flex-shrink: 0;
 }

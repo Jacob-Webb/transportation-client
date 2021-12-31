@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { MenuService } from '../services/menu.service';
+import { NavService } from '../services/nav.service';
 
 /**
  * Navbar component for the app.
  */
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class NavComponent {
-  /**
-   * Flag representing a user's authentication status. 
-   */
+export class HeaderComponent {
+  /** Flag representing a user's authentication status. */
   public isUserAuthenticated:boolean | undefined;
+  @Input() title: string = '';
 
   /**
    * Injects dependencies into component and initializes `isUserAuthenticated`.
    * @param authService Service for assertaining a user's authentication status. 
    * @param router Used for internal navigation.
    */
-  constructor(private authService:AuthenticationService, private router: Router){
+  constructor(private authService:AuthenticationService, 
+    private router: Router, 
+    public navService: NavService,
+    public menuService: MenuService){
     this.authService.authChanged
     .subscribe(result => {
       this.isUserAuthenticated = result;
