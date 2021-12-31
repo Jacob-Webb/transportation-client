@@ -8,7 +8,7 @@
 
 *  add sidebar navigation (81168486)
 
-#### 0.0.1 (2021-12-28)
+#### 0.0.0 (2021-12-28)
 
 - Localized components and modules
 - Removed envUrl service and finished documentation
@@ -27,3 +27,4 @@
 - Removed children from password path and set password path to redirect to dashboard
 - Changed reset-password-confirmation to update-confirmed
 - Added child routes for password components
+- initial commit

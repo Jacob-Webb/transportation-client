@@ -4,27 +4,17 @@
   // justify-content: space-between;
   padding: 0 2% 0 1%;
 }
-
 .header a
 {
   font-size: 0.9em;
 }
-
-@media (max-width: 499px){
-  .header-menu-show
-  {
-    display: none;
-  }
-}
-@media (min-width: 500px){
-  .header-menu-hide
-  {
-    display: none;
-  }
-}
 .logo
 {
-  font-family: 'Baskerville';
+  font-family: 'Helvetica';
+  font-size: 14px;
   color: white;
   text-decoration:none;
+}
+.icon-large {
+  transform: scale(1.5);
 }

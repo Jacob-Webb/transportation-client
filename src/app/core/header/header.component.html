@@ -1,28 +1,23 @@
 <header>
     <mat-toolbar color="primary" class="header">
-      <mat-toolbar-row>
-        <button mat-icon-button id="menu" (click)="menuService.toggleMenu()" *ngIf="isUserAuthenticated">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <a href="" class="logo">{{title}}</a>
-
-        <div class="header-menu-show">
-          <a mat-button *ngIf="!isUserAuthenticated" routerLink="/auth">Log In / Register</a>
-          <a mat-button *ngIf="isUserAuthenticated" (click)="logout()" routerLink="/">Logout</a>
-          <mat-menu #profile="matMenu" color="primary">
-            
-            <div>
-              <a mat-menu-item>Update Contact Info</a>
-              <a mat-menu-item>Change Password</a>
-              <a mat-menu-item>Logout</a>
-            </div>
-          </mat-menu>
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button mat-icon-button id="menu" (click)="menuService.toggleMenu()" *ngIf="isUserAuthenticated">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <a href="" class="logo">{{title}}</a>
         </div>
-        <div class="header-menu-hide">
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon-button with a menu"><mat-icon>menu</mat-icon></button>
+
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="profile menu"><mat-icon class="icon-large">account_circle</mat-icon></button>
           <mat-menu #menu="matMenu" color="primary">
             <div>
-            <a mat-menu-item routerLink="/auth">Log in / Register</a>
+              <a mat-menu-item *ngIf="isUserAuthenticated">User Profile</a>
+              <a mat-menu-item *ngIf="isUserAuthenticated">Update Password</a>
+            </div>
+            <div>
+            <a mat-menu-item *ngIf="!isUserAuthenticated" routerLink="/auth">Log in / Register</a>
+            <a mat-menu-item *ngIf="isUserAuthenticated" (click)="logout()" routerLink="/">Logout</a>
             </div>
           </mat-menu>
         </div>
