@@ -16,7 +16,7 @@ import { NavItem } from './shared/models/nav-item';
 })
 export class AppComponent implements OnInit {
   /** Title of the app for the browser. */
-  title = 'Rock Transportation';
+  title = 'Transportation';
   /** Maintains the previous url for the app's navigation. */
   previousUrl: string | null;
   /** Maintains the current url for the app's navigation. */

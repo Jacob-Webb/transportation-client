@@ -16,11 +16,9 @@
   - [ ] Reset Password
   - [ ] Logout
   - [ ] Get more info on what should be in Profile section
-- [ ] Style navbar
 
 ### In Progress  
 
-- [ ] Refactor Menu to include header, sidebar, and menu-items
 
 ### Completed 
 
@@ -31,3 +29,4 @@
   - [x] Expandable subnavs
   - [x] Collapsable sidebar
   - [x] Mobile friendly
+- [x] Refactor Menu to include header, sidebar, and menu-items

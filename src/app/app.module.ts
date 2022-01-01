@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HeaderComponent } from './core/header/header.component';
+import { HeaderComponent } from './core/menu/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { SidebarComponent } from './core/menu/sidebar/sidebar.component';
 import { MenuListItemComponent } from './core/menu/menu-list-item/menu-list-item.component';

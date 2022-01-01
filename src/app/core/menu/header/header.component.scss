@@ -5,9 +5,13 @@
 .logo
 {
   font-family: 'Helvetica';
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: white;
   text-decoration:none;
+  img {
+    height: 25px;
+    vertical-align: middle;
+  }
 }
 .icon-xl {
   transform: scale(1.66);

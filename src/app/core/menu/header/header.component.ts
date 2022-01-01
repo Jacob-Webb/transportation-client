@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authentication/authentication.service';
-import { MenuService } from '../services/menu.service';
-import { NavService } from '../services/nav.service';
+import { AuthenticationService } from '../../authentication/authentication.service';
+import { MenuService } from '../../services/menu.service';
+import { NavService } from '../../services/nav.service';
 
 /**
  * Navbar component for the app.
@@ -17,6 +17,7 @@ export class HeaderComponent {
   public isUserAuthenticated:boolean | undefined;
   /** Get the title for the logo from the app's title. */
   @Input() title: string = '';
+  public logo: string = '/src/assets/images/globe_white.png';
 
   /**
    * Injecst dependencies into component and initializes `isUserAuthenticated`.
