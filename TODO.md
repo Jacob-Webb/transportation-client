@@ -1,9 +1,5 @@
 ### Todo  
 
-- [ ] Add sidebar navigation #feat
-  - [ ] Expandable subnavs 
-  - [ ] Collapsable sidebar
-  - [ ] Mobile friendly
 - [ ] Add Gatherings pages #feat
   - [ ] Weekly Gatherings
   - [ ] Manage Templates
@@ -20,14 +16,18 @@
   - [ ] Reset Password
   - [ ] Logout
   - [ ] Get more info on what should be in Profile section
+- [ ] Style navbar
 
 ### In Progress  
 
-- [ ] Add sidebar navigation #feat  
-  - [ ] Expandable subnavs
+- [ ] Refactor Menu to include header, sidebar, and menu-items
 
 ### Completed 
 
 - [x] Created CHANGELOG.md
 - [x] Automated documentation
   - [x] Added documentation to classes, functions, and properties
+- [x] Add sidebar navigation #feat
+  - [x] Expandable subnavs
+  - [x] Collapsable sidebar
+  - [x] Mobile friendly

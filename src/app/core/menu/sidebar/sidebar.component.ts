@@ -10,11 +10,11 @@ import { AuthenticationService } from '../../authentication/authentication.servi
  * Component representing the sidebar menu.
  */
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
-export class MenuComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit, OnDestroy {
   /** Indicates whether the sidebar is opened or closed. */
   public opened: boolean = true;
   /** Necessary because the component will need to release resources held by MediaObserver. */

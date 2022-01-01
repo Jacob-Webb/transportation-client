@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { MenuComponent } from './core/sidebar/menu/menu.component';
-import { MenuListItemComponent } from './core/sidebar/menu-list-item/menu-list-item.component';
+import { SidebarComponent } from './core/menu/sidebar/sidebar.component';
+import { MenuListItemComponent } from './core/menu/menu-list-item/menu-list-item.component';
 
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
@@ -28,7 +28,7 @@ import { PagesModule } from './modules/pages.module';
     DashboardComponent,
     ManageTemplatesComponent,
     MenuListItemComponent,
-    MenuComponent,
+    SidebarComponent,
   ],
   imports: [
     AppRoutingModule,
