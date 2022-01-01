@@ -15,12 +15,15 @@ import { NavService } from '../services/nav.service';
 export class HeaderComponent {
   /** Flag representing a user's authentication status. */
   public isUserAuthenticated:boolean | undefined;
+  /** Get the title for the logo from the app's title. */
   @Input() title: string = '';
 
   /**
-   * Injects dependencies into component and initializes `isUserAuthenticated`.
-   * @param authService Service for assertaining a user's authentication status. 
-   * @param router Used for internal navigation.
+   * Injecst dependencies into component and initializes `isUserAuthenticated`.
+   * @param authService Service for assertaining a user's authentication status.
+   * @param router Functionality for internal navigation.
+   * @param navService Functionality for tracking navigation data.
+   * @param menuService Functionality for controlling the state of the menu.
    */
   constructor(private authService:AuthenticationService, 
     private router: Router, 

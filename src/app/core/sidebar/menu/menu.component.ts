@@ -25,8 +25,12 @@ export class MenuComponent implements OnInit, OnDestroy {
   public isUserAuthenticated: boolean | undefined;
 
   /**
-   * Subscribes to the MediaObserver object. When there's any kind of change in media (for example, the user shrinks the browser window), the app will call the handleMediaChange() function
+   * Injects dependencies into this component, 
+   * handles changes to the size of the screen, 
+   * and checks user authentication.
+   * @param authService Functionality for tracking user authentication.
    * @param media Functionality for detecting media size.
+   * @param menuService Functionality for controlling the sidebar menu.
    */
   constructor(private authService: AuthenticationService,
     private media: MediaObserver,
@@ -40,6 +44,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     })
   }
 
+  /**
+   * Initialize `this.opened`.
+   */
   ngOnInit() {
     this.menuService.isOpen$.subscribe(response => this.opened = response);
   }
