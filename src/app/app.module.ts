@@ -7,24 +7,28 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NavComponent } from './core/header/nav.component';
+import { HeaderComponent } from './core/menu/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { SidebarComponent } from './core/menu/sidebar/sidebar.component';
+import { MenuListItemComponent } from './core/menu/menu-list-item/menu-list-item.component';
 
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 
-import { UrlService } from './core/services/url.service';
+import { NavService } from './core/services/nav.service';
 
 import { PagesModule } from './modules/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
+    HeaderComponent,
     FooterComponent,
     DashboardComponent,
     ManageTemplatesComponent,
+    MenuListItemComponent,
+    SidebarComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -38,8 +42,8 @@ import { PagesModule } from './modules/pages.module';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    },  
-    UrlService
+    },
+    NavService
   ],
   bootstrap: [AppComponent]
 })

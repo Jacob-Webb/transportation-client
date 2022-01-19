@@ -1,39 +1,32 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$transportation-client-primary: mat.define-palette(mat.$light-blue-palette, 900);
-$transportation-client-accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$transportation-client-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$transportation-client-theme: mat.define-light-theme((
+@import "./app/theme";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+$app-theme: mat.define-light-theme((
   color: (
-    primary: $transportation-client-primary,
-    accent: $transportation-client-accent,
-    warn: $transportation-client-warn,
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($transportation-client-theme);
+@include mat.all-component-themes($app-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  font-size: 16px;
+}
+a {
+  text-decoration-color: mat-color(primary);
+  color: mat-color(primary, default);
+}

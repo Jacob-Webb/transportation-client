@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { AuthComponent } from './auth/auth.component'
@@ -25,6 +26,7 @@ import { VerifyPhoneComponent } from './phone/verify-phone/verify-phone.componen
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     SharedModule
   ]
 })

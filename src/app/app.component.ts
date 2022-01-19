@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from './core/authentication/authentication.service';
-import { UrlService } from './core/services/url.service';
+import { NavService } from './core/services/nav.service';
+import { menu } from './shared/models/menu';
+import { NavItem } from './shared/models/nav-item';
 
 /**
  * Main app component to be bootstrapped.
@@ -9,11 +11,12 @@ import { UrlService } from './core/services/url.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   /** Title of the app for the browser. */
-  title = 'Rock Transportation';
+  title = 'Transportation';
   /** Maintains the previous url for the app's navigation. */
   previousUrl: string | null;
   /** Maintains the current url for the app's navigation. */
@@ -22,11 +25,11 @@ export class AppComponent implements OnInit {
   /**
    * Injects dependencies into the component and initializes properties.
    * @param authService Functionality for managing users' authentication.
-   * @param urlService Functionality for managing the url data of the app.
+   * @param navService Functionality for managing the url data of the app.
    * @param router Functionality for internal navigation.
    */
   constructor(private authService: AuthenticationService,
-    private urlService: UrlService,
+    private navService: NavService,
     private router: Router) {
       this.previousUrl = null;
       this.currentUrl = null;
@@ -46,7 +49,7 @@ export class AppComponent implements OnInit {
         if (event instanceof NavigationEnd) {
           this.previousUrl = this.currentUrl;
           this.currentUrl = event.url;
-          this.urlService.setPreviousUrl(this.previousUrl);
+          this.navService.setPreviousUrl(this.previousUrl);
         }
       })
   }

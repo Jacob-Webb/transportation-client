@@ -1,12 +1,7 @@
 ### Todo  
 
-- [ ] Add sidebar navigation #feat
-  - [ ] Expandable subnavs 
-  - [ ] Collapsable sidebar
-  - [ ] Mobile friendly
 - [ ] Add Gatherings pages #feat
   - [ ] Weekly Gatherings
-  - [ ] Manage Templates
   - [ ] Upcoming Routes (Drivers)
   - [ ] Request A Ride
 - [ ] Add Users pages #feat
@@ -23,8 +18,10 @@
 
 ### In Progress  
 
-### Completed 
+- [ ] Add Gatherings pages #feat
+  - [ ] Manage Templates
+- [ ] Update toolbar icons
+  - [ ] Drivers to steering wheel
+  - [ ] Manage Templates to 
 
-- [x] Created CHANGELOG.md
-- [x] Automated documentation
-  - [x] Added documentation to classes, functions, and properties
+### Completed 
