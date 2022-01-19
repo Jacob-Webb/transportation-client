@@ -2,7 +2,6 @@
 
 - [ ] Add Gatherings pages #feat
   - [ ] Weekly Gatherings
-  - [ ] Manage Templates
   - [ ] Upcoming Routes (Drivers)
   - [ ] Request A Ride
 - [ ] Add Users pages #feat
@@ -19,14 +18,7 @@
 
 ### In Progress  
 
+- [ ] Add Gatherings pages #feat
+  - [ ] Manage Templates
 
 ### Completed 
-
-- [x] Created CHANGELOG.md
-- [x] Automated documentation
-  - [x] Added documentation to classes, functions, and properties
-- [x] Add sidebar navigation #feat
-  - [x] Expandable subnavs
-  - [x] Collapsable sidebar
-  - [x] Mobile friendly
-- [x] Refactor Menu to include header, sidebar, and menu-items
