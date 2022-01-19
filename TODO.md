@@ -20,5 +20,8 @@
 
 - [ ] Add Gatherings pages #feat
   - [ ] Manage Templates
+- [ ] Update toolbar icons
+  - [ ] Drivers to steering wheel
+  - [ ] Manage Templates to 
 
 ### Completed 

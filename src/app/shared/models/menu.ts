@@ -15,18 +15,18 @@ export let menu: NavItem[] = [
         route: ''
       },
       {
-        displayName: 'Manage Templates',
-        iconName: 'category',
-        route: ''
-      },
-      {
         displayName: 'Upcoming Routes',
         iconName: 'departure_board',
         route: ''
       },
       {
+        displayName: 'Manage Templates',
+        iconName: 'insert_drive_file',
+        route: ''
+      },
+      {
         displayName: 'Request A Ride',
-        iconName: 'add',
+        iconName: 'add_circle',
         route: ''
       }
     ]
