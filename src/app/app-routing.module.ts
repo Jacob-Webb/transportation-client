@@ -10,10 +10,10 @@ import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboar
 import { AuthGuard } from './core/guards/auth.guard';
 import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { ForbiddenComponent } from './modules/errors/pages/forbidden/forbidden.component';
-import { AdminGuard } from './core/guards/admin.guard';
 import { ResetPasswordComponent } from './modules/account/password/reset-password/reset-password.component';
 import { UpdatedPasswordComponent } from './modules/account/password/updated-password/updated-password.component';
 import { routerPaths } from './app.constants';
+import { Roles } from './shared/models/roles';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -25,7 +25,12 @@ const routes: Routes = [
   { path: routerPaths.forgotPassword, component: ForgotPasswordComponent },
   { path: routerPaths.resetPassword, component: ResetPasswordComponent },
   { path: routerPaths.updatedPassword, component: UpdatedPasswordComponent },
-  { path: routerPaths.manageTemplates, component: ManageTemplatesComponent, canActivate: [AuthGuard,AdminGuard] },
+  { 
+    path: routerPaths.manageTemplates, 
+    component: ManageTemplatesComponent, 
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.administrator, Roles.superAdmin] }
+  },
   { path: routerPaths.notFound, component: NotFoundComponent },
   { path: routerPaths.serverError, component: ServerErrorComponent },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }

@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { apiPaths, routerPaths, tokens} from 'src/app/app.constants';
 import { JwtTokenDto } from 'src/app/shared/models/jwt-token';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { RoleService } from '../services/role.service';
 
 /**
  * AuthGuard is used for components to only allow users who have been authenticated.  
@@ -18,6 +19,7 @@ export class AuthGuard implements CanActivate {
    * @param router Navigates the user after authentication status verification.
    */
   constructor(private authService: AuthenticationService, 
+    private roleService: RoleService,
     private router: Router){}
 
   /**
@@ -28,6 +30,13 @@ export class AuthGuard implements CanActivate {
    */
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean>{
     if (this.authService.isUserAuthenticated()) {
+      if (next.data.roles && next.data.roles.indexOf(this.roleService.getUserRole()) === -1) {
+        // this.router.navigate(['/']);
+        console.log("next.data.roles: " + next.data.roles)
+        console.log("next.data.roles: " + next.data.roles.indexOf(this.roleService.getUserRole()))
+        console.log("userRole: " + this.roleService.getUserRole());
+        return false;
+      }
       return true;
     }
 
@@ -38,6 +47,11 @@ export class AuthGuard implements CanActivate {
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
       this.router.navigate([routerPaths.auth], { queryParams: { returnUrl: state.url }});
+    }
+
+    if (next.data.roles && next.data.roles.indexOf(this.roleService.getUserRole()) === -1) {
+      this.router.navigate(['/']);
+      return false;
     }
 
     this.authService.sendAuthStateChangeNotification(isRefreshSuccess);

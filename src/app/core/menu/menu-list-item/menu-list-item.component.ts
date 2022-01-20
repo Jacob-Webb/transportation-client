@@ -3,6 +3,8 @@ import { NavItem } from '../../../shared/models/nav-item';
 import { Router } from '@angular/router';
 import { NavService } from '../../services/nav.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { RoleService } from '../../services/role.service';
+import { Roles } from 'src/app/shared/models/roles';
 
 /**
  * Component representing each menu item for the sidebar menu.
@@ -24,6 +26,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class MenuListItemComponent implements OnInit {
   /** Tracks if this menu item is expanded. */
   isExpanded: boolean;
+  isAuthorized: boolean;
   /** Maps aria-expanded to the isExpanded property in the DOM. */
   @HostBinding('attr.aria-expanded') ariaExpanded;
   /** The NavItem data representation of this menu list item. */
@@ -37,10 +40,12 @@ export class MenuListItemComponent implements OnInit {
    * @param router Functionality for internal navigation.
    */
   constructor(public navService: NavService,
+    public roleService: RoleService,
     public router: Router) { 
     this.isExpanded = false;
     this.ariaExpanded = this.isExpanded;
     this.depth = 0;
+    this.isAuthorized = false;
   }
 
   /**
@@ -51,6 +56,10 @@ export class MenuListItemComponent implements OnInit {
       if (this.item?.route && url) {
           this.isExpanded = url.indexOf(`/${this.item.route}`) === 0;
           this.ariaExpanded = this.isExpanded;
+      }
+
+      if (this.item.authorization.findIndex(role => role === this.roleService.getUserRole()) !== -1) {
+        this.isAuthorized = true;
       }
     });
   }

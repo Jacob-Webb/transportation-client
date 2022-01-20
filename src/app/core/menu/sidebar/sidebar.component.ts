@@ -28,17 +28,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
    * Injects dependencies into this component, 
    * handles changes to the size of the screen, 
    * and checks user authentication.
-   * @param authService Functionality for tracking user authentication.
+   * @param authenticationService Functionality for tracking user authentication.
    * @param media Functionality for detecting media size.
    * @param menuService Functionality for controlling the sidebar menu.
    */
-  constructor(private authService: AuthenticationService,
+  constructor(private authenticationService: AuthenticationService,
     private media: MediaObserver,
     private menuService: MenuService) {
     this.mediaWatcher = this.media.asObservable().subscribe((change: MediaChange[]) => {
       this.handleMediaChange(change[0]);
     })
-    this.authService.authChanged
+    this.authenticationService.authChanged
     .subscribe(result => {
       this.isUserAuthenticated = result;
     })

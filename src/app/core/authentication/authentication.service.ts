@@ -16,6 +16,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  /** Tracks the changes to users' authentication status. */
+   private authChangeSubject = new Subject<boolean>();
+   /** The Obervable version of authChangeSubject, allowing authentication status to be observed. */
+   public authChanged = this.authChangeSubject.asObservable();
 
   /**
    * Injects dependencies into the service. 
@@ -25,15 +29,6 @@ export class AuthenticationService {
    */
   constructor(private http: HttpClient, 
     private jwtHelper: JwtHelperService) { }
-
-  /**
-   * Tracks the changes to users' authentication status.
-   */
-  private authChangeSubject = new Subject<boolean>();
-  /**
-   * The Obervable version of authChangeSubject, allowing authentication status to be observed.
-   */
-  public authChanged = this.authChangeSubject.asObservable();
 
   /**
    * Sends data to the API and receives response to confirm users' phone numbers. 

@@ -1,4 +1,4 @@
-<a mat-list-item *ngIf="depth !== undefined" [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)"
+<a mat-list-item *ngIf="depth !== undefined && isAuthorized" [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)"
   [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': isExpanded}"
   class="menu-list-item">
   <mat-icon class="routeIcon">{{item.iconName}}</mat-icon>

@@ -1,3 +1,5 @@
+import { Roles } from "./roles";
+
 /**
  * The model that represents a menu item on the sidebar.
  */
@@ -10,6 +12,8 @@ export interface NavItem {
   iconName: string;
   /** Tells the app where to send users who click on that menu item. */
   route?: string;
+
+  authorization: Roles[];
   /**  Identifies menu items that fall under this parent menu item. */
   children?: NavItem[];
 }

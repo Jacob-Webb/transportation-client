@@ -31,11 +31,11 @@ import { PagesModule } from './modules/pages.module';
     SidebarComponent,
   ],
   imports: [
+    HttpClientModule,
     AppRoutingModule,
     BrowserModule,
     SharedModule,
-    PagesModule,
-    HttpClientModule
+    PagesModule
   ],
   providers: [
     {
