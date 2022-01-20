@@ -58,7 +58,7 @@ export class MenuListItemComponent implements OnInit {
           this.ariaExpanded = this.isExpanded;
       }
 
-      if (this.item.authorization.findIndex(role => role === this.roleService.getUserRole()) !== -1) {
+      if (this.item.roles.findIndex(role => role === this.roleService.getUserRole()) !== -1) {
         this.isAuthorized = true;
       }
     });

@@ -11,6 +11,7 @@ import { Roles } from 'src/app/shared/models/roles';
   providedIn: 'root'
 })
 export class RoleService {
+  private roleSubject = new Subject<Roles>();
   /**
    * Injects dependencies into the service. 
    * @param jwtHelper Helper methods for handling Javascript Web Tokens.
@@ -25,9 +26,9 @@ export class RoleService {
 
   /**
    * Retrieve a user's role from the access token. 
-   * @returns `true` if a user's role is administrator or above, `false` otherwise.
+   * @returns `true` if a user's role is administrator, `false` otherwise.
    */
-  public isUserAdmin = () : boolean => {
+  public isAdmin = () : boolean => {
     return this.getUserRole() === Roles.administrator;
   }
 

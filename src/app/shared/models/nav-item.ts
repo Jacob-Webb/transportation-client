@@ -13,7 +13,7 @@ export interface NavItem {
   /** Tells the app where to send users who click on that menu item. */
   route?: string;
 
-  authorization: Roles[];
+  roles: Roles[];
   /**  Identifies menu items that fall under this parent menu item. */
   children?: NavItem[];
 }
