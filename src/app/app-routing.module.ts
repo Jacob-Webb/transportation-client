@@ -24,12 +24,16 @@ const routes: Routes = [
     path: routerPaths.account,
     loadChildren: () => import('./modules/account/account.module')
       .then(m => m.AccountModule),
+  }, {
+    path: routerPaths.errors,
+    loadChildren: () => import('./modules/errors/errors.module')
+      .then(m => m.ErrorsModule),
   },
   // { path: routerPaths.access, component: AuthComponent },
-  { path: routerPaths.forbidden, component: ForbiddenComponent },
+  // { path: routerPaths.forbidden, component: ForbiddenComponent },
   // { path: routerPaths.verifyPhone, component: VerifyPhoneComponent },
   // { path: routerPaths.confirmPhone, component: PhoneConfirmationComponent },
-  { path: 'password', redirectTo: '/', pathMatch: 'full' },
+  // { path: 'password', redirectTo: '/', pathMatch: 'full' },
   // { path: routerPaths.forgotPassword, component: ForgotPasswordComponent },
   // { path: routerPaths.resetPassword, component: ResetPasswordComponent },
   // { path: routerPaths.updatedPassword, component: UpdatedPasswordComponent },
@@ -39,9 +43,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: [Roles.administrator, Roles.superAdmin] }
   },
-  { path: routerPaths.notFound, component: NotFoundComponent },
-  { path: routerPaths.serverError, component: ServerErrorComponent },
-  { path: '**', redirectTo: '/404', pathMatch: 'full' }
+  // { path: routerPaths.notFound, component: NotFoundComponent },
+  // { path: routerPaths.serverError, component: ServerErrorComponent },
+  { path: '**', redirectTo: '/errors/404', pathMatch: 'full' }
 ];
 
 @NgModule({

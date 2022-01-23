@@ -31,14 +31,15 @@ export const apiPaths = {
 export const routerPaths = {
   account: 'account',
   access: 'account/access',
-  confirmPhone: 'account/phone-confirmation',
-  verifyPhone: 'account/verify-phone',
-  forbidden: 'forbidden',
   forgotPassword: 'account/forgot-password',
-  manageTemplates: 'manage-templates',
-  notFound: '404',
-  resetPassword: 'account/reset-password',
   updatedPassword: 'account/password-updated',
-  serverError: 'server-error'
+  confirmPhone: 'account/phone-confirmation',
+  resetPassword: 'account/reset-password',
+  verifyPhone: 'account/verify-phone',
+  errors: 'errors',
+  notFound: 'errors/404',
+  forbidden: 'errors/forbidden',
+  serverError: 'errors/server-error',
+  manageTemplates: 'manage-templates'
 }
 

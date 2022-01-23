@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
+import { ErrorsRoutingModule } from './errors-routing.module';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ServerErrorComponent } from './server-error/server-error.component';
@@ -15,7 +16,8 @@ import { ServerErrorComponent } from './server-error/server-error.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ErrorsRoutingModule
   ]
 })
 export class ErrorsModule { }
