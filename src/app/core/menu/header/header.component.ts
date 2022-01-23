@@ -52,6 +52,7 @@ export class HeaderComponent {
    */
   public logout = () => {
     this.authService.logout();
+    console.log(routerPaths.access);
     this.router.navigate([routerPaths.access]);
   }
 }

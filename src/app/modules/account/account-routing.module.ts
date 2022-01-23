@@ -14,22 +14,27 @@ import { routerPaths } from 'src/app/app.constants';
 const routes: Routes = [
   { 
     path: '', 
-    component: AuthComponent
-  }, { 
-    path: routerPaths.verifyPhone, 
-    component: VerifyPhoneComponent 
-  }, { 
-    path: routerPaths.confirmPhone, 
-    component: PhoneConfirmationComponent 
-  }, { 
-    path: routerPaths.forgotPassword, 
-    component: ForgotPasswordComponent 
-  }, { 
-    path: routerPaths.resetPassword, 
-    component: ResetPasswordComponent 
-  }, { 
-    path: routerPaths.updatedPassword, 
-    component: UpdatedPasswordComponent 
+    children: [
+      {
+        path: 'access',
+        component: AuthComponent
+      }, { 
+        path: 'verify-phone', 
+        component: VerifyPhoneComponent 
+      }, { 
+        path: 'phone-confirmation', 
+        component: PhoneConfirmationComponent 
+      }, { 
+        path: 'forgot-password', 
+        component: ForgotPasswordComponent 
+      }, { 
+        path: 'reset-password', 
+        component: ResetPasswordComponent 
+      }, { 
+        path: 'password-updated', 
+        component: UpdatedPasswordComponent 
+      }
+    ]
   }];
 
 @NgModule({
