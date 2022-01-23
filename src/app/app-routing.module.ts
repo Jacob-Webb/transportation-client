@@ -16,7 +16,15 @@ import { routerPaths } from './app.constants';
 import { Roles } from './shared/models/roles';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+  { 
+    path: '', 
+    component: DashboardComponent, 
+    canActivate: [AuthGuard] 
+  }, { 
+    path: routerPaths.auth,
+    loadChildren: () => import('./modules/account/account.module')
+      .then(m => m.AccountModule),
+  },
   { path: routerPaths.auth, component: AuthComponent },
   { path: routerPaths.forbidden, component: ForbiddenComponent },
   { path: routerPaths.verifyPhone, component: VerifyPhoneComponent },

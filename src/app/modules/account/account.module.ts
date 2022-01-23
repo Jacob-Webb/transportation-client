@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
+import { AccountRoutingModule } from './account-routing.module';
 import { AuthComponent } from './auth/auth.component'
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -26,8 +26,8 @@ import { VerifyPhoneComponent } from './phone/verify-phone/verify-phone.componen
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    SharedModule
+    SharedModule,
+    AccountRoutingModule
   ]
 })
 export class AccountModule { }

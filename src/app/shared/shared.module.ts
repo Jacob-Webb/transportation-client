@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material imports
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -30,26 +29,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NgxMaskModule } from 'ngx-mask';
 
-// JWT 
-import { JwtModule } from '@auth0/angular-jwt';
-import { tokens } from '../app.constants';
-
 // Toastr Notifications
 import { ToastrModule } from 'ngx-toastr';
-
-/**
- * Gets the user's access token for authentication. 
- * @returns The access token stored in local storage.
- */
-export function tokenGetter() {
-  return localStorage.getItem(tokens.access);
-}
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -74,17 +60,9 @@ export function tokenGetter() {
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
-    }),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5001"],
-        disallowedRoutes: []
-      }
     })
   ],
   exports: [
-    BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,

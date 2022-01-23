@@ -1,12 +1,12 @@
 ### Todo  
 
+- [ ] Add address autofill to Registration page
 - [ ] Add Gatherings pages #feat
   - [ ] Weekly Gatherings
   - [ ] Upcoming Routes (Drivers)
   - [ ] Request A Ride
 - [ ] Add Users pages #feat
   - [ ] Search Users
-  - [ ] 
 - [ ] Add Admin pages #feat 
   - [ ] Add Drivers
   - [ ] Update Permissions
@@ -20,8 +20,8 @@
 
 - [ ] Add Gatherings pages #feat
   - [ ] Manage Templates
-- [ ] Update toolbar icons
-  - [ ] Drivers to steering wheel
-  - [ ] Manage Templates to 
+- [ ] Add to Dashboard
+  - [ ] Available routes to get ride
+  - [ ] Current routes and riders and stuff (admin and drivers only)
 
 ### Completed 
