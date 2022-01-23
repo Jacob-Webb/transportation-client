@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { routerPaths } from 'src/app/app.constants';
 
 /**
  * Users are routed here when they have tried to access a component for which they are not authorized.
@@ -31,7 +32,7 @@ export class ForbiddenComponent implements OnInit {
    * Returns user to the login page with the url to return to in the event that the user successfully logs in with appropriate authorization.
    */
   public navigateToLogin = () => {
-    this.router.navigate(['/auth'], { queryParams: { returnUrl: this.returnUrl }});
+    this.router.navigate([routerPaths.access], { queryParams: { returnUrl: this.returnUrl }});
   }
 
 }

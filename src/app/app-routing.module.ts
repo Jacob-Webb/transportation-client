@@ -21,11 +21,11 @@ const routes: Routes = [
     component: DashboardComponent, 
     canActivate: [AuthGuard] 
   }, { 
-    path: routerPaths.auth,
+    path: routerPaths.access,
     loadChildren: () => import('./modules/account/account.module')
       .then(m => m.AccountModule),
   },
-  { path: routerPaths.auth, component: AuthComponent },
+  // { path: routerPaths.access, component: AuthComponent },
   { path: routerPaths.forbidden, component: ForbiddenComponent },
   { path: routerPaths.verifyPhone, component: VerifyPhoneComponent },
   { path: routerPaths.confirmPhone, component: PhoneConfirmationComponent },

@@ -78,7 +78,7 @@ export class VerifyPhoneComponent implements OnInit {
     }
 
     // Set the information to branch where verify phone sends its data
-    if (this.previousUrl?.includes(routerPaths.auth)) {
+    if (this.previousUrl?.includes(routerPaths.access)) {
       // If the previous url was the auth (registration) page, verify and confirm phone number
       this.authService.confirmPhone(apiPaths.confirmPhone, phoneVerificationDto)
       .subscribe(() => {

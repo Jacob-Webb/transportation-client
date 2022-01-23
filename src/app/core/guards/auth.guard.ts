@@ -46,7 +46,7 @@ export class AuthGuard implements CanActivate {
 
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
-      this.router.navigate([routerPaths.auth], { queryParams: { returnUrl: state.url }});
+      this.router.navigate([routerPaths.access], { queryParams: { returnUrl: state.url }});
     }
 
     if (next.data.roles && next.data.roles.indexOf(this.roleService.getUserRole()) === -1) {

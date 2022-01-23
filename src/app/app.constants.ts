@@ -29,7 +29,7 @@ export const apiPaths = {
  * Constant variables for internal routing paths.
  */
 export const routerPaths = {
-  auth: 'auth',
+  access: 'access',
   confirmPhone: 'phone-confirmation',
   forbidden: 'forbidden',
   forgotPassword: 'password/forgot-password',
