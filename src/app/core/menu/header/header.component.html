@@ -16,7 +16,7 @@
               <a mat-menu-item *ngIf="isUserAuthenticated">Update Password</a>
             </div>
             <div>
-            <a mat-menu-item *ngIf="!isUserAuthenticated" routerLink="/auth">Log in / Register</a>
+            <a mat-menu-item *ngIf="!isUserAuthenticated" routerLink="account/access">Log in / Register</a>
             <a mat-menu-item *ngIf="isUserAuthenticated" (click)="logout()" routerLink="/">Logout</a>
             </div>
           </mat-menu>

@@ -31,10 +31,7 @@ export class AuthGuard implements CanActivate {
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean>{
     if (this.authService.isUserAuthenticated()) {
       if (next.data.roles && next.data.roles.indexOf(this.roleService.getUserRole()) === -1) {
-        // this.router.navigate(['/']);
-        console.log("next.data.roles: " + next.data.roles)
-        console.log("next.data.roles: " + next.data.roles.indexOf(this.roleService.getUserRole()))
-        console.log("userRole: " + this.roleService.getUserRole());
+        this.router.navigate(['/']);
         return false;
       }
       return true;
@@ -46,7 +43,7 @@ export class AuthGuard implements CanActivate {
 
     if (!isRefreshSuccess) {
       this.authService.sendAuthStateChangeNotification(false);
-      this.router.navigate([routerPaths.auth], { queryParams: { returnUrl: state.url }});
+      this.router.navigate([routerPaths.access], { queryParams: { returnUrl: state.url }});
     }
 
     if (next.data.roles && next.data.roles.indexOf(this.roleService.getUserRole()) === -1) {

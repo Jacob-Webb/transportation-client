@@ -29,15 +29,17 @@ export const apiPaths = {
  * Constant variables for internal routing paths.
  */
 export const routerPaths = {
-  auth: 'auth',
-  confirmPhone: 'phone-confirmation',
-  forbidden: 'forbidden',
-  forgotPassword: 'password/forgot-password',
-  manageTemplates: 'manage-templates',
-  notFound: '404',
-  resetPassword: 'password/reset-password',
-  updatedPassword: 'password/updated',
-  verifyPhone: 'verify-phone',
-  serverError: 'server-error'
+  account: 'account',
+  access: 'account/access',
+  forgotPassword: 'account/forgot-password',
+  updatedPassword: 'account/password-updated',
+  confirmPhone: 'account/phone-confirmation',
+  resetPassword: 'account/reset-password',
+  verifyPhone: 'account/verify-phone',
+  errors: 'errors',
+  notFound: 'errors/404',
+  forbidden: 'errors/forbidden',
+  serverError: 'errors/server-error',
+  manageTemplates: 'manage-templates'
 }
 

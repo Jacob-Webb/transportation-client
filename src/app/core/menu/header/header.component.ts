@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { routerPaths } from 'src/app/app.constants';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { MenuService } from '../../services/menu.service';
 import { NavService } from '../../services/nav.service';
@@ -51,6 +52,7 @@ export class HeaderComponent {
    */
   public logout = () => {
     this.authService.logout();
-    this.router.navigate(['/auth']);
+    console.log(routerPaths.access);
+    this.router.navigate([routerPaths.access]);
   }
 }

@@ -3,6 +3,7 @@
 @use '@angular/material' as mat;
 
 @import "./app/theme";
+@import "./app/breakpoints";
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 $app-theme: mat.define-light-theme((
