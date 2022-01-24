@@ -15,7 +15,6 @@ import { MenuListItemComponent } from './core/menu/menu-list-item/menu-list-item
 
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
-import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 
 // JWT 
 import { JwtModule } from '@auth0/angular-jwt';
@@ -39,7 +38,6 @@ import { tokens } from './app.constants';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-    ManageTemplatesComponent,
     MenuListItemComponent,
     SidebarComponent,
   ],

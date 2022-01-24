@@ -40,6 +40,7 @@ export const routerPaths = {
   notFound: 'errors/404',
   forbidden: 'errors/forbidden',
   serverError: 'errors/server-error',
-  manageTemplates: 'manage-templates'
+  church_services: 'services',
+  manageTemplates: 'services/manage-templates'
 }
 

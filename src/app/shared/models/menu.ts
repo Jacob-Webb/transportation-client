@@ -6,13 +6,13 @@ import { Roles } from './roles';
  */
 export let menu: NavItem[] = [
   {
-    displayName: 'Gatherings',
+    displayName: 'Church Services',
     iconName: 'location_on',
-    route: 'gatherings',
+    route: 'services',
     roles: [Roles.user, Roles.driver, Roles.administrator, Roles.superAdmin],
     children: [
       {
-        displayName: 'Weekly Gatherings',
+        displayName: 'Weekly Services',
         iconName: 'event',
         route: '',
         roles: [Roles.administrator, Roles.superAdmin]
@@ -26,7 +26,7 @@ export let menu: NavItem[] = [
       {
         displayName: 'Manage Templates',
         iconName: 'insert_drive_file',
-        route: '/manage-templates',
+        route: 'services/manage-templates',
         roles: [Roles.administrator, Roles.superAdmin]
       },
       {
