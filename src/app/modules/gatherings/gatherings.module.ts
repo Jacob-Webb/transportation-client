@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { ChurchServicesRoutingModule } from './church-services-routing.module';
+import { GatheringsRoutingModule } from './gatherings-routing.module';
 import { ManageTemplatesComponent } from './manage-templates/manage-templates.component';
 
 
@@ -14,7 +14,7 @@ import { ManageTemplatesComponent } from './manage-templates/manage-templates.co
   imports: [
     CommonModule,
     SharedModule,
-    ChurchServicesRoutingModule
+    GatheringsRoutingModule
   ]
 })
-export class ChurchServicesModule { }
+export class GatheringsModule { }

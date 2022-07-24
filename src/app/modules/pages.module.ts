@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AccountModule } from './account/account.module';
-import { ChurchServicesModule } from './church-services/church-services.module';
+import { GatheringsModule } from './gatherings/gatherings.module';
 import { ErrorsModule } from './errors/errors.module';
 
 
@@ -11,7 +11,7 @@ import { ErrorsModule } from './errors/errors.module';
   imports: [
     CommonModule,
     AccountModule,
-    ChurchServicesModule,
+    GatheringsModule,
     ErrorsModule
   ]
 })

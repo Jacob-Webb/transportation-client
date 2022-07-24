@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './modules/dashboard/pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ManageTemplatesComponent } from './modules/church-services/manage-templates/manage-templates.component';
 import { routerPaths } from './app.constants';
-import { Roles } from './shared/models/roles';
 
 const routes: Routes = [
   { 
@@ -21,8 +19,8 @@ const routes: Routes = [
       .then(m => m.ErrorsModule),
   }, {
     path: routerPaths.church_services,
-    loadChildren: () => import('./modules/church-services/church-services.module')
-      .then(m => m.ChurchServicesModule),
+    loadChildren: () => import('./modules/gatherings/gatherings.module')
+      .then(m => m.GatheringsModule),
   }, { 
     path: '**', 
     redirectTo: '/errors/404', 

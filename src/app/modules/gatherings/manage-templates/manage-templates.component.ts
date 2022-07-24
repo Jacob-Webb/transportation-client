@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GatheringTemplateDto } from 'src/app/shared/models/gatherings';
 
 /**
  * Component to manage the service templates. 
@@ -9,15 +10,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-templates.component.scss']
 })
 export class ManageTemplatesComponent implements OnInit {
-
-  /**
-   * @ignore
-   */
+ 
   constructor() { }
 
-  /**
-   * @ignore
-   */
+
   ngOnInit(): void {
   }
 
